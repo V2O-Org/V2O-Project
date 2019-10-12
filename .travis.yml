@@ -1,0 +1,42 @@
+# .travis.yml
+
+language: php
+sudo: required
+dist: trusty
+
+php:
+  - 7.3
+
+services:
+  - mysql
+
+addons:
+  mariadb: 10.4
+
+cache:
+  directories:
+    - node_modules
+    - vendor
+
+before_install:
+  - mysql -e 'CREATE DATABASE testing;'
+
+before_script:
+  - cp .env.travis .env
+  - composer self-update
+  - composer install --no-interaction
+
+script:
+  - vendor/bin/phpunit --exclude-group=dontRun
+
+# Link for notifications help: https://docs.travis-ci.com/user/notifications/
+notifications:
+  webhooks: 
+    urls:
+      - https://outlook.office.com/webhook/846c43fa-1080-43a6-acf6-f16a588a961e@0d1b5d7f-f04f-4329-9401-57c347a50670/TravisCI/df70eae09820423baab931c8030b0c4f/a8f6861e-439e-40f1-954e-f372f2ddb263
+  on_success: change  # default: always
+  on_failure: always  # default: always
+  on_start:   change  # default: never
+  on_cancel:  always  # default: always
+  on_error:   always  # default: always
+  
