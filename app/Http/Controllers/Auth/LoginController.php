@@ -53,9 +53,10 @@ class LoginController extends Controller
                 return redirect()->route('volunteer.home');
             } else if (auth()->user()->role == 'ORGANISATION') {
                 return redirect()->route('organisation.home');
-            } else {
-                return redirect()->route('home');
-            }
+            } 
+            // else {
+            //     return redirect()->route('home');
+            // }
         } else{
             return redirect()->route('login')
                 ->with('error','Email-Address and Password are Wrong.');
