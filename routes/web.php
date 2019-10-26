@@ -12,9 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('vol-activity-info');
+    return view('tester');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/',function(){
+	return view('welcome');
+});
