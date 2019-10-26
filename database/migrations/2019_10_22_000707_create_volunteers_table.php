@@ -18,12 +18,19 @@ class CreateVolunteersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('profile_img')->nullable(); // The volunteer's profile picture
             $table->date('date_of_birth');
+
+            // Volunteer's Location Information
+            $table->string('street_address_1')->nullable();
+            $table->string('street_address_2')->nullable(); // Optional
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
             $table->string('country')->nullable();
-            $table->string('address')->nullable();
-            $table->timestamps();
             
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

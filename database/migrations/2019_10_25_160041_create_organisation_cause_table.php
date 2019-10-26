@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVolunteerCauseTable extends Migration
+class CreateOrganisationCauseTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateVolunteerCauseTable extends Migration
      */
     public function up()
     {
-        Schema::create('volunteer_cause', function (Blueprint $table) {
+        Schema::create('organisation_cause', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('volunteer_id');
+            $table->unsignedBigInteger('organisation_id');
             $table->unsignedBigInteger('cause_id');
 
             
-            $table->foreign('volunteer_id')->references('id')->on('volunteers')->onDelete('cascade');
+            $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('cascade');
             $table->foreign('cause_id')->references('id')->on('causes')->onDelete('cascade');
         });
     }
@@ -31,6 +31,6 @@ class CreateVolunteerCauseTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('volunteer_cause');
+        Schema::dropIfExists('organisation_cause');
     }
 }

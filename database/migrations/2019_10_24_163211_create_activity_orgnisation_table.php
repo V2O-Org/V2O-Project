@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActivityVolunteerTable extends Migration
+class CreateActivityOrgnisationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateActivityVolunteerTable extends Migration
      */
     public function up()
     {
-        Schema::create('current_activity_volunteer', function (Blueprint $table) {
+        Schema::create('activity_organisation', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('activity_id');
-            $table->unsignedBigInteger('volunteer_id');
+            $table->unsignedBigInteger('organisation_id');
             $table->timestamps();
-
-            
-            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
-            $table->foreign('volunteer_id')->references('id')->on('volunteers')->onDelete('cascade');
         });
     }
 
@@ -32,6 +28,6 @@ class CreateActivityVolunteerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activity_volunteer');
+        Schema::dropIfExists('activity_organisation');
     }
 }

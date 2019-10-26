@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'country', 'address', 
+        'name', 'email', 'password', 'role'
     ];
 
     /**
@@ -41,8 +41,21 @@ class User extends Authenticatable
      * Set up the relationship between users and volunteers.
      * 1 user CAN BE 1 volunteer.
      */
-    public function user()
+    public function volunteer()
     {
-        return $this->belongsTo(Volunteer::class, 'volunteers')->withTimestamps();
+        if ($this->role == 'VOLUNTEER') { 
+            return $this->hasOne(Volunteer::class, 'volunteers');
+        }
+    }
+
+    /**
+     * Set up the relationship between users and organisations.
+     * 1 user CAN BE 1 organisation.
+     */
+    public function organisation()
+    {
+        if ($this->role == 'ORGANISATION') { 
+            return $this->hasOne(Organisation::class, 'organisations');
+        }
     }
 }

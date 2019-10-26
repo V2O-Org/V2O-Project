@@ -17,7 +17,6 @@ class CreateActivityCauseTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('activity_id');
             $table->unsignedBigInteger('cause_id');
-            $table->timestamps();
 
             $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
             $table->foreign('cause_id')->references('id')->on('causes')->onDelete('cascade');

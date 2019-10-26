@@ -24,7 +24,8 @@ class CreateActivitiesTable extends Migration
             $table->time('end_time')->nullable();
             $table->string('location')->nullable(); 
             $table->string('co-host')->nullable();
-            $table->enum('status', ['ACTIVE', 'COMPLETED'])->default('ACTIVE');
+            $table->date('registration_deadline')->nullable(); // Deadline for registrations
+            $table->boolean('is_active')->default(true);
             $table->integer('volunteer_hours'); // Earnable volunteer hours for activity
             $table->timestamps();
         });

@@ -13,15 +13,12 @@ class CreatePastActivityVolunteerTable extends Migration
      */
     public function up()
     {
-        Schema::create('past_activity_volunteer', function (Blueprint $table) {
+        Schema::create('activity_volunteer', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('activity_id');
             $table->unsignedBigInteger('volunteer_id');
+            $table->integer('volunteer_hours_earned')->default(0);
             $table->timestamps();
-
-            
-            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
-            $table->foreign('volunteer_id')->references('id')->on('volunteers')->onDelete('cascade');
         });
     }
 

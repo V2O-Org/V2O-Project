@@ -52,7 +52,7 @@ class ActivityController extends Controller
     public function store(ActivityCreateRequest $request)
     {
 
-        $imagePath = $request['image']->store('uploads', 'public');
+        $imagePath = $request['image']->store('uploads/images/activity', 'public');
 
         $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
         $image->save();
@@ -69,7 +69,6 @@ class ActivityController extends Controller
             'end_time' => $request['end_time'],
             'location' => $request['location'],
             // 'co-host' => $request['co-host'],
-
         ]);
 
         // $activity->causes()->sync($causes);
