@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'country', 'address', 
     ];
 
     /**
@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Set up the relationship between users and volunteers.
+     * 1 user CAN BE 1 volunteer.
+     */
+    public function user()
+    {
+        return $this->belongsTo(Volunteer::class, 'volunteers')->withTimestamps();
+    }
 }

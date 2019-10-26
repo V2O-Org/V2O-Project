@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOpportunityCauseTable extends Migration
+class CreateActivityCauseTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateOpportunityCauseTable extends Migration
      */
     public function up()
     {
-        Schema::create('opportunity_cause', function (Blueprint $table) {
+        Schema::create('activity_cause', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('opportunity_id');
+            $table->unsignedBigInteger('activity_id');
             $table->unsignedBigInteger('cause_id');
             $table->timestamps();
+
+            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
+            $table->foreign('cause_id')->references('id')->on('causes')->onDelete('cascade');
         });
     }
 
@@ -28,6 +31,6 @@ class CreateOpportunityCauseTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opportunity_cause');
+        Schema::dropIfExists('activity_cause');
     }
 }

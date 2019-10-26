@@ -6,8 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cause extends Model
 {
-    public function opportunities()
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        
+    ];
+
+    public function activities()
     {
-        return $this->belongsToMany(Opportunity::class, 'opportunity_cause')->withTimestamps();
+        return $this->belongsToMany(Activity::class, 'activity_cause')->withTimestamps();
     }
 }
