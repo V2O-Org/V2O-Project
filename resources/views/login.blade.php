@@ -142,7 +142,7 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
 
 
 			 </form>
-			 <p>No Account? Sign Up <a href="#">Here</a></p>
+			 <p>No Account? Sign Up <a href="/vol-reg">Here</a></p>
 		</div>
 	</div>
 </body>
