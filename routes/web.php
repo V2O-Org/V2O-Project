@@ -11,16 +11,34 @@
 |
 */
 
+// TEST ROUTES
 Route::get('/', function () {
-    return view('welcome');
+    return view('tester');
+});
+
+// Test Route - Login
+Route::get('/vol-login',function(){
+    return view('login');
+});
+
+// Test Route - Register
+Route::get('/vol-reg',function(){
+    return view('vol-register');
+    });
+
+Route::post('/',function(){
+	return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Routes for volunteer and organisation homepage
+// Resource router for volunteer
 Route::resource('volunteer', 'VolunteerController');
+
+// Resource router for organisation
 Route::resource('organisation', 'OrganisationController');
-// Routes for activities
+
+// Resource router for activities
 Route::resource('activity', 'ActivityController');
