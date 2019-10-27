@@ -21,16 +21,30 @@
         }
 
         .btn {
+            display: block;
             border-radius: 12px;
-            margin: auto.
-            width: 80%
+            margin-left: auto;
+            margin-right: auto; 
+            width: 150px;  
+            height: 40px;
+            border-color: white;
+            border-radius: 24px;
+            font-size: 24px;
+            background-color: #000000;
+            color: white;
+                   
         }
 
-        .center_div {
-            margin: auto.
-            width: 80%
+        .container {
+            
+            margin: auto;
+            width: 50%;
         }
-    
+        .container input {
+            align-self: auto;
+            margin: auto;
+            width: 50%;
+        }
                     
         .content {
             text-align: center;
@@ -39,41 +53,81 @@
         .title {
             font-size: 84px;
         }
+
+        .member {
+            text-align: center;
+            margin: 60px 40px 40px 100px;
+            
+        }
+
+        #orgname {
+            margin-left: 30px;
+            border-radius: 4px;
+        }
+
+        #loc {
+            margin-left: 110px;
+            border-radius: 4px;
+        }
+
+        #tfirma {
+            margin-left: 112px;
+            border-radius: 4px;
+        }
+
+        #letter {
+            margin-left: 127px;
+            border-radius: 4px;
+        }
+
+        #gentry {
+            margin-left: 98px;
+            border-radius: 4px;
+        }
+
+        .logospace{
+            color: red;
+        }
+
+        .note {
+            color:ghostwhite;
+        }
             
 </style>
     </head>
     <body>
             <div class = 'content'>
-                    <h3 class="logospace">Volunteer .To. Organization</h3>
-                        <p><h1>Sign Up</h1></p>
+                    <img src = "/images/Logo.jpeg" alt = "V2O-Logo" class = "headsup" width = "100%" height = "150">
+                    
+                        <p><h1 class = 'note'>Sign Up</h1></p>
                     </div>
-                    <div class = "center_div">
+                    <div class = "container">
                     {!! Form::open(array('url' => '/orgsignup')) !!}
                         <div class='form-group'>
                             <p>
                             {!! Form::label('title', 'Organization Name:') !!}
-                            {{Form::text ('title', '', ['class' => 'form-control', 'placeholder' => ''])}}
+                            {{Form::text ('title', '', ['id' => 'orgname','class' => 'form-control', 'placeholder' => ''])}}
                             </p>
                             <p>
                             {!! Form::label('title', 'Address:') !!}
-                            {{Form::text ('title', '', ['class' => 'form-control', 'placeholder' => ''])}}
+                            {{Form::text ('title', '', ['id' => 'loc', 'class' => 'form-control', 'placeholder' => ''])}}
                             </p>
                             <p>
                             {!! Form::label('title', 'Country:') !!}
-                            {{Form::text ('title', '', ['class' => 'form-control', 'placeholder' => ''])}}
+                            {{Form::text ('title', '', ['id' => 'tfirma', 'class' => 'form-control', 'placeholder' => ''])}}
                             </p>
                             <p>
                             {!! Form::label('title', 'Email:') !!}       
-                            {{Form::text ('title', '', ['class' => 'form-control', 'placeholder' => ''])}}
+                            {{Form::text ('title', '', ['id' => 'letter', 'class' => 'form-control', 'placeholder' => ''])}}
                             </p>
                             <p>
                             {!! Form::label('title', 'Password:') !!}
-                            {{Form::text ('title', '', ['class' => 'form-control', 'placeholder' => ''])}}
+                            {{Form::text ('title', '', ['id' => 'gentry', 'class' => 'form-control', 'placeholder' => ''])}}
                             </p>
-                            <p>Already have an account? sign in <a href= 'https://www.w3schools.com'>Here</a>
+                            <p class = "member">Already have an account? sign in <a href= 'https://www.w3schools.com'>Here</a>
                         </div>
                     </div>           
-                        {{Form::submit('Continue', ['class' => 'btn btn-primary btn lg'])}}
+                        {{Form::submit('Continue', ['class' => 'btn btn-primary btn-lg'])}}
                     {!! Form::close() !!}
             
     </body>
