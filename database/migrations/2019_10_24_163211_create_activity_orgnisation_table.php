@@ -14,10 +14,12 @@ class CreateActivityOrgnisationTable extends Migration
     public function up()
     {
         Schema::create('activity_organisation', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->unsignedBigInteger('activity_id');
             $table->unsignedBigInteger('organisation_id');
             $table->timestamps();
+
+            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
+            $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('cascade');
         });
     }
 

@@ -14,7 +14,6 @@ class CreateActivityCauseTable extends Migration
     public function up()
     {
         Schema::create('activity_cause', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->unsignedBigInteger('activity_id');
             $table->unsignedBigInteger('cause_id');
 

@@ -63,4 +63,11 @@ class Volunteer extends Authenticatable
     {
         return $this->belongsToMany(Activity::class, 'activity_volunteer')->withTimestamps();
     }
+
+    /**
+     * Return the full name of the volunteer
+     */
+    public function fullName() {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 }

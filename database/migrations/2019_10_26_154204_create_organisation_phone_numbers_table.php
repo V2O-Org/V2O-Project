@@ -14,7 +14,6 @@ class CreateOrganisationPhoneNumbersTable extends Migration
     public function up()
     {
         Schema::create('organisation_phone_numbers', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->unsignedBigInteger('organisation_id');
             $table->string('phone_number')->unique();
             $table->boolean('is_preferred')->default(false); // Determine preferred number

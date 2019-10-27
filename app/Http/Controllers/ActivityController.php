@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\ActivityCreateRequest;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 use App\Activity;
 use App\Cause;
 
@@ -36,11 +37,11 @@ class ActivityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {        
         $activity = new Activity;
-        $causes = Cause::lists("name");
+        $causes = Cause::pluck('name');
         
-        return view('activity.create')->with("activity", $activity)->with("causes", $causes);
+        return view('activity.create')->with('activity', $activity)->with('causes', $causes);
     }
 
     /**
@@ -51,10 +52,9 @@ class ActivityController extends Controller
      */
     public function store(ActivityCreateRequest $request)
     {
-
         $imagePath = $request['image']->store('uploads/images/activity', 'public');
 
-        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+        $image = Image::make(public_path("storage/{$imagePath}"));
         $image->save();
 
         // $causes = $request->input('causes');
@@ -73,7 +73,7 @@ class ActivityController extends Controller
 
         // $activity->causes()->sync($causes);
 
-        dd($activity);
+        return redirect(url('organisation.home'));
     }
 
     /**
@@ -95,19 +95,28 @@ class ActivityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $activity = Activity::findOrFail($id);
+        $causes = Cause::pluck('name');
+
+        return view('activity.update')->with('activity', $activity)->with('causes', $causes);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ActivityCreateRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ActivityCreateRequest $request, $id)
     {
-        //
+        // Find the activity to be updated.
+        $activity = Activity::findOrFail($id);
+
+        // Update the activity with the edited fields.
+        $activity->update($request->all());
+
+        return redirect(url('organisation.home'));
     }
 
     /**
@@ -118,6 +127,16 @@ class ActivityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Find the activity to be removed.
+        $activity = Activity::findOrFail($id);
+
+        // Remove all many-to-many references to activity
+        $activity->causes()->detach();
+        $activity->organisations()->detach();
+        $activity->volunteers()->detach();
+
+        $activity->delete();
+
+        return redirect('organisation.home');
     }
 }

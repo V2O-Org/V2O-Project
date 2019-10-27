@@ -22,11 +22,11 @@ class CreateActivitiesTable extends Migration
             $table->date('end_date');
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
-            $table->string('location')->nullable(); 
-            $table->string('co-host')->nullable();
+            $table->string('location'); 
+            $table->string('co_host')->nullable();
             $table->date('registration_deadline')->nullable(); // Deadline for registrations
             $table->boolean('is_active')->default(true);
-            $table->integer('volunteer_hours'); // Earnable volunteer hours for activity
+            $table->unsignedInteger('volunteer_hours')->default(0); // Earnable volunteer hours for activity
             $table->timestamps();
         });
     }

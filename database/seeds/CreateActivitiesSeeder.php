@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Activity;
+use Illuminate\Support\Facades\DB;
 
 class CreateActivitiesSeeder extends Seeder
 {
@@ -12,21 +13,60 @@ class CreateActivitiesSeeder extends Seeder
      */
     public function run()
     {
-        $user = [
+        $activity = [
             [
-                'email'=>'test.volunteer@v2o.com',
-                'role'=> 'VOLUNTEER',
-                'password'=> bcrypt('password'),
+                'name' => 'Test Activity',
+                'details' => 'Here are some details',
+                'start_date' => '2019-11-25',
+                'end_date' => '2019-11-25',
+                'start_time' => '10:00:00', 
+                'end_time' => '15:30:00',
+                'location' => "Queen's Park, Bridgetown, Barbados",
+                'co_host' => 'Dummy Organisation',
+                'registration_deadline' => '2019-11-18',
+                'volunteer_hours' => 5,
             ],
             [
-                'email'=>'test.organisation@v2o.com',
-                'role' => 'ORGANISATION',
-                'password'=> bcrypt('password'),
+                'name' => 'Help the Elderly',
+                'details' => 'Old people need help guys.',
+                'start_date' => '2019-12-10',
+                'end_date' => '2019-12-16',
+                'start_time' => '8:30:00', 
+                'end_time' => '16:30:00',
+                'location' => "Geriatric Hospital, Bridgetown Barbados",
+                'co_host' => 'Dummy Organisation',
+                'registration_deadline' => '2019-11-30',
+                'volunteer_hours' => 8*7,
             ],
         ];
+
+        $cause = [
+            [
+                4, 10, 12
+            ],
+            [
+                8, 28
+            ]
+        ];
+
+        $organisation = [
+            [
+                DB::table('organisations')->select('id')->first()->id,
+            ],
+            [
+                DB::table('organisations')->select('id')->first()->id,
+            ]
+        ];
   
-        foreach ($user as $key => $value) {
-            User::create($value);
+        $activities = [];
+
+        foreach ($activity as $key => $value) {
+            array_push($activities, Activity::create($value));
+        }
+
+        for ($i = 0; $i < sizeof($activities); $i++) {
+            $activities[$i]->causes()->sync($cause[$i]);
+            $activities[$i]->organisations()->sync($organisation[$i]);
         }
     }
 }

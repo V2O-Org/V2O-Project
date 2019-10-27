@@ -14,7 +14,6 @@ class CreateOrganisationCauseTable extends Migration
     public function up()
     {
         Schema::create('organisation_cause', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->unsignedBigInteger('organisation_id');
             $table->unsignedBigInteger('cause_id');
 

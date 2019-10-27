@@ -21,7 +21,7 @@ class Activity extends Model
      */
     public function causes()
     {
-        return $this->belongsToMany(Cause::class, 'activity_cause')->withTimestamps();
+        return $this->belongsToMany(Cause::class, 'activity_cause');
     }
 
     /**
@@ -31,5 +31,14 @@ class Activity extends Model
     public function volunteers()
     {
         return $this->belongsToMany(Volunteer::class, 'activity_volunteer')->withTimestamps();
+    }
+
+    /**
+     * Set up the relationship between activities and organisations.
+     * 1 activity HAS many organisations.
+     */
+    public function organisations()
+    {
+        return $this->belongsToMany(Organisation::class, 'activity_organisation')->withTimestamps();
     }
 }

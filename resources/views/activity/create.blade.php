@@ -161,7 +161,7 @@
                             ]) }}
 
                             <div class="col-md-6">
-                                {{ Form::select("causes", $causes, Input::old("name")) }}
+                                {{ Form::select("causes", $causes) }}
 
                                 @error('image')
                                     <span class="invalid-feedback d-block" role="alert">

@@ -26,15 +26,15 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        // try {
-        //     $user = User::findOrFail(Auth::id());
-        // } catch (ModelNotFoundException $e) {
-        //     return redirect('login');
-        // }
+        try {
+            $user = User::findOrFail(Auth::id());
+        } catch (ModelNotFoundException $e) {
+            return redirect('login');
+        }
         
-        // return view('organisation.home', [
-        //     'user' => $user
-        // ]);
+        return view('organisation.home', [
+            'user' => $user
+        ]);
     }
 
     /**

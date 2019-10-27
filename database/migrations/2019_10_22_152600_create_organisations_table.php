@@ -15,7 +15,7 @@ class CreateOrganisationsTable extends Migration
     {
         Schema::create('organisations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->unique;
             $table->string('name');
             $table->string('profile_img')->nullable(); // The organisation's profile picture
 
