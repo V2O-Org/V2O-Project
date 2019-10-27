@@ -10,6 +10,16 @@ use App\User;
 class VolunteerController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('is_volunteer');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -18,7 +28,7 @@ class VolunteerController extends Controller
     {
         $user = User::findOrFail(Auth::id());
 
-        return view('volunteer.home', [
+        return view('/volunteer/home', [
             'user' => $user
         ]);
     }

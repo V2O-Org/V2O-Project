@@ -15,10 +15,12 @@ class IsVolunteer
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->role == 'VOLUNTEER') { 
+        if (!auth()->user()) {
+            return redirect('login');
+        } else if (auth()->user()->role === 'VOLUNTEER') { 
             return $next($request);
         }
 
-        return redirect('home')->with('error', "You are not a registered volunteer.");
+        return redirect('/')->with('error', "You are not a registered volunteer.");
     }
 }

@@ -15,10 +15,12 @@ class IsOrganisation
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->role == 'ORGANISATION') { 
+        if (!auth()->user()) {
+            return redirect('login');
+        } else if (auth()->user()->role === 'ORGANISATION') { 
             return $next($request);
         }
 
-        return redirect('home')->with('error', "You are not a registered organisation.");
+        return redirect('/')->with('error', "You are not a registered organisation.");
     }
 }

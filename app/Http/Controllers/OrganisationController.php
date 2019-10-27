@@ -10,17 +10,31 @@ use App\User;
 class OrganisationController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('is_organisation');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $user = User::findOrFail(Auth::id());
+        // try {
+        //     $user = User::findOrFail(Auth::id());
+        // } catch (ModelNotFoundException $e) {
+        //     return redirect('login');
+        // }
         
-        return view('organisation.home', [
-            'user' => $user
-        ]);
+        // return view('organisation.home', [
+        //     'user' => $user
+        // ]);
     }
 
     /**
