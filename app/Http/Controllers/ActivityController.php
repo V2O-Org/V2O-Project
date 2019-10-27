@@ -18,7 +18,7 @@ class ActivityController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('is_organisation');
+        // $this->middleware('is_organisation')->only('create');
     }
 
     /**
@@ -52,10 +52,15 @@ class ActivityController extends Controller
      */
     public function store(ActivityCreateRequest $request)
     {
-        $imagePath = $request['image']->store('uploads/images/activity', 'public');
+        $imagePath = null;
 
-        $image = Image::make(public_path("storage/{$imagePath}"));
-        $image->save();
+        // If image exists, 
+        if ($request['image'] == 1) {
+            $imagePath = $request['image']->store('uploads/images/activity', 'public');
+    
+            $image = Image::make(public_path("storage/{$imagePath}"));
+            $image->save();
+        }
 
         // $causes = $request->input('causes');
 
@@ -68,9 +73,18 @@ class ActivityController extends Controller
             'start_time' => $request['start_time'],
             'end_time' => $request['end_time'],
             'location' => $request['location'],
-            // 'co-host' => $request['co-host'],
+            'co_host' => $request['co_host'],
+            'registration_deadline' => $request['registration_deadline'],
+            'volunteer_hours' => $request['volunteer_hours']
         ]);
+        
+        // Connect activity to organisation
+        $org_id = Auth::user()->organisation->id;
+        $activity->organisations()->sync([$org_id]);
+        
+        dd($activity);
 
+        // Connect activity to causes
         // $activity->causes()->sync($causes);
 
         return redirect(url('organisation.home'));

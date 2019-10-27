@@ -24,36 +24,20 @@ class ActivityCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
-                'required', 'string',
-            ],
-            'details' => [
-                'required',
-            ],
-            'start_date' => [
-                'required', 'date',
-            ],
-            'end_date' => [
-                'required', 'date',
-            ],
-            'start_time' => [
-                'required',
-            ],
-            'end_time' => [
-                'required',
-            ],
-            'location' => [
-                'required', 'string',
-            ],
-            'image' => [
-                'image', 'mimes:jpeg,png,jpg,gif', 'max:2048',
-            ]
+            'name' => [ 'required', 'string', 'max:191'],
+            'details' => [ 'required', 'string' ],
+            'image' => [ 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048', ],
+            'start_date' => [ 'required', 'date', ],
+            'end_date' => [ 'required', 'date', ],
+            'start_time' => [ 'required', ],
+            'end_time' => [ 'required', ],
+            'location' => [ 'required', 'string', ],
+            'co_host' => [ 'required', 'string', 'max:191', ],
+            'registration_deadline' => [ 'required', 'date', ],
+            'volunteer_hours' => [ 'required', 'integer', ],
             // 'causes' => [
             //     'required'
             // ],
-            // 'image' => [
-            //     'required', 'image',
-            // ]
         ];
     }
 }

@@ -18,7 +18,8 @@
     <body>
     	<header>
 
-			<div id="Logo"><img src="{{ asset('image/Logo.jpeg') }}" alt="Logo"></div>
+            <div id="Logo">
+                <img src="{{ asset('image/Logo.jpeg') }}" alt="Logo"></div>
 			<div id="nav">
 				<ul>
 					<?php

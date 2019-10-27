@@ -5,7 +5,7 @@
 	$extraStyle = "a{color:red !important;}";
 
 ?>
-@include('vol-account-header',['data'=>$list,'links'=>$links,'extraStyle' => $extraStyle])
+@include('volunteer.vol-account-header',['data'=>$list,'links'=>$links,'extraStyle' => $extraStyle])
 
 
 <!-- div is the body of the page -->
@@ -104,4 +104,4 @@
 
 
 
-@include('footer')
+@include('volunteer.footer')

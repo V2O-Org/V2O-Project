@@ -1,239 +1,197 @@
-@extends('layouts.app')
+<?php 
+	# BELOW ARE ARGUMNENTS TO SEND FOR THE HEADER 
+	//this is the list of links to appear in header
+	$list  =[ 'Home','About Us','Sign Up/Login','Contact Us',];
+	//the urls for the links listed above be sure to keep ordering the same
+	$links =[ '#','#','#','#'];
+	//extra styles sends css that the page should use for the header
+	$extraStyle = "a{color:reds !important;}";
+?>
+<!--includes the header and pass variables from above-->
+@include('volunteer.vol-account-header',['data'=>$list,'links=>$links','extra'=>$extraStyle])
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Create Activity') }}</div>
+{{Html::style('css/register.css')}}
 
-                <div class="card-body">
-                    {{ Form::open(["url" => "/activity", "files" => true]) }}
-                        @csrf
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    
+    .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 1; 
+        padding-top: 100px; 
+        left: 0;
+        top: 0;
+        width: 80%; 
+        height: 80%; 
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4); 
+    }
+    
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+    
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
 
-                        <div class="form-group row">
-                            {{ Form::label("name", __("Name"), [ 
-                                "class" => "col-md-4 col-form-label text-md-right" 
-                            ]) }}
+<h1>Create Activity</h1>
+<div class="col-12 main">
 
-                            <div class="col-md-6">
-                                {{ Form::text("name", $activity->name, [ 
-                                    "class" => "form-control", "required",  "autocomplete" => "name", "autofocus" 
-                                ]) }}
+    <div class="col-6 login-sec " id="login.stf">
+        {{ Form::open(array('url' => 'activity')) }}
 
-                                @error('name')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+            {{ Form::label('name', 'Activity Name:') }}
+                {{ Form::text('name', $activity->name ?? '') }}
+                @error('name')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
 
-                        <div class="form-group row">
-                            {{ Form::label("details", __("Details"), [ 
-                                "class" => "col-md-4 col-form-label text-md-right" 
-                            ]) }}
+            {{ Form::label('details', 'Description:') }}
+                {{ Form::textarea('details', $activity->details ?? '') }}
+                @error('details')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
 
-                            <div class="col-md-6">
-                                {{ Form::textarea("details", $activity->details, [ 
-                                    "class" => "form-control", "required",  "autocomplete" => "details", "autofocus" 
-                                ]) }}
+            {{ Form::label('start_date', 'Start Date:') }}
+                {{ Form::date('start_date', $activity->start_date ?? '') }}
+                @error('start_date')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
 
-                                @error('details')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+            {{ Form::label('end_date', 'End Date:') }}
+                {{ Form::date('end_date', $activity->end_date ?? '') }}
+                @error('end_date')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            
+            {{ Form::label('start_time', 'Start Time:') }}
+                {{ Form::time('start_time', $activity->start_time ?? '') }}
+                @error('start_time')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            
+            {{ Form::label('end_time', 'End Time:') }}
+                {{ Form::time('end_time', $activity->end_time ?? '') }}
+                @error('end_time')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
 
-                        <div class="form-group row">
-                            {{ Form::label("start_date", __("Start Date"), [ 
-                                "class" => "col-md-4 col-form-label text-md-right" 
-                            ]) }}
+            {{ Form::label('location', 'Location:') }}
+                {{ Form::text('location', $activity->location ?? '') }}
+                @error('location')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
 
-                            <div class="col-md-6">
-                                {{ Form::text("start_date", $activity->start_date, [ 
-                                    "class" => "form-control", "required",  "autocomplete" => "end_date", "autofocus" 
-                                ]) }}
+            {{ Form::label('co_host', 'Co-Host') }}
+                {{ Form::text('co_host', $activity->co_host ?? '') }}
+                @error('co_host')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
 
-                                @error('start_date')
-                                    <span class="invalid-feedback d-block">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+            {{ Form::label('registration_deadline', 'Registration Deadline:') }}
+                {{ Form::date('registration_deadline', $activity->registration_deadline ?? '') }}
+                @error('registration_deadline')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
 
-                        <div class="form-group row">
-                            {{ Form::label("end_date", __("End Date"), [ 
-                                "class" => "col-md-4 col-form-label text-md-right" 
-                            ]) }}
+            {{ Form::label('volunteer_hours', 'Volunteer Hours:') }}
+                {{  Form::text('volunteer_hours', $activity->volunteer_hours ?? '') }}
+                @error('volunteer_hours')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
 
-                            <div class="col-md-6">
-                                {{ Form::text("end_date", $activity->end_date, [ 
-                                    "class" => "form-control", "required",  "autocomplete" => "end_date", "autofocus" 
-                                ]) }}
+            <!-- Button to trigger causes modal -->
+            {{ Form::button("Choose Causes", array('id' => 'modalBtn')) }}
 
-                                @error('end_date')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            {{ Form::label("start_time", __("Start Time"), [ 
-                                "class" => "col-md-4 col-form-label text-md-right" 
-                            ]) }}
-
-                            <div class="col-md-6">
-                                {{ Form::text("start_time", $activity->start_time, [ 
-                                    "class" => "form-control", "required",  "autocomplete" => "end_time", "autofocus" 
-                                ]) }}
-
-                                @error('start_time')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            {{ Form::label("end_time", __("End Time"), [ 
-                                "class" => "col-md-4 col-form-label text-md-right" 
-                            ]) }}
-
-                            <div class="col-md-6">
-                                {{ Form::text("end_time", $activity->end_time, [ 
-                                    "class" => "form-control", "required",  "autocomplete" => "end_time", "autofocus" 
-                                ]) }}
-
-                                @error('end_time')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            {{ Form::label("location", __("Location"), [ 
-                                "class" => "col-md-4 col-form-label text-md-right" 
-                            ]) }}
-
-                            <div class="col-md-6">
-                                {{ Form::text("location", $activity->location, [ 
-                                    "class" => "form-control", "required",  "autocomplete" => "location", "autofocus" 
-                                ]) }}
-
-                                @error('location')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            {{ Form::label("image", __("Activity Image"), [
-                                "class" => "col-md-4 col-form-label text-md-right"
-                            ]) }}
-
-                            <div class="col-md-6">
-                                {{ Form::file("image", $activity->image, [
-                                    "class" => "form-control-file", "required", "accept" => "image/*"
-                                ]) }}
-
-                                @error('image')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            {{ Form::label("causes", __("Causes"), [
-                                "class" => "col-md-4 col-form-label text-md-right"
-                            ]) }}
-
-                            <div class="col-md-6">
-                                {{ Form::select("causes", $causes) }}
-
-                                @error('image')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        {{-- <div class="form-group row align-self-center">
-                            <div class="form-check">
-                                <input class="form-check-input" name="causes[]" type="checkbox" value="1" id="Agriculture">
-                                <label class="form-check-label" for="Agriculture">
-                                    Agriculture
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="form-check col-md-6">
-                                <input class="form-check-input" name="causes[]" type="checkbox" value="2" id="Animals">
-                                <label class="form-check-label" for="Animals">
-                                    Animals
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="form-check col-md-6">
-                                <input class="form-check-input" name="causes[]" type="checkbox" value="3" id="Arts & Culture">
-                                <label class="form-check-label" for="Arts & Culture">
-                                    Arts & Culture
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="form-check col-md-6">
-                                <input class="form-check-input" name="causes[]" type="checkbox" value="4" id="Children & Youth">
-                                <label class="form-check-label" for="Children & Youth">
-                                    Children & Youth
-                                </label>
-                            </div>
-                        </div>
-                            
-                        <div class="form-group row">
-                            <div class="form-check col-md-6">
-                                <input class="form-check-input" name="causes[]" type="checkbox" value="5" id="Community Development">
-                                <label class="form-check-label" for="Community Development">
-                                    Community Development
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="form-check col-md-6">
-                                <input class="form-check-input" name="causes[]" type="checkbox" value="6" id="Computers & IT">
-                                <label class="form-check-label" for="Computers & IT">
-                                    Computers & IT
-                                </label>
-                            </div>
-                        </div> --}}
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                {{ Form::submit('Create', ["class" => "btn btn-primary"]) }}
-                            </div>
-                        </div>
-                    {{ Form::close() }}
+            <!-- Causes Modal -->
+            <div id="causesModal" class="modal pb-3">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    @foreach($causes as $cause)
+                        {{ Form::label('cause', $cause)}}
+                            {{ Form::checkbox('causes[]', $cause) }}
+                    @endforeach
                 </div>
             </div>
-        </div>
+            <!-- End Causes Modal -->
+
+            <div class="activity-div col-6">
+                {{ Form::submit('Submit', array(
+                    'class' => 'button',
+                    'type' => 'submit',
+                    'onclick'=>'return confirm("Are you sure?")')) 
+                }}
+            </div>
+
+        {{ Form::close() }}
+
     </div>
 </div>
-@endsection
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("causesModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("modalBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
+        }
+    }
+</script>
+
+@include('volunteer.footer')

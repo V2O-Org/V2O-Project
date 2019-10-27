@@ -9,4 +9,4 @@
 background: linear-gradient(45deg, rgba(180,189,178,1) 44%, rgba(40,94,35,1) 60%, rgba(36,93,36,1) 100%) !important;} ";
  ?>
 
- @include('vol-account-header',['data'=>$list,'links'=>$links,'extra'=>$extraStyle])
+ @include('volunteer.vol-account-header',['data'=>$list,'links'=>$links,'extra'=>$extraStyle])

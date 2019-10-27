@@ -8,7 +8,7 @@
 	$extraStyle = "a{color:reds !important;}";
 ?>
 <!--includes the header and pass variables from above-->
-@include('vol-account-header',['data'=>$list,'links=>$links','extra'=>$extraStyle])
+@include('volunteer.vol-account-header',['data'=>$list,'links=>$links','extra'=>$extraStyle])
 
 {{Html::style('css/activity-list.css')}}
 
@@ -25,4 +25,4 @@
 	{{Form::button('Return to Profile',['id'=>'return-button'])}}
 	</div>
 </div>
-@include('footer')
+@include('volunteer.footer')
