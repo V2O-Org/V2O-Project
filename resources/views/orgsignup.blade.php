@@ -27,7 +27,7 @@
 <!-- Styles -->
 <style>
         html, body {
-            background-color: #4BAEA0;
+            background-color: #0C4F14;
             color: #000000;
             font-family: 'Arial Italic', sans-serif;
             font-weight: 200;
@@ -59,6 +59,7 @@
             align-self: auto;
             margin: auto;
             width: 50%;
+            
         }
                     
         .content {
