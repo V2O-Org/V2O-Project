@@ -44,7 +44,7 @@ class User extends Authenticatable
     public function volunteer()
     {
         if ($this->role == 'VOLUNTEER') { 
-            return $this->hasOne(Volunteer::class, 'volunteers');
+            return $this->hasOne(Volunteer::class);
         }
     }
 
@@ -55,7 +55,7 @@ class User extends Authenticatable
     public function organisation()
     {
         if ($this->role == 'ORGANISATION') { 
-            return $this->hasOne(Organisation::class, 'organisations');
+            return $this->hasOne(Organisation::class);
         }
     }
 }

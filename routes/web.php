@@ -20,9 +20,9 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // Routes for volunteer and organisation homepage
-Route::get('/volunteer/home', 'HomeController@volunteerHome')
+Route::get('/volunteer/home', 'VolunteerController@index')
     ->name('volunteer.home')->middleware('is_volunteer');
-Route::get('/organisation/home', 'HomeController@organisationHome')
+Route::get('/organisation/home', 'OrganisationController@index')
     ->name('organisation.home')->middleware('is_organisation');
 
 // Routes for activities

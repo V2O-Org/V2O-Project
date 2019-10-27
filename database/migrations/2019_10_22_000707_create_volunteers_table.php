@@ -22,8 +22,7 @@ class CreateVolunteersTable extends Migration
             $table->date('date_of_birth');
 
             // Volunteer's Location Information
-            $table->string('street_address_1')->nullable();
-            $table->string('street_address_2')->nullable(); // Optional
+            $table->string('street_address')->nullable();
             $table->string('state')->nullable();
             $table->string('city')->nullable();
             $table->string('country')->nullable();

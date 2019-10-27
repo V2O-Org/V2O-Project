@@ -25,24 +25,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-    /**
-     * Show the volunteer homepage.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function volunteerHome()
-    {
-        return view('volunteer.home');
-    }
-
-    /**
-     * Show the organisation homepage.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function organisationHome()
-    {
-        return view('organisation.home');
-    }
 }
