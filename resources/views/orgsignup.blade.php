@@ -1,3 +1,18 @@
+<?php 
+	# BELOW ARE ARGUMNENTS TO SEND FOR THE HEADER 
+	//this is the list of links to appear in header
+	$list  =[ 'Home','About Us','Contact Us'];
+	//the urls for the links listed above be sure to keep ordering the same
+	$links =[ '#','#','#'];
+	//extra styles sends css that the page should use for the header
+	$extraStyle = "a{color:reds !important;}";
+?>
+<!--includes the header and pass variables from above-->
+@include('vol-account-header',['data'=>$list,'links=>$links','extra'=>$extraStyle])
+
+
+
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -8,7 +23,7 @@
 
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Arial Italic:200,600" rel="stylesheet">
-
+    {{ Html::style('css/profile.css') }}
 <!-- Styles -->
 <style>
         html, body {
@@ -96,10 +111,9 @@
 </style>
     </head>
     <body>
+        	              
             <div class = 'content'>
-                    <img src = "/images/Logo.jpeg" alt = "V2O-Logo" class = "headsup" width = "100%" height = "150">
-                    
-                        <p><h1 class = 'note'>Sign Up</h1></p>
+                    <p><h1 class = 'note'>Sign Up</h1></p>
                     </div>
                     <div class = "container">
                     {!! Form::open(array('url' => '/orgsignup')) !!}
@@ -128,6 +142,8 @@
                         </div>
                     </div>           
                         {{Form::submit('Continue', ['class' => 'btn btn-primary btn-lg'])}}
+                        {{Html::style('css/footer.css')}}
+                         <footer><p>&copy 2019 | Volunteer-To-Organization | All Right Reserved</p></footer>
                     {!! Form::close() !!}
             
     </body>
