@@ -69,6 +69,10 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
 			border-radius: 10px;
 			height: 30px;
 		}
+        
+        input:focus {
+            background-color: white;
+        }
 
 		.signin-div
 		{
@@ -118,7 +122,8 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
 			</div>
 			<h1>Login</h1>
 
-			 <form>
+			 <form action="/vol/login" method="POST" id="login-form">
+                 @csrf
 			 	<table>
 
 			 		<tr>
@@ -136,13 +141,15 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
 			 	<p>Forgot your password? Reset <a href="#">Here</a></p>
 			 	
 			 	<div class="signin-div">
-			 		<a class="signin-btn" href="#"><button >Sign in</button></a>
+                     <span class="signin-btn">
+                            <button type="submit" form="login-form">Sign in</button>
+                    </span>
 			 	</div>
 			 	
 
 
 			 </form>
-			 <p>No Account? Sign Up <a href="/vol-reg">Here</a></p>
+			 <p>No Account? Sign Up <a href="/vol/register">Here</a></p>
 		</div>
 	</div>
 </body>

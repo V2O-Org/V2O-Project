@@ -62,6 +62,8 @@ class ActivityController extends Controller
             $image->save();
         }
 
+        // dd($request->input('causes'));
+
         // $causes = $request->input('causes');
 
         $activity = Activity::create([
@@ -82,7 +84,7 @@ class ActivityController extends Controller
         $org_id = Auth::user()->organisation->id;
         $activity->organisations()->sync([$org_id]);
         
-        dd($activity);
+        // dd($activity);
 
         // Connect activity to causes
         // $activity->causes()->sync($causes);

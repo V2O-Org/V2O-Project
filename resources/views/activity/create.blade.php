@@ -14,7 +14,11 @@
 
 <style>
     body {font-family: Arial, Helvetica, sans-serif;}
-    
+    *
+    {
+        box-sizing: border-box;
+    }
+
     .modal {
         display: none; 
         position: fixed; 
@@ -22,26 +26,57 @@
         padding-top: 100px; 
         left: 0;
         top: 0;
-        width: 80%; 
+        margin-top: 5%;
+        width: 100%; 
+
         height: 80%; 
-        overflow: auto;
-        background-color: rgb(0,0,0);
-        background-color: rgba(0,0,0,0.4); 
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: rgba(0,0,0,0.4);
     }
     
     .modal-content {
+       
         background-color: #fefefe;
         margin: auto;
         padding: 20px;
         border: 1px solid #888;
-        width: 80%;
+        width: 60%;
+        padding: 20px;
+
+
     }
     
+    /* width */
+    .modal::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    .modal::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      margin-right: 50px;
+    }
+
+    /* Handle */
+    .modal::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    /* Handle on hover */
+    .modal::-webkit-scrollbar-thumb:hover {
+      background: #555;
+
+    }
     .close {
         color: #aaaaaa;
         float: right;
         font-size: 28px;
         font-weight: bold;
+        width:100%;
+        position: relative;
+        right:-95%;
+
     }
     
     .close:hover,
@@ -49,6 +84,14 @@
         color: #000;
         text-decoration: none;
         cursor: pointer;
+    }
+
+    .modal-content input
+    {
+        width:max-content;
+        margin: 5px 50px 6px 0px;
+        float:right;
+
     }
 </style>
 
@@ -66,7 +109,7 @@
                     </span>
                 @enderror
 
-            {{ Form::label('details', 'Description:') }}
+             {{ Form::label('details', 'Description:') }}
                 {{ Form::textarea('details', $activity->details ?? '') }}
                 @error('details')
                     <span class="invalid-feedback d-block" role="alert">
@@ -142,15 +185,21 @@
             {{ Form::button("Choose Causes", array('id' => 'modalBtn')) }}
 
             <!-- Causes Modal -->
+            
             <div id="causesModal" class="modal pb-3">
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     @foreach($causes as $cause)
-                        {{ Form::label('cause', $cause)}}
-                            {{ Form::checkbox('causes[]', $cause) }}
+                    <div>
+                         {{ Form::label('cause', $cause)}}
+                            {{ Form::checkbox('causes[]', $cause) }} 
+                    </div>
+                            <br>
+
                     @endforeach
                 </div>
             </div>
+            
             <!-- End Causes Modal -->
 
             <div class="activity-div col-6">
@@ -169,6 +218,7 @@
 <script>
     // Get the modal
     var modal = document.getElementById("causesModal");
+
 
     // Get the button that opens the modal
     var btn = document.getElementById("modalBtn");

@@ -16,7 +16,7 @@ class IsOrganisation
     public function handle($request, Closure $next)
     {
         if (!auth()->user()) {
-            return redirect('login');
+            return redirect()->action('Auth\LoginController@showOrganisationLoginForm');
         } else if (auth()->user()->role === 'ORGANISATION') { 
             return $next($request);
         }

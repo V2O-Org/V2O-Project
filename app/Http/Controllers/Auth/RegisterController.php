@@ -103,7 +103,7 @@ class RegisterController extends Controller
             'country' => $data['country'],
         ]);
 
-        return redirect(url('/'));
+        return redirect(url('/home'));
     }
     
     /**
@@ -169,7 +169,7 @@ class RegisterController extends Controller
             'mailing_address' => data['mailing_address'],
         ]);
 
-        return redirect(url('/'));
+        return redirect(url('/home'));
     }
 
     /**

@@ -64,11 +64,15 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
 		}
 		form input
 		{
-			background-color: rgba(0,0,0,0.8);
+			/* background-color: white; */
 			border:none;
 			border-radius: 10px;
 			height: 30px;
-		}
+        }
+        
+        input:focus {
+            background-color: white;
+        }
 
 		.signin-div
 		{
