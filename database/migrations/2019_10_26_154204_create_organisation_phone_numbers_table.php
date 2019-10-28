@@ -14,12 +14,12 @@ class CreateOrganisationPhoneNumbersTable extends Migration
     public function up()
     {
         Schema::create('organisation_phone_numbers', function (Blueprint $table) {
-            $table->unsignedBigInteger('organisation_id');
+            $table->unsignedBigInteger('organisation_profile_id');
             $table->string('phone_number')->unique();
             $table->boolean('is_preferred')->default(false); // Determine preferred number
 
             // When the organisation is deleted, delete all of its phone numbers as well.
-            $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('cascade');
+            $table->foreign('organisation_profile_id')->references('id')->on('organisation_profiles')->onDelete('cascade');
         });
     }
 

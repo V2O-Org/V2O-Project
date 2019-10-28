@@ -2,17 +2,21 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Organisation extends Model
+class Organisation extends Authenticatable
 {
+    use Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $guarded = [
-        
+    protected $fillable = [
+        'name', 'email', 'password',
     ];
 
     /**
@@ -21,7 +25,7 @@ class Organisation extends Model
      * @var array
      */
     protected $hidden = [
-        
+        'password', 'remember_token',
     ];
 
     /**
@@ -30,40 +34,21 @@ class Organisation extends Model
      * @var array
      */
     protected $casts = [
-        
+        'email_verified_at' => 'datetime',
     ];
 
     /**
-     * Set up the relationship between organisations and users.
-     * 1 organisation IS 1 user.
+     * Set up the relationship between organisations and organisation profiles.
+     * 1 organisation HAS 1 organisation profile.
      */
-    public function user()
+    public function organisationProfile()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Set up the relationship between organisations and phone numbers.
-     * 1 organisation HAS many phone numbers.
-     */
-    public function phoneNumbers()
-    {
-        return $this->belongsToMany(Organisation::class, 'organisation_phone_numbers');
-    }
-
-
-    /**
-     * Set up the relationship between organisations and causes.
-     * 1 organisation HAS many causes.
-     */
-    public function causes()
-    {
-        return $this->belongsToMany(Cause::class, 'organisation_cause');
+        return $this->hasOne(OrganisationProfile::class);
     }
 
     /**
      * Set up the relationship between organisations and activities.
-     * 1 organisation REGISTERS FOR many activities.
+     * 1 organisation OWNS many activities.
      */
     public function activities()
     {

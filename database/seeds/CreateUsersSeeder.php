@@ -12,21 +12,21 @@ class CreateUsersSeeder extends Seeder
      */
     public function run()
     {
-        $user = [
-            [
-                'email'=>'test.volunteer@v2o.com',
-                'role'=> 'VOLUNTEER',
-                'password'=> bcrypt('password'),
-            ],
-            [
-                'email'=>'test.organisation@v2o.com',
-                'role' => 'ORGANISATION',
-                'password'=> bcrypt('password'),
-            ],
-        ];
+        // $user = [
+        //     [
+        //         'email'=>'test.volunteer@v2o.com',
+        //         'role'=> 'VOLUNTEER',
+        //         'password'=> bcrypt('password'),
+        //     ],
+        //     [
+        //         'email'=>'test.organisation@v2o.com',
+        //         'role' => 'ORGANISATION',
+        //         'password'=> bcrypt('password'),
+        //     ],
+        // ];
   
-        foreach ($user as $key => $value) {
-            User::create($value);
-        }
+        // foreach ($user as $key => $value) {
+        //     User::create($value);
+        // }
     }
 }

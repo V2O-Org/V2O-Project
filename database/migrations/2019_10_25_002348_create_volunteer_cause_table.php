@@ -14,11 +14,11 @@ class CreateVolunteerCauseTable extends Migration
     public function up()
     {
         Schema::create('volunteer_cause', function (Blueprint $table) {
-            $table->unsignedBigInteger('volunteer_id');
+            $table->unsignedBigInteger('volunteer_profile_id');
             $table->unsignedBigInteger('cause_id');
 
             
-            $table->foreign('volunteer_id')->references('id')->on('volunteers')->onDelete('cascade');
+            $table->foreign('volunteer_profile_id')->references('id')->on('volunteer_profiles')->onDelete('cascade');
             $table->foreign('cause_id')->references('id')->on('causes')->onDelete('cascade');
         });
     }

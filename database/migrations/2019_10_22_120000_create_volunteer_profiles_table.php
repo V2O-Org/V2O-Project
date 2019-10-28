@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVolunteersTable extends Migration
+class CreateVolunteerProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateVolunteersTable extends Migration
      */
     public function up()
     {
-        Schema::create('volunteers', function (Blueprint $table) {
+        Schema::create('volunteer_profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('volunteer_id')->unique();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('profile_img')->nullable(); // The volunteer's profile picture
@@ -29,7 +29,7 @@ class CreateVolunteersTable extends Migration
             
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('volunteer_id')->references('id')->on('volunteers');
         });
     }
 
@@ -40,6 +40,6 @@ class CreateVolunteersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('volunteers');
+        Schema::dropIfExists('volunteer_profiles');
     }
 }

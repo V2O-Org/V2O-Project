@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrganisationsTable extends Migration
+class CreateOrganisationProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateOrganisationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('organisations', function (Blueprint $table) {
+        Schema::create('organisation_profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->unique;
+            $table->unsignedBigInteger('organisation_id')->unique;
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('profile_img')->nullable(); // The organisation's profile picture
@@ -33,7 +33,7 @@ class CreateOrganisationsTable extends Migration
             
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('organisation_id')->references('id')->on('organisations');
         });
     }
 
@@ -44,6 +44,6 @@ class CreateOrganisationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organisations');
+        Schema::dropIfExists('organisation_profiles');
     }
 }

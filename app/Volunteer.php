@@ -3,8 +3,8 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Volunteer extends Authenticatable
 {
@@ -15,8 +15,8 @@ class Volunteer extends Authenticatable
      *
      * @var array
      */
-    protected $guarded = [
-
+    protected $fillable = [
+        'name', 'email', 'password',
     ];
 
     /**
@@ -25,7 +25,7 @@ class Volunteer extends Authenticatable
      * @var array
      */
     protected $hidden = [
-
+        'password', 'remember_token',
     ];
 
     /**
@@ -34,25 +34,16 @@ class Volunteer extends Authenticatable
      * @var array
      */
     protected $casts = [
-        
+        'email_verified_at' => 'datetime',
     ];
 
     /**
-     * Set up the relationship between volunteers and users.
-     * 1 volunteer IS 1 user.
+     * Set up the relationship between volunteers and volunteer profiles.
+     * 1 volunteer HAS 1 volunteer profile.
      */
-    public function user()
+    public function volunteerProfile()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Set up the relationship between volunteers and causes.
-     * 1 volunteer HAS many causes.
-     */
-    public function causes()
-    {
-        return $this->belongsToMany(Cause::class, 'volunteer_cause');
+        return $this->hasOne(VolunteerProfile::class);
     }
 
     /**
@@ -62,12 +53,5 @@ class Volunteer extends Authenticatable
     public function activities()
     {
         return $this->belongsToMany(Activity::class, 'activity_volunteer')->withTimestamps();
-    }
-
-    /**
-     * Return the full name of the volunteer
-     */
-    public function fullName() {
-        return $this->first_name . ' ' . $this->last_name;
     }
 }
