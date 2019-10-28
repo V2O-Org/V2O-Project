@@ -102,6 +102,17 @@ class ActivityController extends Controller
     }
 
     /**
+     * Display all of the activities.
+     */
+    public function showAll() {
+        // Get all activities
+        $activities = Activity::all();
+
+        // Return view for list of activities
+        return view('activity.list')->with('activities', $activities);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

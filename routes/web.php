@@ -53,5 +53,6 @@ Route::resource('volunteer', 'VolunteerController');
 // Resource router for organisation
 Route::resource('organisation', 'OrganisationController');
 
-// Resource router for activities
+// Activity Routes
 Route::resource('activity', 'ActivityController');
+Route::get('/activities', 'ActivityController@showAll')->name('activity-list');
