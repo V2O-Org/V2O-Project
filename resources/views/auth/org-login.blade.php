@@ -64,11 +64,11 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
 		}
 		form input
 		{
-			background-color: rgba(0,0,0,0.8);
+			/* background-color: white; */
 			border:none;
 			border-radius: 10px;
 			height: 30px;
-		}
+        }
         
         input:focus {
             background-color: white;
@@ -122,17 +122,17 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
 			</div>
 			<h1>Login</h1>
 
-			 <form action="/vol/login" method="POST" id="login-form">
-                 @csrf
+             <form action="/org/login" method="POST" id="login-form">
+                @csrf
 			 	<table>
 
 			 		<tr>
 			 			<td>Email:</td>
-			 			<td><input type="Email" name="email"> </td>
+			 			<td><input type="email" name="email"> </td>
 				 	</tr>
 				 	<tr>
 				 		<td>Password:</td>
-				 		<td><input type="Password" name="password"></td>
+				 		<td><input type="password" name="password"></td>
 				 	</tr>
 
 			 	</table>
@@ -141,15 +141,15 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
 			 	<p>Forgot your password? Reset <a href="#">Here</a></p>
 			 	
 			 	<div class="signin-div">
-                     <span class="signin-btn">
-                            <button type="submit" form="login-form">Sign in</button>
+			 		<span class="signin-btn">
+                         <button type="submit" form="login-form">Sign in</button>
                     </span>
 			 	</div>
 			 	
 
 
 			 </form>
-			 <p>No Account? Sign Up <a href="/vol/register">Here</a></p>
+			 <p>No Account? Sign Up <a href="/org/register">Here</a></p>
 		</div>
 	</div>
 </body>

@@ -16,7 +16,7 @@ class IsVolunteer
     public function handle($request, Closure $next)
     {
         if (!auth()->user()) {
-            return redirect('login');
+            return redirect()->action('Auth\LoginController@showVolunteerLoginForm');
         } else if (auth()->user()->role === 'VOLUNTEER') { 
             return $next($request);
         }

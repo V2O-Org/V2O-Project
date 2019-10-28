@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/org/slider', function() {
+    return view('organisation.slider');
+});
+
 // TEST ROUTES
 Route::get('/', function () {
     return view('volunteer.tester');
@@ -53,5 +57,6 @@ Route::resource('volunteer', 'VolunteerController');
 // Resource router for organisation
 Route::resource('organisation', 'OrganisationController');
 
-// Resource router for activities
+// Activity Routes
 Route::resource('activity', 'ActivityController');
+Route::get('/activities', 'ActivityController@showAll')->name('activity-list');

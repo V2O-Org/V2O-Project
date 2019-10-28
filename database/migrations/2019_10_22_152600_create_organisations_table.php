@@ -17,11 +17,11 @@ class CreateOrganisationsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->unique;
             $table->string('name');
+            $table->text('description')->nullable();
             $table->string('profile_img')->nullable(); // The organisation's profile picture
 
             // Organisation's Location Information
-            $table->string('street_address_1');
-            $table->string('street_address_2')->nullable(); // Optional
+            $table->string('street_address');
             $table->string('state');
             $table->string('city');
             $table->string('country');

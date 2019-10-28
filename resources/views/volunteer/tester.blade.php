@@ -1,7 +1,7 @@
 <?php 
 
 	$list = ['Home','About Us','Sign Up/Login','Contact Us'];
-	$links =['#','#','#','#'];
+	$links =['#','#','/vol/login','#'];
 
 	$extraStyle ="#nav{margin-left:30px !important;} 
 	a{color:black !important; font-size:15px !important;} 

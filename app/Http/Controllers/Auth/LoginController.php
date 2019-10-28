@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -38,29 +39,75 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // public function login(Request $request)
-    // {   
-    //     $input = $request->all();
-   
-    //     $this->validate($request, [
-    //         'email' => 'required|email',
-    //         'password' => 'required',
-    //     ]);
-   
-    //     if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
-    //     {
-    //         if (auth()->user()->role == 'VOLUNTEER') {
-    //             return redirect()->route('volunteer.home');
-    //         } else if (auth()->user()->role == 'ORGANISATION') {
-    //             return redirect()->route('organisation.home');
-    //         } 
-    //         // else {
-    //         //     return redirect()->route('home');
-    //         // }
-    //     } else{
-    //         return redirect()->route('login')
-    //             ->with('error','Email-Address and Password are Wrong.');
-    //     }
-          
-    // }
+    /**
+     * Show the volunteer login form.
+     * 
+     */
+    public function showVolunteerLoginForm()
+    {
+        $user = new User;
+
+        return view('auth.vol-login')->with('user', $user);
+    }
+
+    /**
+     * Login the volunteer.
+     * 
+     */
+    public function loginVolunteer(Request $request)
+    {
+        $this->validate($request, [
+            'email' => ['required', 'email',], 
+            'password' => ['required', 'min:8',],
+        ]);
+        
+        if(auth()->attempt(array('email' => $request['email'], 'password' => $request['password'])))
+        {
+            if (auth()->user()->role === 'VOLUNTEER') {
+                return view('volunteer.home');
+            }
+            // else {
+            //     return redirect()->route('home');
+            // }
+        } else{
+            return redirect(url('/vol/login'))
+                ->with('error','Email-Address and Password are Wrong.');
+        }
+    }
+
+    /**
+     * Show the organisation login form.
+     * 
+     */
+    public function showOrganisationLoginForm()
+    {
+        $user = new User;
+
+        return view('auth.org-login')->with('user', $user);
+    }
+
+    /**
+     * Login the organisation.
+     * 
+     */
+    public function loginOrganisation(Request $request)
+    {
+        $this->validate($request, [
+            'email' => ['required', 'email',], 
+            'password' => ['required', 'min:8',],
+        ]);
+        
+        if(auth()->attempt(array('email' => $request['email'], 'password' => $request['password'])))
+        {
+            if (auth()->user()->role === 'ORGANISATION') {
+                return view('organisation.home');
+            } 
+            // else {
+            //     return redirect()->route('home');
+            // }
+        } else{
+            return redirect()->route('login')
+                ->with('error','Email-Address and Password are Wrong.');
+        }
+    }
 }

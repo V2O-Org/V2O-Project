@@ -62,6 +62,8 @@ class ActivityController extends Controller
             $image->save();
         }
 
+        // dd($request->input('causes'));
+
         // $causes = $request->input('causes');
 
         $activity = Activity::create([
@@ -82,7 +84,7 @@ class ActivityController extends Controller
         $org_id = Auth::user()->organisation->id;
         $activity->organisations()->sync([$org_id]);
         
-        dd($activity);
+        // dd($activity);
 
         // Connect activity to causes
         // $activity->causes()->sync($causes);
@@ -99,6 +101,17 @@ class ActivityController extends Controller
     public function show($id)
     {
         //
+    }
+
+    /**
+     * Display all of the activities.
+     */
+    public function showAll() {
+        // Get all activities
+        $activities = Activity::all();
+
+        // Return view for list of activities
+        return view('activity.list')->with('activities', $activities);
     }
 
     /**

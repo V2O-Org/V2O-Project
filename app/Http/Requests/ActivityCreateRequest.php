@@ -26,7 +26,7 @@ class ActivityCreateRequest extends FormRequest
         return [
             'name' => [ 'required', 'string', 'max:191'],
             'details' => [ 'required', 'string' ],
-            'image' => [ 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048', ],
+            'image' => [ 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', ],
             'start_date' => [ 'required', 'date', ],
             'end_date' => [ 'required', 'date', ],
             'start_time' => [ 'required', ],
