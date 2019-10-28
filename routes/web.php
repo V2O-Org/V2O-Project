@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/org/slider', function() {
+    return view('organisation.slider');
+});
+
 // TEST ROUTES
 Route::get('/', function () {
     return view('volunteer.tester');
