@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('Organization/organization_profile');
+    return view('slider');
 });
 
 Auth::routes();
