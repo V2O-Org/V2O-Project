@@ -95,14 +95,14 @@
                 {{ Form::password('password_confirmation') }}
 
             <div class="register-div">
-            {{ Form::button('Submit', array(
-                'type' => 'submit',
-                'onclick'=>'return confirm("Are you sure?")')) 
-            }}
-            
-            <a href="/" class="register-div button">Cancel</a>
+                {{ Form::button('Submit', array(
+                    'type' => 'submit',
+                    'onclick'=>'return confirm("Are you sure?")')) 
+                }}
+                
+                <a href="/" class="register-div button">Cancel</a>
 
-            <p>Already have an account? Sign In <a href="/vol-login">Here</a></p>
+                <p>Already have an account? Sign In <a href="/vol-login">Here</a></p>
             </div>
 
         {{ Form::close() }}

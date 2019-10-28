@@ -44,7 +44,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Return the volunteer register form.
+     * Show the volunteer register form.
      * 
      */
     public function showVolunteerRegisterForm() {
@@ -65,6 +65,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'first_name' => ['required', 'string', 'max:191'],
             'last_name' => ['required', 'string', 'max:191'],
+            'profile_img' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'date_of_birth' => ['required', 'date'],
             'street_address' => ['required', 'string', 'max:191'],
             'state' => ['required', 'string', 'max:191'],
@@ -72,21 +73,100 @@ class RegisterController extends Controller
             'country' => ['required', 'string', 'max:191'],
         ]);
 
+        // Handle profile image
+        $imagePath = null;
+
+        // If image exists, 
+        if ($data['profile_img'] == 1) {
+            $imagePath = $data['profile_img']->store('uploads/images/activity', 'public');
+    
+            $image = Image::make(public_path("storage/{$imagePath}"));
+            $image->save();
+        }
+
         // Create the user 
         $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
+        // Create the volunteer
         Volunteer::create([
             'user_id' => $user->id,
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
+            'profile_img' => $imagePath,
             'date_of_birth' => $data['date_of_birth'],
             'street_address' => $data['street_address'],
             'state' => $data['state'],
             'city' => $data['city'],
             'country' => $data['country'],
+        ]);
+
+        return redirect(url('/'));
+    }
+    
+    /**
+     * Show the organisation register form.
+     * 
+     */
+    public function showOrganisationRegisterForm() {
+        $user = new User;
+        $organisation = new Organisation;
+
+        return view('auth.org-register')->with('user', $user)->with('organisation', $organisation);
+    }
+
+    /**
+     * Register the organisation.
+     * 
+     */
+    public function registerOrganisation() {
+        // Validate all data passed in
+        $data = request()->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required', 'string', 'max:191'],
+            'profile_img' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'street_address' => ['required', 'string', 'max:191'],
+            'state' => ['required', 'string', 'max:191'],
+            'city' => ['required', 'string', 'max:191'],
+            'country' => ['required', 'string', 'max:191'],
+            'org_url' => ['required', 'string', 'max:191'],
+            'fax' => ['required', 'string', 'max:191'],
+            'mailing_address' => ['required', 'string', 'max:191' ],
+        ]);
+
+        // Handle profile image
+        $imagePath = null;
+
+        // If image exists, 
+        if ($data['profile_img'] == 1) {
+            $imagePath = $data['profile_img']->store('uploads/images/activity', 'public');
+    
+            $image = Image::make(public_path("storage/{$imagePath}"));
+            $image->save();
+        }
+
+        // Create the user 
+        $user = User::create([
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role' => 'ORGANISATION',
+        ]);
+
+        // Create the organisation
+        Organisation::create([
+            'user_id' => $user->id,
+            'name' => $data['name'],
+            'profile_img' => $imagePath,
+            'street_address' => $data['street_address'],
+            'state' => $data['state'],
+            'city' => $data['city'],
+            'country' => $data['country'],
+            'org_url' => $data['org_url'],
+            'fax' => $data['fax'],
+            'mailing_address' => data['mailing_address'],
         ]);
 
         return redirect(url('/'));
