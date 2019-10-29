@@ -44,6 +44,9 @@ Route::prefix('/vol')->group(function () {
     // Login Routes
     Route::get('/login', 'Auth\VolunteerLoginController@showLoginForm')->name('vol.login');
     Route::post('/login', 'Auth\VolunteerLoginController@login')->name('vol.login.submit');
+
+    // Logout Route
+    Route::get('/logout', 'Auth\VolunteerLoginController@logout')->name('vol.logout');
 });
 
 // Organisation Routes
@@ -54,6 +57,9 @@ Route::prefix('/org')->group(function () {
     // Login Routes
     Route::get('/login', 'Auth\OrganisationLoginController@showLoginForm')->name('org.login');
     Route::post('/login', 'Auth\OrganisationLoginController@login')->name('org.login.submit');
+
+    // Logout Route
+    Route::get('/logout', 'Auth\OrganisationLoginController@logout')->name('org.logout');
 });
 // Route::get('/vol/login', 'Auth\LoginController@showVolunteerLoginForm')->name('vol-login');
 // Route::post('/vol/login', 'Auth\LoginController@loginVolunteer');

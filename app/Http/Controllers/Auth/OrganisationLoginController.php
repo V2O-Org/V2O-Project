@@ -16,7 +16,7 @@ class OrganisationLoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:org');
+        $this->middleware('guest:org')->except(['logout']);
     }
 
     /**
@@ -48,5 +48,17 @@ class OrganisationLoginController extends Controller
 
         // If unsuccessful, then redirect back to the login with the form data
         return redirect()->back()->withInput($request->only('email', 'remember'));
+    }
+
+    /**
+     * Log the organisation out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        Auth::guard('org')->logout();
+        return redirect('/');
     }
 }
