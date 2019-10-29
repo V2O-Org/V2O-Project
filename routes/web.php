@@ -37,30 +37,43 @@ Route::get('/',function(){
 Auth::routes();
 
 // Volunteer Routes
-Route::prefix('/vol')->group(function () {
+Route::prefix('/vol')->group(function() {
     // Home Routes
     Route::get('/', 'VolunteerHomeController@index')->name('vol.dashboard');
 
     // Login Routes
-    Route::get('/login', 'Auth\VolunteerLoginController@showLoginForm')->name('vol.login');
-    Route::post('/login', 'Auth\VolunteerLoginController@login')->name('vol.login.submit');
+    Route::get('/login', 'Auth\Vol\VolunteerLoginController@showLoginForm')->name('vol.login');
+    Route::post('/login', 'Auth\Vol\VolunteerLoginController@login')->name('vol.login.submit');
 
     // Logout Route
-    Route::get('/logout', 'Auth\VolunteerLoginController@logout')->name('vol.logout');
+    Route::get('/logout', 'Auth\Vol\VolunteerLoginController@logout')->name('vol.logout');
+
+    // Password Reset Routes
+    Route::post('/password/email', 'Auth\Vol\VolunteerForgotPasswordController@sendResetLinkEmail')->name('vol.password.email');
+    Route::post('/password/reset', 'Auth\Vol\VolunteerResetPasswordController@reset')->name('vol.password.update');
+    Route::get('/password/reset', 'Auth\Vol\VolunteerForgotPasswordController@showLinkRequestForm')->name('vol.password.request');
+    Route::get('/password/reset/{token}', 'Auth\Vol\VolunteerResetPasswordController@showResetForm')->name('vol.password.reset'); 
 });
 
 // Organisation Routes
-Route::prefix('/org')->group(function () {
+Route::prefix('/org')->group(function() {
     // Home Routes
     Route::get('/', 'OrganisationHomeController@index')->name('org.dashboard');
 
     // Login Routes
-    Route::get('/login', 'Auth\OrganisationLoginController@showLoginForm')->name('org.login');
-    Route::post('/login', 'Auth\OrganisationLoginController@login')->name('org.login.submit');
+    Route::get('/login', 'Auth\Org\OrganisationLoginController@showLoginForm')->name('org.login');
+    Route::post('/login', 'Auth\Org\OrganisationLoginController@login')->name('org.login.submit');
 
     // Logout Route
-    Route::get('/logout', 'Auth\OrganisationLoginController@logout')->name('org.logout');
+    Route::get('/logout', 'Auth\Org\OrganisationLoginController@logout')->name('org.logout');
+
+    // Password Reset Routes
+    Route::post('/password/email', 'Auth\Org\OrganisationForgotPasswordController@sendResetLinkEmail')->name('org.password.email');
+    Route::post('/password/reset', 'Auth\Org\OrganisationResetPasswordController@reset')->name('org.password.update');
+    Route::get('/password/reset', 'Auth\Org\OrganisationForgotPasswordController@showLinkRequestForm')->name('org.password.request');
+    Route::get('/password/reset/{token}', 'Auth\Org\OrganisationResetPasswordController@showResetForm')->name('org.password.reset');   
 });
+
 // Route::get('/vol/login', 'Auth\LoginController@showVolunteerLoginForm')->name('vol-login');
 // Route::post('/vol/login', 'Auth\LoginController@loginVolunteer');
 // Route::get('/org/login', 'Auth\LoginController@showOrganisationLoginForm')->name('org-login');
