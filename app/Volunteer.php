@@ -8,9 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Volunteer extends Authenticatable
 {
+
     use Notifiable;
 
-    protected $guard = 'web';
+    protected $guard = 'vol';
 
     /**
      * The attributes that are mass assignable.
@@ -60,7 +61,7 @@ class Volunteer extends Authenticatable
     /**
      * Return the full name of the volunteer
      */
-    public function fullName() {
+    public function name() {
         return $this->first_name . ' ' . $this->last_name;
     }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Volunteer Login</title>
 	<style type="text/css">
 		*
 		{
@@ -128,13 +128,14 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
 
 			 		<tr>
 			 			<td>Email:</td>
-			 			<td><input type="Email" name="email"> </td>
+			 			<td><input type="email" name="email"> </td>
 				 	</tr>
 				 	<tr>
 				 		<td>Password:</td>
-				 		<td><input type="Password" name="password"></td>
+				 		<td><input type="password" name="password"></td>
 				 	</tr>
 
+                    <!-- TODO: ADD REMEMBER ME OPTION -->
 			 	</table>
 			 	
 
@@ -142,7 +143,7 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
 			 	
 			 	<div class="signin-div">
                      <span class="signin-btn">
-                            <button type="submit" form="login-form">Sign in</button>
+                        <button type="submit" form="login-form">Sign in</button>
                     </span>
 			 	</div>
 			 	

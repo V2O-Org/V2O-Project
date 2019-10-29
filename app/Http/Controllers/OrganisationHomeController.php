@@ -14,7 +14,7 @@ class OrganisationHomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:organisation');
+        $this->middleware('auth:org');
     }
 
     /**

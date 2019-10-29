@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'vol',
         'passwords' => 'volunteers',
     ],
 
@@ -36,23 +36,23 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'vol' => [
             'driver' => 'session',
             'provider' => 'volunteers',
         ],
 
-        'api' => [
+        'vol-api' => [
             'driver' => 'token',
             'provider' => 'volunteers',
             'hash' => false,
         ],
 
-        'organisation' => [
+        'org' => [
             'driver' => 'session',
             'provider' => 'organisations',
         ],
 
-        'organisation-api' => [
+        'org-api' => [
             'driver' => 'token',
             'provider' => 'organisations',
             'hash' => false,

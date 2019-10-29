@@ -30,16 +30,31 @@
 //     return view('auth.vol-login');
 // });
 
-Route::post('/',function(){
+Route::get('/',function(){
 	return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/volunteer', 'VolunteerHomeController@index');
-Route::get('/organisation', 'OrganisationHomeController@index');
+// Volunteer Routes
+Route::prefix('/vol')->group(function () {
+    // Home Routes
+    Route::get('/', 'VolunteerHomeController@index')->name('vol.dashboard');
 
-// // Login Routes
+    // Login Routes
+    Route::get('/login', 'Auth\VolunteerLoginController@showLoginForm')->name('vol.login');
+    Route::post('/login', 'Auth\VolunteerLoginController@login')->name('vol.login.submit');
+});
+
+// Organisation Routes
+Route::prefix('/org')->group(function () {
+    // Home Routes
+    Route::get('/', 'OrganisationHomeController@index')->name('org.dashboard');
+
+    // Login Routes
+    Route::get('/login', 'Auth\OrganisationLoginController@showLoginForm')->name('org.login');
+    Route::post('/login', 'Auth\OrganisationLoginController@login')->name('org.login.submit');
+});
 // Route::get('/vol/login', 'Auth\LoginController@showVolunteerLoginForm')->name('vol-login');
 // Route::post('/vol/login', 'Auth\LoginController@loginVolunteer');
 // Route::get('/org/login', 'Auth\LoginController@showOrganisationLoginForm')->name('org-login');
