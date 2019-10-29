@@ -10,6 +10,8 @@ class Volunteer extends Authenticatable
 {
     use Notifiable;
 
+    protected $guard = 'web';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -53,5 +55,12 @@ class Volunteer extends Authenticatable
     public function activities()
     {
         return $this->belongsToMany(Activity::class, 'activity_volunteer')->withTimestamps();
+    }
+
+    /**
+     * Return the full name of the volunteer
+     */
+    public function fullName() {
+        return $this->first_name . ' ' . $this->last_name;
     }
 }

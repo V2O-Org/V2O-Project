@@ -10,6 +10,8 @@ class Organisation extends Authenticatable
 {
     use Notifiable;
 
+    protected $guard = 'organisation';
+
     /**
      * The attributes that are mass assignable.
      *

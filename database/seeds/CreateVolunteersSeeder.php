@@ -12,6 +12,25 @@ class CreateVolunteersSeeder extends Seeder
      */
     public function run()
     {
+        $volunteer = [
+            [
+                'first_name' => 'George',
+                'last_name' => 'Clooney',
+                'email' => 'test.volunteer@v2o.com',
+                'password' => bcrypt('password'),
+            ],
+            [
+                'first_name' => 'Frank',
+                'last_name' => 'Ocean',
+                'email' => 'test.volunteer2@v2o.com',
+                'password' => bcrypt('password'),
+            ],
+        ];
+  
+        foreach ($volunteer as $key => $value) {
+            Volunteer::create($value);
+        }
+        
         // $volunteer = [
         //     [
         //         'user_id' => 1,
@@ -36,9 +55,5 @@ class CreateVolunteersSeeder extends Seeder
         //     //     'country' => '',
         //     // ],
         // ];
-  
-        // foreach ($volunteer as $key => $value) {
-        //     Volunteer::create($value);
-        // }
     }
 }

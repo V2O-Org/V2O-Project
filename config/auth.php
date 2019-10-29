@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'volunteers',
     ],
 
     /*
@@ -38,12 +38,23 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'volunteers',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'volunteers',
+            'hash' => false,
+        ],
+
+        'organisation' => [
+            'driver' => 'session',
+            'provider' => 'organisations',
+        ],
+
+        'organisation-api' => [
+            'driver' => 'token',
+            'provider' => 'organisations',
             'hash' => false,
         ],
     ],
@@ -66,9 +77,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'volunteers' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Volunteer::class,
+        ],
+
+        'organisations' => [
+            'driver' => 'eloquent',
+            'model' => App\Organisation::class,
         ],
 
         // 'users' => [
@@ -93,8 +109,14 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'volunteers' => [
+            'provider' => 'volunteers',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        
+        'organisations' => [
+            'provider' => 'organisations',
             'table' => 'password_resets',
             'expire' => 60,
         ],

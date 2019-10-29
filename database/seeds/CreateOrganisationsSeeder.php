@@ -12,6 +12,22 @@ class CreateOrganisationsSeeder extends Seeder
      */
     public function run()
     {
+        $organisation = [
+            [
+                'name' => 'Dummy Organisation',
+                'email' => 'test.organisation@v2o.com',
+                'password' => bcrypt('password'),
+            ],
+            [
+                'name' => 'Some Company Inc.',
+                'email' => 'test.organisation2@v2o.com',
+                'password' => bcrypt('password'),
+            ],
+        ];
+  
+        foreach ($organisation as $key => $value) {
+            Organisation::create($value);
+        }
         // $organisation = [
         //     [
         //         'user_id' => 2,
@@ -25,23 +41,19 @@ class CreateOrganisationsSeeder extends Seeder
         //         'fax' => '',
         //         'mailing_address' => 'Fontabelle, Saint Michael, Bridgetown, Barbados',
         //     ],
-        //     // [
-        //     //     'user_id' => '',
-        //     //     'name' => '',
-        //     //     // 'profile_img' => '',
-        //     //     'street_address_1' => '',
-        //     //     'street_address_2' => '',
-        //     //     'state' => '',
-        //     //     'city' => '',
-        //     //     'country' => '',
-        //     //     'org_url' => '',
-        //     //     'fax' => '',
-        //     //     'mailing_address' => '',
-        //     // ],
+        //     [
+        //         'user_id' => '',
+        //         'name' => '',
+        //         // 'profile_img' => '',
+        //         'street_address_1' => '',
+        //         'street_address_2' => '',
+        //         'state' => '',
+        //         'city' => '',
+        //         'country' => '',
+        //         'org_url' => '',
+        //         'fax' => '',
+        //         'mailing_address' => '',
+        //     ],
         // ];
-  
-        // foreach ($organisation as $key => $value) {
-        //     Organisation::create($value);
-        // }
     }
 }
