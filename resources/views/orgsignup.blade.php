@@ -54,6 +54,7 @@
             
             margin: auto;
             width: 50%;
+            
         }
         .container input {
             align-self: auto;
@@ -64,6 +65,7 @@
                     
         .content {
             text-align: center;
+            
         }
     
         .title {
@@ -73,7 +75,7 @@
         .member {
             text-align: center;
             margin: 60px 40px 40px 100px;
-            
+                        
         }
 
         #orgname {
@@ -139,7 +141,7 @@
                             {!! Form::label('title', 'Password:') !!}
                             {{Form::text ('title', '', ['id' => 'gentry', 'class' => 'form-control', 'placeholder' => ''])}}
                             </p>
-                            <p class = "member">Already have an account? sign in <a href= 'https://www.w3schools.com'>Here</a>
+                            <p class = "member">Already have an account? sign in <a href= '/login'>Here</a>
                         </div>
                     </div>           
                         {{Form::submit('Continue', ['class' => 'btn btn-primary btn-lg'])}}
