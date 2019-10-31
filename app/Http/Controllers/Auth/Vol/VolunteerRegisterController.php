@@ -8,7 +8,9 @@ use App\VolunteerProfile;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
-use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class VolunteerRegisterController extends Controller
 {
@@ -30,7 +32,7 @@ class VolunteerRegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/vol';
+    protected $redirectTo = '/vol/dashboard';
 
     /**
      * Create a new controller instance.
@@ -57,21 +59,10 @@ class VolunteerRegisterController extends Controller
      * Register the volunteer.
      * 
      */
-    public function register() {
+    public function register(Request $request) {
         // Validate the data passed in.
-        $data = request()->validate([
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'first_name' => ['required', 'string', 'max:191'],
-            'last_name' => ['required', 'string', 'max:191'],
-            'date_pf_birth' => [ 'required', 'date', ],
-            'profile_img' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            'street_address' => ['required', 'string', 'max:191'],
-            'state' => ['required', 'string', 'max:191'],
-            'city' => ['required', 'string', 'max:191'],
-            'country' => ['required', 'string', 'max:191'],
-        ]);
-
+        $data = $this->validator($request->all())->validate();
+        
         // Handle profile image.
         $imagePath = null;
 
@@ -83,16 +74,42 @@ class VolunteerRegisterController extends Controller
             $image->save();
         }
 
-        // Add image path to data
+        // Add image path to data.
         $data['profile_img'] = $imagePath;
 
-        // Create the volunteer.
+        // Create the volunteer record.
         $vol = $this->createVolunteer($data);
 
-        // Create the volunteer
-        $volProfile = $this->createVolunteerProfile($vol, $data);
+        // Create the volunteer profile record.
+        $this->createVolunteerProfile($vol, $data);
 
-        return redirect(route('vol.dashboard'));
+        // Login the volunteer.
+        if (Auth::guard('vol')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+            // If successful, then redirect to their intended location.
+            return redirect()->route('vol.dashboard');
+        }
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:volunteers'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'first_name' => ['required', 'string', 'max:191'],
+            'last_name' => ['required', 'string', 'max:191'],
+            'date_of_birth' => ['required', 'date',],
+            'profile_img' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'street_address' => ['required', 'string', 'max:191'],
+            'state' => ['required', 'string', 'max:191'],
+            'city' => ['required', 'string', 'max:191'],
+            'country' => ['required', 'string', 'max:191'],
+        ]);
     }
 
     /**

@@ -122,7 +122,7 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
 			</div>
 			<h1>Login</h1>
 
-			 <form action="/vol/login" method="POST" id="login-form">
+			 <form url={{ route('vol.login') }} method="POST" id="login-form">
                  @csrf
 			 	<table>
 
@@ -139,7 +139,7 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
 			 	</table>
 			 	
 
-			 	<p>Forgot your password? Reset <a href="#">Here</a></p>
+			 	<p>Forgot your password? Reset <a href={{ route('vol.password.request') }}>Here</a></p>
 			 	
 			 	<div class="signin-div">
                      <span class="signin-btn">

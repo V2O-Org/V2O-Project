@@ -46,6 +46,6 @@ class OrganisationForgotPasswordController extends Controller
      */
     public function showLinkRequestForm()
     {
-        return view('auth.passwords.email-org');
+        return view('tests.auth.passwords.email-org');
     }
 }

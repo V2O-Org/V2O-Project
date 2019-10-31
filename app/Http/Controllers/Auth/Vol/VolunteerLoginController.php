@@ -24,7 +24,7 @@ class VolunteerLoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth.volunteer-login');
+        return view('auth.vol-login');
     }
     
     /**
@@ -41,11 +41,11 @@ class VolunteerLoginController extends Controller
         
         // Attempt to login the volunteer.
         if (Auth::guard('vol')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            // If successful, then redirect to their inteded location.
+            // If successful, then redirect to their intended location.
             return redirect()->intended(route('vol.dashboard'));
         }
 
-        // If unsuccessful, then redirect back to the login with the form data
+        // If unsuccessful, then redirect back to the login with the form data.
         return redirect()->back()->withInput($request->only('email', 'remember'));
     }
 

@@ -16,7 +16,7 @@ class OrganisationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('is_organisation');
+        $this->middleware('auth:org');
     }
 
     /**
@@ -26,15 +26,7 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        try {
-            $user = User::findOrFail(Auth::id());
-        } catch (ModelNotFoundException $e) {
-            return redirect('login');
-        }
-        
-        return view('organisation.home', [
-            'user' => $user
-        ]);
+        //
     }
 
     /**

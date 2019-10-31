@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ActivityCreateRequest;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Organisation;
 use App\Activity;
 use App\Cause;
 
@@ -18,7 +18,7 @@ class ActivityController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('is_organisation')->only('create');
+        $this->middleware('org')->only(['create', 'store']);
     }
 
     /**
@@ -28,7 +28,11 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        //
+        // Get all activities
+        $activities = Activity::all();
+
+        // Return view for list of activities
+        return view('activity.index')->with('activities', $activities);
     }
 
     /**
@@ -81,7 +85,7 @@ class ActivityController extends Controller
         ]);
         
         // Connect activity to organisation
-        $org_id = Auth::user()->organisation->id;
+        $org_id = Auth::user()->id;
         $activity->organisations()->sync([$org_id]);
         
         // dd($activity);
@@ -101,17 +105,6 @@ class ActivityController extends Controller
     public function show($id)
     {
         //
-    }
-
-    /**
-     * Display all of the activities.
-     */
-    public function showAll() {
-        // Get all activities
-        $activities = Activity::all();
-
-        // Return view for list of activities
-        return view('activity.list')->with('activities', $activities);
     }
 
     /**
@@ -164,6 +157,6 @@ class ActivityController extends Controller
 
         $activity->delete();
 
-        return redirect('organisation.home');
+        return redirect(url('organisation.home'));
     }
 }

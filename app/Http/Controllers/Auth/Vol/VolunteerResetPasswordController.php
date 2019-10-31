@@ -28,7 +28,7 @@ class VolunteerResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/vol';
+    protected $redirectTo = '/vol/dashboard';
 
     /**
      * Create a new controller instance.
@@ -67,7 +67,7 @@ class VolunteerResetPasswordController extends Controller
      */
     public function showResetForm(Request $request, $token = null)
     {
-        return view('auth.passwords.reset-vol')->with(
+        return view('tests.auth.passwords.reset-vol')->with(
             ['token' => $token, 'email' => $request->email]
         );
     }

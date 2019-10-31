@@ -28,7 +28,7 @@ class OrganisationResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/org';
+    protected $redirectTo = '/org/dashboard';
 
     /**
      * Create a new controller instance.
@@ -67,7 +67,7 @@ class OrganisationResetPasswordController extends Controller
      */
     public function showResetForm(Request $request, $token = null)
     {
-        return view('auth.passwords.reset-org')->with(
+        return view('tests.auth.passwords.reset-org')->with(
             ['token' => $token, 'email' => $request->email]
         );
     }

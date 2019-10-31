@@ -46,6 +46,6 @@ class VolunteerForgotPasswordController extends Controller
      */
     public function showLinkRequestForm()
     {
-        return view('auth.passwords.email-vol');
+        return view('tests.auth.passwords.email-vol');
     }
 }

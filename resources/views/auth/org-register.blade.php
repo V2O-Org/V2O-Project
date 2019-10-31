@@ -117,7 +117,7 @@
             <p><h1 class = 'note'>Organisation Sign Up</h1></p>
             
             <div class = "container">
-                {!! Form::open(array('action' => route('org.register'))) !!}
+                {!! Form::open(array('url' => route('org.register'))) !!}
                 
                 <div class='form-group'>
                     <p>
@@ -225,7 +225,7 @@
                         @enderror
                     </p>
 
-                    <p class = "member">Already have an account? sign in <a href= '/org/login'>Here</a>
+                    <p class = "member">Already have an account? sign in <a href={{ route('org.login.form') }}>Here</a>
                 </div>         
 
                 {{Form::submit('Continue', ['class' => 'btn btn-primary btn-lg'])}}

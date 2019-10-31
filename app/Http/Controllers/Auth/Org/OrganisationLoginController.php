@@ -24,7 +24,7 @@ class OrganisationLoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth.organisation-login');
+        return view('auth.org-login');
     }
 
     /**

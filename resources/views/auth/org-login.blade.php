@@ -138,18 +138,18 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
 			 	</table>
 			 	
 
-			 	<p>Forgot your password? Reset <a href="#">Here</a></p>
+			 	<p>Forgot your password? Reset <a href={{ route('org.password.request') }}>Here</a></p>
 			 	
 			 	<div class="signin-div">
 			 		<span class="signin-btn">
-                         <button type="submit" form="login-form">Sign in</button>
+                        <button type="submit" form="login-form">Sign in</button>
                     </span>
 			 	</div>
 			 	
 
 
 			 </form>
-			 <p>No Account? Sign Up <a href="/org/register">Here</a></p>
+			 <p>No Account? Sign Up <a href={{ route('org.register.form') }}>Here</a></p>
 		</div>
 	</div>
 </body>

@@ -14,7 +14,7 @@ class VolunteerHomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:vol');
     }
 
     /**
@@ -26,30 +26,4 @@ class VolunteerHomeController extends Controller
     {
         return view('volunteer.home');
     }
-
-    // /**
-    //  * Create a new controller instance.
-    //  *
-    //  * @return void
-    //  */
-    // public function __construct()
-    // {
-    //     $this->middleware('is_volunteer');
-
-    //     $this->middleware('is_organisation');
-    // }
-
-    // /**
-    //  * Show the application dashboard.
-    //  *
-    //  * @return \Illuminate\Contracts\Support\Renderable
-    //  */
-    // public function index()
-    // {
-    //     if (Auth::user()->role === 'VOLUNTEER') {
-    //         return redirect()->action('VolunteerController@index');
-    //     } else if (Auth::user()->role === 'ORGANISATION') {
-    //         return redirect()->action('OrganisationController@index');
-    //     }
-    // }
 }

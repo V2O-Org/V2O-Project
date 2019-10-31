@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-use App\User;
+use App\Volunteer;
 
 class VolunteerController extends Controller
 {
@@ -16,7 +15,7 @@ class VolunteerController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('is_volunteer');
+        $this->middleware('auth:vol');
     }
 
     /**
@@ -26,11 +25,7 @@ class VolunteerController extends Controller
      */
     public function index()
     {
-        $user = User::findOrFail(Auth::id());
-
-        return view('/volunteer/home', [
-            'user' => $user
-        ]);
+       //
     }
 
     /**
