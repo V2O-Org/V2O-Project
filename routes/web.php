@@ -42,8 +42,12 @@ Route::prefix('/vol')->group(function() {
     Route::get('/', 'VolunteerHomeController@index')->name('vol.dashboard');
 
     // Login Routes
-    Route::get('/login', 'Auth\Vol\VolunteerLoginController@showLoginForm')->name('vol.login');
-    Route::post('/login', 'Auth\Vol\VolunteerLoginController@login')->name('vol.login.submit');
+    Route::get('/login', 'Auth\Vol\VolunteerLoginController@showLoginForm')->name('vol.login.form');
+    Route::post('/login', 'Auth\Vol\VolunteerLoginController@login')->name('vol.login');
+
+    // Registration Routes
+    Route::get('/register', 'Auth\Vol\VolunteerRegisterController@showRegistrationForm')->name('vol.register.form');
+    Route::post('/register', 'Auth\Vol\VolunteerRegisterController@register')->name('vol.register');
 
     // Logout Route
     Route::get('/logout', 'Auth\Vol\VolunteerLoginController@logout')->name('vol.logout');
@@ -61,8 +65,12 @@ Route::prefix('/org')->group(function() {
     Route::get('/', 'OrganisationHomeController@index')->name('org.dashboard');
 
     // Login Routes
-    Route::get('/login', 'Auth\Org\OrganisationLoginController@showLoginForm')->name('org.login');
-    Route::post('/login', 'Auth\Org\OrganisationLoginController@login')->name('org.login.submit');
+    Route::get('/login', 'Auth\Org\OrganisationLoginController@showLoginForm')->name('org.login.form');
+    Route::post('/login', 'Auth\Org\OrganisationLoginController@login')->name('org.login');
+
+    // Registration Routes
+    Route::get('/register', 'Auth\Org\OrganisationRegisterController@showRegistrationForm')->name('org.register.form');
+    Route::post('/register', 'Auth\Org\OrganisationRegisterController@register')->name('org.register');
 
     // Logout Route
     Route::get('/logout', 'Auth\Org\OrganisationLoginController@logout')->name('org.logout');
@@ -73,17 +81,6 @@ Route::prefix('/org')->group(function() {
     Route::get('/password/reset', 'Auth\Org\OrganisationForgotPasswordController@showLinkRequestForm')->name('org.password.request');
     Route::get('/password/reset/{token}', 'Auth\Org\OrganisationResetPasswordController@showResetForm')->name('org.password.reset');   
 });
-
-// Route::get('/vol/login', 'Auth\LoginController@showVolunteerLoginForm')->name('vol-login');
-// Route::post('/vol/login', 'Auth\LoginController@loginVolunteer');
-// Route::get('/org/login', 'Auth\LoginController@showOrganisationLoginForm')->name('org-login');
-// Route::post('/org/login', 'Auth\LoginController@loginOrganisation');
-
-// // Registration Routes
-// Route::get('/vol/register', 'Auth\RegisterController@showVolunteerRegisterForm')->name('vol-register');
-// Route::post('/vol/register', 'Auth\RegisterController@registerVolunteer');
-// Route::get('/org/register', 'Auth\RegisterController@showOrganisationRegisterForm')->name('org-register');
-// Route::post('/org/register', 'Auth\RegisterController@registerOrganisation');
 
 // // Home Router
 // Route::get('/home', 'HomeController@index')->name('home');

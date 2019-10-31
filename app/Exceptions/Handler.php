@@ -70,10 +70,10 @@ class Handler extends ExceptionHandler
         // Determine login route based on guard,
         switch ($guard) {
             case 'org':
-                $login = 'org.login';
+                $login = 'org.login.form';
                 break;
             default:
-                $login = 'vol.login';
+                $login = 'vol.login.form';
                 break;
         }
 

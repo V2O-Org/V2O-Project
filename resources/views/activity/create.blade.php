@@ -109,9 +109,9 @@
                     </span>
                 @enderror
 
-             {{ Form::label('details', 'Description:') }}
-                {{ Form::textarea('details', $activity->details ?? '') }}
-                @error('details')
+             {{ Form::label('description', 'Description:') }}
+                {{ Form::textarea('description', $activity->description ?? '') }}
+                @error('description')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>

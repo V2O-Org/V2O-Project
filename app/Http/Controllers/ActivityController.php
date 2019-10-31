@@ -68,7 +68,7 @@ class ActivityController extends Controller
 
         $activity = Activity::create([
             'name' => $request['name'],
-            'details'=> $request['details'],
+            'description'=> $request['description'],
             'image' => $imagePath,
             'start_date' => $request['start_date'],
             'end_date' => $request['end_date'],

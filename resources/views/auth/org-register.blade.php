@@ -117,12 +117,12 @@
             <p><h1 class = 'note'>Organisation Sign Up</h1></p>
             
             <div class = "container">
-                {!! Form::open(array('url' => '/org/register')) !!}
+                {!! Form::open(array('action' => route('org.register'))) !!}
                 
                 <div class='form-group'>
                     <p>
                         {{ Form::label('name', 'Organisation Name:') }}
-                        {{ Form::text('name', $organisation->name ?? '') }}
+                        {{ Form::text('name', $org->name ?? '') }}
                         @error('name')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -132,7 +132,7 @@
         
                     <p>
                         {{ Form::label('email', 'Email:') }}
-                        {{ Form::email('email', $user->email ?? '') }}
+                        {{ Form::email('email', $org->email ?? '') }}
                         @error('email')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -157,7 +157,7 @@
         
                     <p>
                         {{ Form::label('street_address', 'Street Address:') }}
-                        {{ Form::text('street_address', $organisation->street_address ?? '') }}
+                        {{ Form::text('street_address', $orgProfile->street_address ?? '') }}
                         @error('street_address')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -167,7 +167,7 @@
         
                     <p>
                         {{ Form::label('state', 'State/Parish:') }}
-                        {{ Form::text('state', $organisation->state ?? '') }}
+                        {{ Form::text('state', $orgProfile->state ?? '') }}
                         @error('state')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -177,7 +177,7 @@
         
                     <p>
                         {{ Form::label('city', 'City:') }}
-                        {{ Form::text('city', $organisation->city ?? '') }}
+                        {{ Form::text('city', $orgProfile->city ?? '') }}
                         @error('city')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -187,7 +187,7 @@
         
                     <p>
                         {{ Form::label('country', 'Country:') }}
-                        {{  Form::text('country', $organisation->country ?? '') }}
+                        {{  Form::text('country', $orgProfile->country ?? '') }}
                         @error('country')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -197,7 +197,7 @@
         
                     <p>
                         {{ Form::label('org_url', 'Organisation Webpage URL:') }}
-                        {{ Form::text('org_url', $organisation->org_url ?? '') }}
+                        {{ Form::text('org_url', $orgProfile->org_url ?? '') }}
                         @error('org_url')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -207,7 +207,7 @@
 
                     <p>
                         {{ Form::label('fax', 'Fax:') }}
-                        {{ Form::text('fax', $organisation->fax ?? '') }}
+                        {{ Form::text('fax', $orgProfile->fax ?? '') }}
                         @error('fax')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -217,7 +217,7 @@
 
                     <p>
                         {{ Form::label('mailing_address', 'Mailing Address:') }}
-                        {{ Form::text('mailing_address', $organisation->mailing_address ?? '') }}
+                        {{ Form::text('mailing_address', $orgProfile->mailing_address ?? '') }}
                         @error('mailing_address')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>

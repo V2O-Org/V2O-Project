@@ -17,10 +17,10 @@
 <div class="col-12 main">
 
     <div class="col-6 login-sec " id="login.stf">
-        {{ Form::open(array('url' => 'vol/register')) }}
+        {{ Form::open(array('url' => route('vol.register'))) }}
 
             {{ Form::label('first_name', 'First Name:') }}
-                {{ Form::text('first_name', $volunteer->first_name ?? '') }}
+                {{ Form::text('first_name', $vol->first_name ?? '') }}
                 @error('first_name')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -28,7 +28,7 @@
                 @enderror
 
             {{ Form::label('last_name', 'Last Name:') }}
-                {{ Form::text('last_name', $volunteer->last_name ?? '') }}
+                {{ Form::text('last_name', $vol->last_name ?? '') }}
                 @error('last_name')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -36,7 +36,7 @@
                 @enderror
 
             {{ Form::label('email', 'Email:') }}
-                {{ Form::email('email', $user->email ?? '') }}
+                {{ Form::email('email', $vol->email ?? '') }}
                 @error('email')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -44,7 +44,7 @@
                 @enderror
 
             {{ Form::label('date_of_birth',' Date of Birth:') }}
-                {{ Form::date("date_of_birth", $volunteer->date_of_birth ?? '') }}
+                {{ Form::date("date_of_birth", $volProfile->date_of_birth ?? '') }}
                 @error('date_of_birth')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -52,7 +52,7 @@
                 @enderror
 
             {{ Form::label('street_address', 'Street Address:') }}
-                {{ Form::text('street_address', $volunteer->street_address ?? '') }}
+                {{ Form::text('street_address', $volProfile->street_address ?? '') }}
                 @error('street_address')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -60,7 +60,7 @@
                 @enderror
 
             {{ Form::label('state', 'State/Parish:') }}
-                {{ Form::text('state', $volunteer->state ?? '') }}
+                {{ Form::text('state', $volProfile->state ?? '') }}
                 @error('state')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -68,7 +68,7 @@
                 @enderror
 
             {{ Form::label('city', 'City:') }}
-                {{ Form::text('city', $volunteer->city ?? '') }}
+                {{ Form::text('city', $volProfile->city ?? '') }}
                 @error('city')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>
@@ -76,7 +76,7 @@
                 @enderror
 
             {{ Form::label('country', 'Country:') }}
-                {{  Form::text('country', $volunteer->country ?? '') }}
+                {{  Form::text('country', $volProfile->country ?? '') }}
                 @error('country')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{ $message }}</strong>

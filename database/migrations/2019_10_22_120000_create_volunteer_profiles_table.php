@@ -18,8 +18,8 @@ class CreateVolunteerProfilesTable extends Migration
             $table->unsignedBigInteger('volunteer_id')->unique();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('profile_img')->nullable(); // The volunteer's profile picture
             $table->date('date_of_birth');
+            $table->string('profile_img')->nullable(); // The volunteer's profile picture
 
             // Volunteer's Location Information
             $table->string('street_address')->nullable();

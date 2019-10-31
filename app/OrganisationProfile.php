@@ -12,7 +12,9 @@ class OrganisationProfile extends Model
      * @var array
      */
     protected $fillable = [
-        
+        'organisation_id', 'name', 'description', 'profile_img',
+        'street_address', 'state', 'city', 'country', 'org_url', 
+        'fax', 'mailing_address',
     ];
 
     /**
