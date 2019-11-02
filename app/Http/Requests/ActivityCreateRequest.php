@@ -25,19 +25,27 @@ class ActivityCreateRequest extends FormRequest
     {
         return [
             'name' => [ 'required', 'string', 'max:191'],
-            'details' => [ 'required', 'string' ],
+            'description' => [ 'required', 'string' ],
             'image' => [ 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', ],
             'start_date' => [ 'required', 'date', ],
             'end_date' => [ 'required', 'date', ],
-            'start_time' => [ 'required', ],
-            'end_time' => [ 'required', ],
+            'start_time' => [ ],
+            'end_time' => [ ],
             'location' => [ 'required', 'string', ],
-            'co_host' => [ 'required', 'string', 'max:191', ],
+            'co_host' => [ 'max:191', ],
             'registration_deadline' => [ 'required', 'date', ],
             'volunteer_hours' => [ 'required', 'integer', ],
-            // 'causes' => [
-            //     'required'
-            // ],
+            'causes' => [ 'required' ],
         ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return ['causes.required' => 'You must select at least one cause!'];
     }
 }

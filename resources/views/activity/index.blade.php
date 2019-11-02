@@ -24,10 +24,14 @@
                     <div class="activity-item">
                         <h3>{{ $activity->name }}</h3>
                         <div class="activity-date">
-                            <strong>{{ $activity->start_date . ($activity->start_date === $activity->end_date ? : ' to ' . $activity->end_date) }}</strong>
+                            <strong>{{ $activity->start_date . ($activity->start_date === $activity->end_date ? '' : (' to ' . $activity->end_date)) }}</strong>
                         </div>
-                        <p class="activity-details">
-                            {{ $activity->details }}
+                        <div class="activity-causes">
+                            @foreach($activity->causes()->get() as $cause)
+                                <span>{{ $cause->name }} | </span>
+                            @endforeach
+                        <p class="activity-description">
+                            {{ $activity->description }}
                         </p>
                         <hr>
                     <div>

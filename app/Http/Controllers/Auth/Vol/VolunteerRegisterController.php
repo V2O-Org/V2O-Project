@@ -11,6 +11,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class VolunteerRegisterController extends Controller
 {

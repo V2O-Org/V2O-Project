@@ -10,238 +10,191 @@
 <!--includes the header and pass variables from above-->
 @include('volunteer.vol-account-header',['data'=>$list,'links=>$links','extra'=>$extraStyle])
 
-{{Html::style('css/register.css')}}
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<style type="text/css">
+    body { 
+        background: white !important; 
+    } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
 
-<style>
-    body {font-family: Arial, Helvetica, sans-serif;}
-    *
-    {
-        box-sizing: border-box;
+    .card-header {
+        background-color: white !important;
     }
-
-    .modal {
-        display: none; 
-        position: fixed; 
-        z-index: 1; 
-        padding-top: 100px; 
-        left: 0;
-        top: 0;
-        margin-top: 5%;
-        width: 100%; 
-
-        height: 80%; 
-        overflow-x: hidden;
-        overflow-y: auto;
-        background-color: rgba(0,0,0,0.4);
-    }
-    
-    .modal-content {
-       
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 60%;
-        padding: 20px;
-
-
-    }
-    
-    /* width */
-    .modal::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    /* Track */
-    .modal::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      margin-right: 50px;
-    }
-
-    /* Handle */
-    .modal::-webkit-scrollbar-thumb {
-      background: #888;
-    }
-
-    /* Handle on hover */
-    .modal::-webkit-scrollbar-thumb:hover {
-      background: #555;
-
-    }
-    .close {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        width:100%;
-        position: relative;
-        right:-95%;
-
-    }
-    
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    .modal-content input
-    {
-        width:max-content;
-        margin: 5px 50px 6px 0px;
-        float:right;
-
+    .modal-header {
+        background-color: white !important;
     }
 </style>
 
-<h1>Create Activity</h1>
-<div class="col-12 main">
+<script src="{{ asset('js/app.js') }}"></script>
 
-    <div class="col-6 login-sec " id="login.stf">
-        {{ Form::open(array('url' => 'activity')) }}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-3 mb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">Create Activity</h1>
+                </div>
+                
+                <div class="card-body p-4">
+                    <div class="col-6 login-sec " id="login.stf">
+                        {{ Form::open(array('url' => '/activity', 'enctype' => 'multipart/form-data')) }}
 
-            {{ Form::label('name', 'Activity Name:') }}
-                {{ Form::text('name', $activity->name ?? '') }}
-                @error('name')
-                    <span class="invalid-feedback d-block" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                            <div class="form-group pt-3">
+                                {{ Form::label('name', 'Activity Name:') }}
+                                
+                                {{ Form::text('name', $activity->name ?? '', [
+                                    'placeholder' => 'Name', 'class' => 'form-control'
+                                ]) }}
+                                @error('name')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
-             {{ Form::label('description', 'Description:') }}
-                {{ Form::textarea('description', $activity->description ?? '') }}
-                @error('description')
-                    <span class="invalid-feedback d-block" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                            <div class="form-group">
+                                {{ Form::label('description', 'Description:') }}
 
-            {{ Form::label('start_date', 'Start Date:') }}
-                {{ Form::date('start_date', $activity->start_date ?? '') }}
-                @error('start_date')
-                    <span class="invalid-feedback d-block" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                                {{ Form::textarea('description', $activity->description ?? '', [
+                                    'placeholder' => 'Description of the activity', 'class' => 'form-control'
+                                ]) }}
+                                @error('description')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
-            {{ Form::label('end_date', 'End Date:') }}
-                {{ Form::date('end_date', $activity->end_date ?? '') }}
-                @error('end_date')
-                    <span class="invalid-feedback d-block" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            
-            {{ Form::label('start_time', 'Start Time:') }}
-                {{ Form::time('start_time', $activity->start_time ?? '') }}
-                @error('start_time')
-                    <span class="invalid-feedback d-block" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            
-            {{ Form::label('end_time', 'End Time:') }}
-                {{ Form::time('end_time', $activity->end_time ?? '') }}
-                @error('end_time')
-                    <span class="invalid-feedback d-block" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                            <div class="form-group">
+                                {{ Form::label('image', 'Activity Image:') }}
 
-            {{ Form::label('location', 'Location:') }}
-                {{ Form::text('location', $activity->location ?? '') }}
-                @error('location')
-                    <span class="invalid-feedback d-block" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                                {{ Form::file('image', ['accept' => 'image/*',
+                                    'class' => 'form-control-file col-sm-10' 
+                                ]) }}
+                                @error('image')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
-            {{ Form::label('co_host', 'Co-Host') }}
-                {{ Form::text('co_host', $activity->co_host ?? '') }}
-                @error('co_host')
-                    <span class="invalid-feedback d-block" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                            <div class="form-group">
+                                {{ Form::label('start_date', 'Start Date:') }}
+                                
+                                {{ Form::date('start_date', $activity->start_date ?? '', [
+                                    'class' => 'form-control'
+                                ]) }}
+                                @error('start_date')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
-            {{ Form::label('registration_deadline', 'Registration Deadline:') }}
-                {{ Form::date('registration_deadline', $activity->registration_deadline ?? '') }}
-                @error('registration_deadline')
-                    <span class="invalid-feedback d-block" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                            <div class="form-group">
+                                {{ Form::label('end_date', 'End Date:') }}
 
-            {{ Form::label('volunteer_hours', 'Volunteer Hours:') }}
-                {{  Form::text('volunteer_hours', $activity->volunteer_hours ?? '') }}
-                @error('volunteer_hours')
-                    <span class="invalid-feedback d-block" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                                {{ Form::date('end_date', $activity->end_date ?? '', [
+                                    'class' => 'form-control'
+                                ]) }}
+                                @error('end_date')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                                
+                            <div class="form-group">
+                                {{ Form::label('start_time', 'Start Time:') }}
 
-            <!-- Button to trigger causes modal -->
-            {{ Form::button("Choose Causes", array('id' => 'modalBtn')) }}
+                                {{ Form::time('start_time', $activity->start_time ?? '', [
+                                    'class' => 'form-control'
+                                ]) }}
+                                @error('start_time')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
-            <!-- Causes Modal -->
-            
-            <div id="causesModal" class="modal pb-3">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    @foreach($causes as $cause)
-                    <div>
-                         {{ Form::label('cause', $cause)}}
-                            {{ Form::checkbox('causes[]', $cause) }} 
+                            <div class="form-group">
+                                {{ Form::label('end_time', 'End Time:') }}
+                                
+                                {{ Form::time('end_time', $activity->end_time ?? '', [
+                                    'class' => 'form-control'
+                                ]) }}
+                                @error('end_time')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                {{ Form::label('location', 'Location:') }}
+
+                                {{ Form::text('location', $activity->location ?? '', [
+                                    'placeholder' => 'Location', 'class' => 'form-control'
+                                ]) }}
+                                @error('location')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                {{ Form::label('co_host', 'Co-Host:') }}
+
+                                {{ Form::text('co_host', $activity->co_host ?? '', [
+                                    'placeholder' => 'Name of the co-host', 'class' => 'form-control'
+                                ]) }}
+                                @error('co_host')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                {{ Form::label('registration_deadline', 'Registration Deadline:') }}
+
+                                {{ Form::date('registration_deadline', $activity->registration_deadline ?? '', [
+                                    'class' => 'form-control'
+                                ]) }}
+                                @error('registration_deadline')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                {{ Form::label('volunteer_hours', 'Volunteer Hours:') }}
+                                
+                                {{  Form::text('volunteer_hours', $activity->volunteer_hours ?? '', [
+                                    'placeholder' => 'Number of hours earnable', 'class' => 'form-control'
+                                ]) }}
+                                @error('volunteer_hours')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            @include('causes.cause-modal')
+
+                            <div class="activity-div col-6 pt-4">
+                                {{ Form::submit('Submit', array(
+                                    'class' => 'btn btn-light btn-outline-success',
+                                    'type' => 'submit',
+                                    'onclick'=>'return confirm("Are you sure?")')) 
+                                }}
+                            </div>
+                        {{ Form::close() }}
                     </div>
-                            <br>
-
-                    @endforeach
                 </div>
             </div>
-            
-            <!-- End Causes Modal -->
-
-            <div class="activity-div col-6">
-                {{ Form::submit('Submit', array(
-                    'class' => 'button',
-                    'type' => 'submit',
-                    'onclick'=>'return confirm("Are you sure?")')) 
-                }}
-            </div>
-
-        {{ Form::close() }}
-
+        </div>
     </div>
 </div>
-
-<script>
-    // Get the modal
-    var modal = document.getElementById("causesModal");
-
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("modalBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-        modal.style.display = "none";
-        }
-    }
-</script>
-
 @include('volunteer.footer')

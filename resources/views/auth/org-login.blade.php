@@ -125,16 +125,25 @@ background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, r
              <form action="/org/login" method="POST" id="login-form">
                 @csrf
 			 	<table>
-
 			 		<tr>
 			 			<td>Email:</td>
-			 			<td><input type="email" name="email"> </td>
-				 	</tr>
+                        <td><input type="email" name="email"> </td>
+                        @error('email')
+                            <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </tr>
 				 	<tr>
 				 		<td>Password:</td>
-				 		<td><input type="password" name="password"></td>
+                        <td><input type="password" name="password"></td>
+                        
+                    @error('password')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
 				 	</tr>
-
 			 	</table>
 			 	
 

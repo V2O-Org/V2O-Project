@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ActivityCreateRequest;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
-use App\Organisation;
+use Illuminate\Support\Arr;
 use App\Activity;
 use App\Cause;
 
@@ -18,7 +18,7 @@ class ActivityController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('org')->only(['create', 'store']);
+        $this->middleware('auth:org')->only(['create', 'store']);
     }
 
     /**
@@ -56,19 +56,23 @@ class ActivityController extends Controller
      */
     public function store(ActivityCreateRequest $request)
     {
+        // Handle activity causes.
+        $causes = [];
+        foreach($request->causes as $cause) {
+            array_push($causes, Cause::where('name', $cause)->value('id'));
+        }
+     
+        // Handle activity image.
         $imagePath = null;
 
-        // If image exists, 
-        if ($request['image'] == 1) {
+        // If image exists... 
+        if (Arr::exists($request, 'image')) {
             $imagePath = $request['image']->store('uploads/images/activity', 'public');
     
+            error_log("storage/{$imagePath}");
             $image = Image::make(public_path("storage/{$imagePath}"));
             $image->save();
         }
-
-        // dd($request->input('causes'));
-
-        // $causes = $request->input('causes');
 
         $activity = Activity::create([
             'name' => $request['name'],
@@ -83,17 +87,14 @@ class ActivityController extends Controller
             'registration_deadline' => $request['registration_deadline'],
             'volunteer_hours' => $request['volunteer_hours']
         ]);
-        
         // Connect activity to organisation
         $org_id = Auth::user()->id;
         $activity->organisations()->sync([$org_id]);
-        
-        // dd($activity);
 
         // Connect activity to causes
-        // $activity->causes()->sync($causes);
+        $activity->causes()->sync($causes);
 
-        return redirect(url('organisation.home'));
+        return redirect(url('org/dashboard'));
     }
 
     /**
