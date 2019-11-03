@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\orgsignup;
 
 class OrgSignupController extends Controller
 {
@@ -13,7 +14,7 @@ class OrgSignupController extends Controller
      */
     public function index()
     {
-        return view('orgsignup');
+        
     }
 
     /**
@@ -23,7 +24,7 @@ class OrgSignupController extends Controller
      */
     public function create()
     {
-        //
+        return view('orgsignup');
     }
 
     /**
@@ -34,7 +35,15 @@ class OrgSignupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'Organization Name' => 'required',
+            'Address' => 'required',
+            'Country' => 'required',
+            'Email' => 'required',
+            'Password' => 'required'
+        ]);
+
+        //return a route here
     }
 
     /**

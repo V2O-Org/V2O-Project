@@ -19,4 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-route::get('/orgsignup', 'OrgSignUpController@index');
+Route::get('/orgsignup', 'OrgSignUpController@create');
