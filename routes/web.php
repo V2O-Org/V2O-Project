@@ -30,6 +30,7 @@ Auth::routes();
 Route::prefix('/vol')->group(function() {
     // Home Routes
     Route::get('/dashboard', 'VolunteerHomeController@index')->name('vol.dashboard');
+    Route::get('/profile/{volunteer}', 'VolunteerController@showProfile')->name('vol.profile');
 
     // Login Routes
     Route::get('/login', 'Auth\Vol\VolunteerLoginController@showLoginForm')->name('vol.login.form');
@@ -53,6 +54,7 @@ Route::prefix('/vol')->group(function() {
 Route::prefix('/org')->group(function() {
     // Home Routes
     Route::get('/dashboard', 'OrganisationHomeController@index')->name('org.dashboard');
+    Route::get('/profile/{organisation}', 'OrganisationController@showProfile')->name('org.profile');
 
     // Login Routes
     Route::get('/login', 'Auth\Org\OrganisationLoginController@showLoginForm')->name('org.login.form');
