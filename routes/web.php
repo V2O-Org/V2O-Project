@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('volunteer.tester');
 });
 
+Route::get('/orgsignup', function () {
+    return view('orgsignup');
+});
+
 // Route::get('/',function(){
 // 	return view('welcome');
 // });

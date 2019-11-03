@@ -24,127 +24,70 @@
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Arial Italic:200,600" rel="stylesheet">
     {{ Html::style('css/profile.css') }}
+<link href="{{ asset('css/orgsignup.css') }}" rel="stylesheet">
 <!-- Styles -->
 <style>
-        html, body {
-            background-color: #0C4F14;
-            color: #000000;
-            font-family: 'Arial Italic', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .btn {
-            display: block;
-            border-radius: 12px;
-            margin-left: auto;
-            margin-right: auto; 
-            width: 150px;  
-            height: 40px;
-            border-color: white;
-            border-radius: 24px;
-            font-size: 24px;
-            background-color: #000000;
-            color: white;
-                   
-        }
-
-        .container {
-            
-            margin: auto;
-            width: 50%;
-            
-        }
-        .container input {
-            align-self: auto;
-            margin: auto;
-            width: 50%;
-            
-        }
-                    
-        .content {
-            text-align: center;
-            
-        }
-    
-        .title {
-            font-size: 84px;
-        }
-
-        .member {
-            text-align: center;
-            margin: 60px 40px 40px 100px;
-                        
-        }
-
-        #orgname {
-            margin-left: 30px;
-            border-radius: 4px;
-        }
-
-        #loc {
-            margin-left: 110px;
-            border-radius: 4px;
-        }
-
-        #tfirma {
-            margin-left: 112px;
-            border-radius: 4px;
-        }
-
-        #letter {
-            margin-left: 127px;
-            border-radius: 4px;
-        }
-
-        #gentry {
-            margin-left: 98px;
-            border-radius: 4px;
-        }
-
-        .logospace{
-            color: red;
-        }
-
-        .note {
-            color:ghostwhite;
-        }
             
 </style>
     </head>
     <body>
         	              
             <div class = 'content'>
-                    <p><h1 class = 'note'>Sign Up</h1></p>
-                    </div>
-                    <div class = "container">
+                    <p><h1 class = 'note'>Organization Sign Up</h1></p>
+                        <div class = "container">
                     {!! Form::open(array('url' => '/orgsignup')) !!}
                         <div class='form-group'>
                             <p>
-                            {!! Form::label('title', 'Organization Name:') !!}
-                            {{Form::text ('title', '', ['id' => 'orgname','class' => 'form-control', 'placeholder' => ''])}}
+                                {!! Form::label('title', 'Organization Name:') !!}
+                                {{Form::text ('title', '', ['id' => 'orgname','class' => 'form-control', 'placeholder' => ''])}}
                             </p>
                             <p>
-                            {!! Form::label('title', 'Address:') !!}
-                            {{Form::text ('title', '', ['id' => 'loc', 'class' => 'form-control', 'placeholder' => ''])}}
+                                {!! Form::label('title', 'Email:') !!}       
+                                {{Form::text ('title', '', ['id' => 'letter', 'class' => 'form-control', 'placeholder' => ''])}}
                             </p>
                             <p>
-                            {!! Form::label('title', 'Country:') !!}
-                            {{Form::text ('title', '', ['id' => 'tfirma', 'class' => 'form-control', 'placeholder' => ''])}}
+                                {!! Form::label('title', 'Password:') !!}
+                                {{Form::text ('title', '', ['id' => 'gentry', 'class' => 'form-control', 'placeholder' => ''])}}
                             </p>
                             <p>
-                            {!! Form::label('title', 'Email:') !!}       
-                            {{Form::text ('title', '', ['id' => 'letter', 'class' => 'form-control', 'placeholder' => ''])}}
+                                {!! Form::label('title', 'Confirm Password:') !!}
+                                {{Form::text ('title', '', ['id' => 'cgentry', 'class' => 'form-control', 'placeholder' => ''])}}
                             </p>
                             <p>
-                            {!! Form::label('title', 'Password:') !!}
-                            {{Form::text ('title', '', ['id' => 'gentry', 'class' => 'form-control', 'placeholder' => ''])}}
+                                {!! Form::label('title', 'Street Address:') !!}
+                                {{Form::text ('title', '', ['id' => 'loc', 'class' => 'form-control', 'placeholder' => ''])}}
                             </p>
-                            <p class = "member">Already have an account? sign in <a href= '/login'>Here</a>
+                            <p>
+                                {!! Form::label('title', 'State/Parish:') !!}
+                                {{Form::text ('title', '', ['id' => 'sloc', 'class' => 'form-control', 'placeholder' => ''])}}
+                            </p>
+                            <p>
+                                {!! Form::label('title', 'City:') !!}
+                                {{Form::text ('title', '', ['id' => 'town', 'class' => 'form-control', 'placeholder' => ''])}}
+                            </p>
+                            <p>
+                                {!! Form::label('title', 'Country:') !!}
+                                {{Form::text ('title', '', ['id' => 'tfirma', 'class' => 'form-control', 'placeholder' => ''])}}
+                            </p>
+                            <p>
+                                {!! Form::label('title', 'Webpage URL:') !!}
+                                {{Form::text ('title', '', ['id' => 'weburl', 'class' => 'form-control', 'placeholder' => ''])}}
+                            </p>
+                            <p>
+                                {!! Form::label('title', 'Fax:') !!}
+                                {{Form::text ('title', '', ['id' => 'fax', 'class' => 'form-control', 'placeholder' => ''])}}
+                            </p>
+                            <p>
+                                {!! Form::label('title', 'Mailing Address:') !!}
+                                {{Form::text ('title', '', ['id' => 'mail', 'class' => 'form-control', 'placeholder' => ''])}}
+                            </p>
+                                                       
+                            <p class = "member">Already have an account? sign in <a href= '/login'>Here</a></p>
                         </div>
-                    </div>           
-                        {{Form::submit('Continue', ['class' => 'btn btn-primary btn-lg'])}}
+                            
+                    </div>  
+                    {{Form::submit('Continue', ['class' => 'btn btn-primary btn-lg'])}}         
+                </div>      
                         {{Html::style('css/footer.css')}}
                          <footer><p>&copy 2019 | Volunteer-To-Organization | All Right Reserved</p></footer>
                     {!! Form::close() !!}
