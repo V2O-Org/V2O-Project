@@ -6,6 +6,8 @@ use App\Http\Requests\ActivityCreateRequest;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 use App\Activity;
 use App\Cause;
 
@@ -18,7 +20,7 @@ class ActivityController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:org')->only(['create', 'store']);
+        $this->middleware('auth:org')->except(['index', 'show']);
     }
 
     /**
@@ -57,10 +59,7 @@ class ActivityController extends Controller
     public function store(ActivityCreateRequest $request)
     {
         // Handle activity causes.
-        $causes = [];
-        foreach($request->causes as $cause) {
-            array_push($causes, Cause::where('name', $cause)->value('id'));
-        }
+        $causes = $request['causes'];
      
         // Handle activity image.
         $imagePath = null;
@@ -94,7 +93,7 @@ class ActivityController extends Controller
         // Connect activity to causes
         $activity->causes()->sync($causes);
 
-        return redirect(url('org/dashboard'));
+        return redirect(route('org.dashboard'));
     }
 
     /**
@@ -117,9 +116,17 @@ class ActivityController extends Controller
     public function edit($id)
     {
         $activity = Activity::findOrFail($id);
+
+        // List of all causes.
         $causes = Cause::pluck('name');
 
-        return view('activity.update')->with('activity', $activity)->with('causes', $causes);
+        // List of causes associated with the activity
+        $activityCauses = $activity->causes()->get()->pluck('id')->toArray();
+
+        return view('activity.edit')
+            ->with('activity', $activity)
+            ->with('causes', $causes)
+            ->with('associatedCauses', $activityCauses);
     }
 
     /**
@@ -133,11 +140,47 @@ class ActivityController extends Controller
     {
         // Find the activity to be updated.
         $activity = Activity::findOrFail($id);
+        
+        // Handle activity causes.
+        $causes = $request['causes'];
+     
+        // Handle activity image.
+        $imagePath = $activity->image;
+
+        dd($imagePath);
+
+        //dd($request->all());
+
+        // If image exists... 
+        if (Arr::exists($request, 'image')) {
+            $imagePath = $request['image']->store('uploads/images/activity', 'public');
+            dd($imagePath);
+    
+            error_log("storage/{$imagePath}");
+            $image = Image::make(public_path("storage/{$imagePath}"));
+            $image->save();
+        }
 
         // Update the activity with the edited fields.
-        $activity->update($request->all());
+        $activity->name = $request['name'];
+        $activity->description = $request['description'];
+        $activity->image = $imagePath;
+        $activity->start_date = $request['start_date'];
+        $activity->end_date = $request['end_date'];
+        $activity->start_time = $request['start_time'];
+        $activity->end_time = $request['end_time'];
+        $activity->location = $request['location'];
+        $activity->co_host = $request['co_host'];
+        $activity->registration_deadline = $request['registration_deadline'];
+        $activity->volunteer_hours = $request['volunteer_hours'];
 
-        return redirect(url('organisation.home'));
+        // Update activity.
+        $activity->save();
+        
+        // Update activity causes.
+        $activity->causes()->sync($causes);
+
+        return redirect(route('org.dashboard'));
     }
 
     /**

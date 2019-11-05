@@ -31,12 +31,15 @@
         <div class="col-md-12 mt-3 mb-3">
             <div class="card">
                 <div class="card-header">
-                    <h1 class="card-title">Create Activity</h1>
+                    <h1 class="card-title">Edit Activity</h1>
                 </div>
                 
                 <div class="card-body p-4">
                     <div class="col-6 login-sec " id="login.stf">
-                        {{ Form::open(array('url' => '/activity', 'enctype' => 'multipart/form-data')) }}
+                        {{ Form::open([
+                            'method' => 'PUT', 'url' => '/activity/' . $activity->id, 
+                            'enctype' => 'multipart/form-data'
+                        ]) }}
 
                             @include('partials.activity-form')
 
