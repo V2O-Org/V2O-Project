@@ -16,7 +16,7 @@ class CreateActivitiesSeeder extends Seeder
         $activity = [
             [
                 'name' => 'Test Activity',
-                'details' => 'Here are some details',
+                'description' => 'Here are some details',
                 'start_date' => '2019-11-25',
                 'end_date' => '2019-11-25',
                 'start_time' => '10:00:00', 
@@ -28,7 +28,7 @@ class CreateActivitiesSeeder extends Seeder
             ],
             [
                 'name' => 'Help the Elderly',
-                'details' => 'Old people need help guys.',
+                'description' => 'Old people need help guys.',
                 'start_date' => '2019-12-10',
                 'end_date' => '2019-12-16',
                 'start_time' => '8:30:00', 

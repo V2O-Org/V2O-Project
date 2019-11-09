@@ -36,6 +36,7 @@
                 
                 <div class="card-body p-4">
                     <div class="col-6 login-sec " id="login.stf">
+                        <!-- Update Form for activity -->
                         {{ Form::open([
                             'method' => 'PUT', 'url' => '/activity/' . $activity->id, 
                             'enctype' => 'multipart/form-data'
@@ -43,14 +44,26 @@
 
                             @include('partials.activity-form')
 
-                            <div class="activity-div col-6 pt-4">
-                                {{ Form::submit('Submit', array(
+                            <div id="update-btn-container" class="pt-4 pb-4">
+                                {{ Form::submit('Update', array(
                                     'class' => 'btn btn-light btn-outline-success',
-                                    'type' => 'submit',
-                                    'onclick'=>'return confirm("Are you sure?")')) 
-                                }}
+                                )) }}
                             </div>
                         {{ Form::close() }}
+                        <!-- END Update Form -->
+
+                        <!-- Delete Form for activity -->
+                        {{ Form::open([
+                            'method' => 'DELETE', 'url' => '/activity/' . $activity->id,
+                        ]) }}
+                            <div class="delete-container" class="pt-4">
+                                {{ Form::submit('Delete', array(
+                                    'class' => 'btn btn-danger btn-sm',
+                                    'onclick' => 'return confirm("Are you sure you want to delete this activity?")',
+                                )) }}
+                            </div>
+                        {{ Form::close() }}
+                        <!-- END Delete Form -->
                     </div>
                 </div>
             </div>
