@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +9,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Http\Request;
+use App\Activity;
 
 Route::get('/org/slider', function() {
     return view('organisation.slider');
@@ -87,6 +88,26 @@ Route::resources([
     'vol' => 'VolunteerController',
 ]);
 
+//search activities by making query to database
+Route::any('/search', function(Request $request){
+    $name = $request->input('name');
+    $startDate = $request->input('startDate');
+
+    $activity = Activity::where('name', 'LIKE', '%'.$name.'%')
+                          ->orWhere('start_date', 'LIKE', '%'.$startDate.'%')
+                          ->orWhere('description', 'LIKE', '%'.$name.'%')->get();
+ 
+    if (count($activity) > 0){
+        return view('activity/activity-search-results')->withDetails($activity)->withQuery($name);
+    }
+    else{
+        return view('activity/activity-search-results')->withMessage('No activities matching your search')->withQuery($name);
+    }
+});
+
+Route::get('/', function(){
+    return view('activity/activity-search-results');
+});
 
 // // Home Router
 // Route::get('/home', 'HomeController@index')->name('home');
