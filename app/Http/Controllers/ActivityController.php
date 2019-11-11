@@ -105,7 +105,7 @@ class ActivityController extends Controller
     {
         $activity = Activity::findOrFail($id);
 
-        return view('activity.show')
+        return view('singactivity.index')
             ->with('activity', $activity);
     }
 

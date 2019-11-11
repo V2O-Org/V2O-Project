@@ -19,19 +19,13 @@ background: linear-gradient(45deg, rgba(180,189,178,1) 44%, rgba(40,94,35,1) 60%
 	<div id = "center-text">
 	
 		<h1>
-            <!-- {{$activity = DB::table('activities')
-                -> where('id','$id')
-                -> value('name')}} -->
-				{{ $activity->name }}
+            {{ $activity->name }}
 		</h1>
 		<h2>_________________________________</h2>
 		<h2>
-            <!-- {{$activity_organisation = DB::table('activity_organisation')
-                ->join('activities', 'activity_organisation.activity_id','=','activities.id')
-                ->join('organisations','activity_organisation.organisation_id','=','organisations.id')
-                ->value('organisations.name')
-            }} -->
-            {{ $activity->organisations()->get()->pluck('name') }}
+            @foreach ($activity->organisations()->get()->pluck('name') as $org)
+                {{ $org }}
+            @endforeach
 		</h2>
 	</div>
 </div>
@@ -39,33 +33,21 @@ background: linear-gradient(45deg, rgba(180,189,178,1) 44%, rgba(40,94,35,1) 60%
 	<div id ="left">
 		<h3>Details</h3>
 			<p>
-               <!--  {{-- {{$activity = DB::table('activities')
-                    -> where('id','$id')
-                    -> value('description')}} --}}-->
-
                 {{ $activity->description }}
 			</p>
 	</div>
 	<div id = "right">
-	{{$volid = $volunteer->id}}
-	{{$actid = $activity->id}}
 
-		
- if (isset( $actid[{{$activity_volunteer = DB::table('activity_volunteer')-> where('activity_id','$actid')->get()}}])
-	 and (isset $volid[{{$activity_volunteer = DB::table('activity_volunteer')-> where('volunteer_id','$volid')->get()}}]))
-{
-	
- <button id="button"><onclick="" type="submit" >Join Activity</a></button>
- 
-}
-else
-{
-	<div class = 'leavebutton'>
-		{!!Form::open(['method'=>'DELETE', 'url'=>'actitivy_volunteer/' .$actitivy_volunteer->activity_id]) !!}
-		{!!Form::button('Delete',['type'=>'submit']) !!}
-		{!!Form::close() !!}	
-	</div>
-}
+
+        @if ($activity->volunteers()->get()->where('id', Auth::id())->count() >= 1)
+            <button id="button"><onclick="" type="submit" >Join Activity</a></button>
+        @else
+            <div class = 'leavebutton'>
+                {!!Form::open(['method'=>'DELETE', 'url'=>'/actitivy_volunteer/']) !!}
+                {!!Form::button('Delete',['type'=>'submit']) !!}
+                {!!Form::close() !!}	
+            </div>
+        @endif
 
 	      
 	<!--	<div id="button">
@@ -75,61 +57,35 @@ else
 		<table style="width:100%">
 	<tr>
 	<td id = "title">Co-Host:</td>
-	<td>
-      <!-- {{-- {{$activity = DB::table('activities')
-		-> where('id','$id')
-        -> value('co_host')}} --}}-->
-        {{ $activity->co_host }}
-    </td>
+	<td>{{ $activity->co_host }}</td>
 	</tr>
 	<tr>
 	<td id = "title">Location:</td>
-	<td> <!--{{$activity = DB::table('activities')
-		-> where('id','$id')
-		-> value('location')}}-->
-		{{ $activity->location }}</td>
+	<td> {{ $activity->location }}</td>
     </tr>
 	<tr>
 	<td id = "title">Date:</td>
-    <td> <!--{{$activity = DB::table('activities')
-		-> where('id','$id')
-		-> value('start_date')}}-->
-		{{ $activity->start_date }}</td>
+    <td>{{ $activity->start_date }}</td>
 	</tr>
 	<tr>
 	<td id = "title">Start Time:</td>
-	<td> <!--{{$activity = DB::table('activities')
-		-> where('id','$id')
-		-> value('start_time')}}-->
-		{{ $activity->start_time }}</td>
+	<td>{{ $activity->start_time }}</td>
 	</tr>
 	<tr>
    <td id = "title">Required Items:</td>
-   <td> <!--{{$activity = DB::table('activities')
-		-> where('id','$id')
-		-> value('location')}}-->
-		{{ $activity->required_items }}</td>
+   {{-- <td>{{ $activity->required_items }}</td> --}}
     </tr>
 	<tr>
 	<td id = "title">Attire:</td>
-	<td> <!--{{$activity = DB::table('activities')
-		-> where('id','$id')
-		-> value('location')}}-->
-		{{ $activity->attire }}</td>
+	{{-- <td>{{ $activity->attire }}</td> --}}
     </tr>
 	<tr>
 	<td id = "title">Registration Deadline:</td>
-	<td> <!--{{$activity = DB::table('activities')
-		-> where('id','$id')
-		-> value('registration_deadline')}}-->
-		{{ $activity->registration_deadline }}</td>
+	<td>{{ $activity->registration_deadline }}</td>
 	</tr>
 		<tr>
 	<td id = "title">Hours Earnable</td>
-	<td> <!--{{$activity = DB::table('activities')
-		-> where('id','$id')
-		-> value('volunteer_hours')}}-->
-		{{ $activity->volunteer_hours }}</td>
+	<td>{{ $activity->volunteer_hours }}</td>
 	</tr>
 </table>
 		</div>
