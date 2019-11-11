@@ -71,7 +71,10 @@ Route::prefix('/org')->group(function() {
     Route::get('/password/reset', 'Auth\Org\OrganisationForgotPasswordController@showLinkRequestForm')->name('org.password.request');
     Route::post('/password/email', 'Auth\Org\OrganisationForgotPasswordController@sendResetLinkEmail')->name('org.password.email');
     Route::get('/password/reset/{token}', 'Auth\Org\OrganisationResetPasswordController@showResetForm')->name('org.password.reset');
-    Route::post('/password/reset', 'Auth\Org\OrganisationResetPasswordController@reset')->name('org.password.update');  
+    Route::post('/password/reset', 'Auth\Org\OrganisationResetPasswordController@reset')->name('org.password.update');
+    
+	// Single Activity View
+	Route::get('/acti', 'SingActivController@index')->name('singactivity.org_sing_act');
 });
 
 // Activity Routes
@@ -80,13 +83,40 @@ Route::prefix('/activity')->group(function() {
     Route::get('/search/index', 'ActivityController@index')->name('activity.index');
 });
 
+// Activity Sign Up Routes
+Route::prefix('/singact')->group(function() {
+	//Single Activity View
+	Route::get('/acti', 'SingActivController@index')->name('singactivity.index');
+});
+
 // Resourceful Routes
 Route::resources([
     'activity' => 'ActivityController',
     'org' => 'OrganisationController',
     'vol' => 'VolunteerController',
+	'singact' => 'SingActivController',
 ]);
 
+//search activities by making query to database
+Route::any('/search', function(Request $request){
+    $name = $request->input('name');
+    $startDate = $request->input('startDate');
+
+    $activity = Activity::where('name', 'LIKE', '%'.$name.'%')
+                          ->orWhere('start_date', 'LIKE', '%'.$startDate.'%')
+                          ->orWhere('description', 'LIKE', '%'.$name.'%')->get();
+ 
+    if (count($activity) > 0){
+        return view('activity/activity-search-results')->withDetails($activity)->withQuery($name);
+    }
+    else{
+        return view('activity/activity-search-results')->withMessage('No activities matching your search')->withQuery($name);
+    }
+});
+
+Route::get('/search/results', function(){
+    return view('activity/activity-search-results');
+});
 
 // // Home Router
 // Route::get('/home', 'HomeController@index')->name('home');
