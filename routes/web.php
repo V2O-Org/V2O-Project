@@ -118,5 +118,8 @@ Route::get('/search/results', function(){
     return view('activity/activity-search-results');
 });
 
+// Joining Instruction Route
+Route::Resource('instruction', 'InstructionController');
+    
 // // Home Router
 // Route::get('/home', 'HomeController@index')->name('home');
