@@ -19,7 +19,7 @@
     	<header>
 
             <div id="Logo">
-                <img src="{{ asset('image/new_logo.jpeg') }}" alt="Logo"></div>
+                <img src="{{ asset('image/V2O.jpeg') }}" alt="Logo"></div>
 			<div id="nav">
 				<ul>
 					<?php
