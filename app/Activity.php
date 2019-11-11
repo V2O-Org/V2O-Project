@@ -41,4 +41,13 @@ class Activity extends Model
     {
         return $this->belongsToMany(Organisation::class, 'activity_organisation')->withTimestamps();
     }
+    
+    /**
+     * Set up the relationship between activities and instructions.
+     * 1 activity HAS one set instructions.
+     */
+    public function instruction()
+    {
+        return $this->hasOne(Instruction::class);
+    }
 }
