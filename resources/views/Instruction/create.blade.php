@@ -13,7 +13,7 @@
 <div class="header">
 	<nav>
 		<div class="logo">
-			<img src="img/V20.jpg" style="height: 80px; width: 130px; margin-left: -90px;">
+			<img src="image/V20.jpeg" style="height: 80px; width: 130px; margin-left: -90px;">
 		</div>
            
 		<nav>
@@ -35,7 +35,7 @@
 
 
 	<div class="icon">
-			<img src="img/icon.png" style="height: 80px; width: 80px; margin-top: 5px;">
+			<img src="image/icon.png" style="height: 80px; width: 80px; margin-top: 5px;">
 		</div>
 
 
