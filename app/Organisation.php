@@ -50,15 +50,6 @@ class Organisation extends Authenticatable
     }
 
     /**
-     * Set up the relationship between organisations and activities.
-     * 1 organisation OWNS many activities.
-     */
-    public function activities()
-    {
-        return $this->belongsToMany(Activity::class, 'activity_organisation')->withTimestamps();
-    }
-
-    /**
      * Send the password reset notification.
      * 
      * @param  string  $token

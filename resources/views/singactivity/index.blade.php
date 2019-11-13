@@ -15,7 +15,7 @@ background: linear-gradient(45deg, rgba(180,189,178,1) 44%, rgba(40,94,35,1) 60%
  <div class = 'page'> 
 
 <div class = "single-activity-header">
-	<img src="{{ asset('image/bg.jpeg')}}" alt="profile photo" style>
+	<img src="/storage/{{ $activity->image }}" alt="Activity Image" style>
 	<div id = "center-text">
 	
 		<h1>
@@ -37,16 +37,25 @@ background: linear-gradient(45deg, rgba(180,189,178,1) 44%, rgba(40,94,35,1) 60%
 			</p>
 	</div>
 	<div id = "right">
-
-
-        @if ($activity->volunteers()->get()->where('id', Auth::id())->count() >= 1)
-            <button id="button"><onclick="" type="submit" >Join Activity</a></button>
-        @else
-            <div class = 'leavebutton'>
-                {!!Form::open(['method'=>'DELETE', 'url'=>'/actitivy_volunteer/']) !!}
-                {!!Form::button('Delete',['type'=>'submit']) !!}
-                {!!Form::close() !!}	
-            </div>
+        @if (Auth::guard('vol')->check())
+            @if ($activity->volunteers()->get()->where('id', Auth::id())->count() >= 1)
+                <div class = 'leavebutton'>
+                    {!!Form::open(['method'=>'DELETE', 'url'=>'/actitivy_volunteer/']) !!}
+                    {!!Form::button('Leave Activity',['type'=>'submit']) !!}
+                    {!!Form::close() !!}	
+                </div>
+            @else
+                <button id="button" onclick="" type="submit" >Volunteer With Us</button>
+            @endif
+        @endif
+        @if (Auth::guard('org')->check())
+            @if ($activity->organisations()->get()->where('id', Auth::guard('org')->id())->count() >= 1)
+                <div class='editbutton'>
+                    {!! Form::open(['method' => 'GET', 'url' => '/activity/' . $activity->id . '/edit']) !!}
+                        {!! Form::submit('Edit Activity') !!}
+                    {!! Form::close() !!}
+                </div>
+            @endif
         @endif
 
 	      

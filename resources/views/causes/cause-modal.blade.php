@@ -26,7 +26,7 @@
             </div>
 
             <div class="modal-body">
-                @foreach($causes as $cause)
+               @foreach($causes as $cause)
                     <div class="form-group">
                         {{ Form::checkbox('causes[]', $cause) }} 
                         {{ Form::label('cause', $cause, [

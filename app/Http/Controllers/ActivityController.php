@@ -86,7 +86,7 @@ class ActivityController extends Controller
             'volunteer_hours' => $request['volunteer_hours']
         ]);
         // Connect activity to organisation
-        $org_id = Auth::user()->id;
+        $org_id = Auth::user()->organisationProfile->id;
         $activity->organisations()->sync([$org_id]);
 
         // Connect activity to causes

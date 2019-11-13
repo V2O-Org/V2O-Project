@@ -119,7 +119,6 @@ class OrganisationRegisterController extends Controller
      */
     protected function createOrganisation(array $data) {
         return Organisation::create([
-            'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

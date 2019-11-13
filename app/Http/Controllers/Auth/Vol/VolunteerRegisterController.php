@@ -87,7 +87,7 @@ class VolunteerRegisterController extends Controller
         // Login the volunteer.
         if (Auth::guard('vol')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             // If successful, then redirect to their intended location.
-            return redirect()->route('vol.dashboard');
+            return redirect()->route('vol.profile',Auth::id());
         }
     }
 
@@ -118,8 +118,6 @@ class VolunteerRegisterController extends Controller
      */
     protected function createVolunteer(array $data) {
         return Volunteer::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

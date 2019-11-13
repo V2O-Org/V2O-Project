@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Volunteer;
+use App\VolunteerProfile;
 
 class CreateVolunteersSeeder extends Seeder
 {
@@ -14,46 +15,48 @@ class CreateVolunteersSeeder extends Seeder
     {
         $volunteer = [
             [
-                'first_name' => 'George',
-                'last_name' => 'Clooney',
                 'email' => 'test.volunteer@v2o.com',
                 'password' => bcrypt('password'),
             ],
             [
-                'first_name' => 'Frank',
-                'last_name' => 'Ocean',
                 'email' => 'test.volunteer2@v2o.com',
                 'password' => bcrypt('password'),
             ],
         ];
+        
+        $volunteerProfile = [
+            [
+                'volunteer_id' => 1,
+                'first_name' => 'George',
+                'last_name' => 'Clooney',
+                // 'profile_img' => '',
+                'date_of_birth' => '1996-12-03',
+                'street_address' => 'Black Rock',
+                'state' => 'Saint Michael',
+                'city' => 'Bridgetown',
+                'country' => 'Barbados',
+            ],
+            [
+                'volunteer_id' => '2',
+                'first_name' => 'Bob',
+                'last_name' => 'Bobbinton',
+                // 'profile_img' => '',
+                'date_of_birth' => '1992-08-23',
+                'street_address' => 'Grove',
+                'state' => 'St. Philip',
+                'city' => 'Bridgetown',
+                'country' => 'Baarbados',
+            ],
+        ];
   
+        // Create the volunteer user.
         foreach ($volunteer as $key => $value) {
             Volunteer::create($value);
         }
-        
-        // $volunteer = [
-        //     [
-        //         'user_id' => 1,
-        //         'first_name' => 'George',
-        //         'last_name' => 'Clooney',
-        //         // 'profile_img' => '',
-        //         'date_of_birth' => '1996-12-03',
-        //         'street_address' => 'Black Rock',
-        //         'state' => 'Saint Michael',
-        //         'city' => 'Bridgetown',
-        //         'country' => 'Barbados',
-        //     ],
-        //     // [
-        //     //     'user_id' => '',
-        //     //     'first_name' => '',
-        //     //     'last_name' => '',
-        //     //     // 'profile_img' => '',
-        //     //     'date_of_birth' => '',
-        //     //     'street_address' => '',
-        //     //     'state' => '',
-        //     //     'city' => '',
-        //     //     'country' => '',
-        //     // ],
-        // ];
+
+        // Create the volunteer profile.
+        foreach ($volunteerProfile as $key => $value) {
+            VolunteerProfile::create($value);
+        }
     }
 }

@@ -33,6 +33,12 @@ class OrganisationLoginController extends Controller
      */
     public function login(Request $request)
     {
+        // If volunteer user still logged in on organisation login attempt...
+        if (Auth::guard('vol')->check()) {
+            // Logout organisation user.
+            Auth::guard('vol')->logout();
+        }
+
         // Validate the login form data.
         $this->validate($request, [
             'email' => ['required', 'email',], 
