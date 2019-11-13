@@ -42,7 +42,7 @@ class VolunteerLoginController extends Controller
         // Attempt to login the volunteer.
         if (Auth::guard('vol')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             // If successful, then redirect to their intended location.
-            return redirect()->intended(route('vol.dashboard'));
+            return redirect()->intended(route('vol.profile',Auth::id()));
         }
 
         // If unsuccessful, then redirect back to the login with the form data.

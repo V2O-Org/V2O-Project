@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Volunteer;
+use App\VolunteerProfile;
 
 class VolunteerController extends Controller
 {
@@ -58,6 +59,10 @@ class VolunteerController extends Controller
     public function show($id)
     {
         //
+        $id = Auth::id();
+        $volunteerProfile = VolunteerProfile::findOrFail ($id);
+        $volunteer= Volunteer::findOrFail ($id);
+                return view('volunteer/vol-profile')->with ('volunteer',$volunteer) ->with ('volunteerProfile',$volunteerProfile);
     }
 
     /**
@@ -81,6 +86,15 @@ class VolunteerController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $volunteerProfile = VolunteerProfile::findOrFail($id);
+        $volunteerProfile->first_name = $request->first_name;
+        $volunteerProfile->last_name= $request->last_name;
+        $volunteerProfile->street_address= $request->street_address;
+        $volunteerProfile->city= $request->city;
+        $volunteerProfile->state= $request->state;
+        $volunteerProfile->country= $request->country;
+        $volunteerProfile->save();
+        return redirect (url('vol/vol-profile/'));
     }
 
     /**
@@ -93,4 +107,7 @@ class VolunteerController extends Controller
     {
         //
     }
+
+
+
 }

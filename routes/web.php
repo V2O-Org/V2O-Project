@@ -31,7 +31,7 @@ Auth::routes();
 Route::prefix('/vol')->group(function() {
     // Home Routes
     Route::get('/dashboard', 'VolunteerHomeController@index')->name('vol.dashboard');
-    Route::get('/profile/{volunteer}', 'VolunteerController@showProfile')->name('vol.profile');
+    Route::get('/profile/{volunteer}', 'VolunteerController@show')->name('vol.profile');
 
     // Login Routes
     Route::get('/login', 'Auth\Vol\VolunteerLoginController@showLoginForm')->name('vol.login.form');
