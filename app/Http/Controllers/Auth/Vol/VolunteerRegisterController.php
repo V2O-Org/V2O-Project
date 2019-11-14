@@ -87,7 +87,7 @@ class VolunteerRegisterController extends Controller
         // Login the volunteer.
         if (Auth::guard('vol')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             // If successful, then redirect to their intended location.
-            return redirect()->route('vol.dashboard');
+            return redirect()->route('vol.profile',Auth::id());
         }
     }
 

@@ -1,17 +1,17 @@
 <?php 
 	# BELOW ARE ARGUMNENTS TO SEND FOR THE HEADER 
 	//this is the list of links to appear in header
-	$list  =[ 'Home','About Us','Search Organizations','Contact Us',];
+	$list  =[ 'Home','About Us','Search Organizations','Logout','Contact Us',];
 	//the urls for the links listed above be sure to keep ordering the same
-	$links =[ '#','#','#','#'];
+	$links =[ '/','#','#','/logout','#'];
 	//extra styles sends css that the page should use for the header
 	$extraStyle = "a{color:reds !important;}";
 ?>
 <!--includes the header and pass variables from above-->
 @include('volunteer.vol-account-header',['data'=>$list,'links=>$links','extra'=>$extraStyle])
 
-{{Html::style('css/register.css')}}
-{{Html::style('css/register.css')}}
+{{Html::style('css/vol-profile.css')}}
+
 
 
 <style type="text/css">
@@ -30,12 +30,11 @@
 <img src="{{ asset('image/userdummyimage.png')}}" alt="profile photo">
 
 
-{{ Auth::id() }}
 
 
 	<p> Name: {{$volunteerProfile->fullname()}}  </p>
     <p> Address: {{$volunteerProfile->fulladdress()}} </p>
-    <p> Email here: {{$volunteer->email}}  </p> 	
+    <p> Email: {{$volunteer->email}}  </p> 	
 
 	
 

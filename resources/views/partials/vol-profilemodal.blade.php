@@ -6,7 +6,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Edit</button>
+<button type="button" class="modal_button" data-toggle="modal" data-target="#myModal">Edit</button>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -87,9 +87,16 @@
                 @enderror
                 
           <p>
-
-           {!! Form::Submit('Update') !!}
+          {{ Form::button('Update', array(
+                    'type' => 'submit',
+                    'onclick'=>'return confirm("Are you sure you want to update your information?")')) 
+                }}
                      {!! Form::close() !!}    
+        
+                     {!! Form::open(['method' => 'DELETE', 'url' => '/vol/' . $volunteerProfile->id]) !!}
+                    {!! Form::button('delete', ['type' => 'submit']) !!}
+                {!! Form::close() !!}
+        
                 
         </p>
       </div>
