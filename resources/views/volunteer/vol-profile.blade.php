@@ -1,4 +1,8 @@
-@include('partials.vol-nav-links')
+@if (Auth::guard('org')->check())
+    @include('partials.org-nav-links')
+@else
+    @include('partials.vol-nav-links')
+@endif
 
 {{Html::style('css/vol-profile.css')}}
 

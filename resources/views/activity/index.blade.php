@@ -1,14 +1,8 @@
-<?php 
-	# BELOW ARE ARGUMNENTS TO SEND FOR THE HEADER 
-	//this is the list of links to appear in header
-	$list  =[ 'Home','About Us','Contact Us'];
-	//the urls for the links listed above be sure to keep ordering the same
-	$links =[ '#','#','#'];
-	//extra styles sends css that the page should use for the header
-	$extraStyle = "a{color:reds !important;}";
-?>
-<!--includes the header and pass variables from above-->
-@include('volunteer.vol-account-header',['data'=>$list,'links=>$links','extra'=>$extraStyle])
+@if (Auth::guard('org')->check())
+    @include('partials.org-nav-links')
+@else
+    @include('partials.vol-nav-links')
+@endif
 
 {{Html::style('css/activity-list.css')}}
 
