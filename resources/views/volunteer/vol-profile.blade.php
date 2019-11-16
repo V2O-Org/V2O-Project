@@ -1,14 +1,4 @@
-<?php 
-	# BELOW ARE ARGUMNENTS TO SEND FOR THE HEADER 
-	//this is the list of links to appear in header
-	$list  =[ 'Home','About Us','Search Organizations','Logout','Contact Us',];
-	//the urls for the links listed above be sure to keep ordering the same
-	$links =[ '/','#','#','/logout','#'];
-	//extra styles sends css that the page should use for the header
-	$extraStyle = "a{color:reds !important;}";
-?>
-<!--includes the header and pass variables from above-->
-@include('volunteer.vol-account-header',['data'=>$list,'links=>$links','extra'=>$extraStyle])
+@include('partials.vol-nav-links')
 
 {{Html::style('css/vol-profile.css')}}
 
@@ -36,10 +26,13 @@
     <p> Address: {{$volunteerProfile->fulladdress()}} </p>
     <p> Email: {{$volunteer->email}}  </p> 	
 
-	
-
-	@include('partials.vol-profilemodal')	
-        
+    <!-- 
+        Check if the current user is the volunteer that the profile belongs to.
+        If so, show the edit button. 
+    -->
+    @if (Auth::guard('vol')->check() && Auth::guard('vol')->id() === $volunteer->id)
+	    @include('partials.vol-profilemodal')	
+    @endif    
 
 
 <div class="col-12 main"> 

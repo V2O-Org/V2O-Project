@@ -49,7 +49,7 @@ background: linear-gradient(45deg, rgba(180,189,178,1) 44%, rgba(40,94,35,1) 60%
             @endif
         @endif
         @if (Auth::guard('org')->check())
-            @if ($activity->organisations()->get()->where('id', Auth::guard('org')->id())->count() >= 1)
+            @if ($activity->organisations()->get()->where('id', Auth::guard('org')->id())->count() !== 0)
                 <div class='editbutton'>
                     {!! Form::open(['method' => 'GET', 'url' => '/activity/' . $activity->id . '/edit']) !!}
                         {!! Form::submit('Edit Activity') !!}

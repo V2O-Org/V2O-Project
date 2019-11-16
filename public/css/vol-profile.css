@@ -16,9 +16,7 @@
 
 #volprofile img
 {	
-	width: 30%;
-	
-	
+	width: 10%;
 	border:2px solid black;
 	border-radius: 50%;
 
@@ -33,11 +31,11 @@
 }
 
 
-.button, .modal_button,.
+.button, .modal_button,button
     {
 
         color: white;
-        font-size: 25px;
+        font-size: 15px;
         font-family: italic;
         background-color: green;
         /*border:5px solid white;*/
