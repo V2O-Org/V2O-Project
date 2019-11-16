@@ -339,11 +339,8 @@ border-color: black;
 
 </style>
 <body>
-
-
 <section class="container">
     <section class="signup">
-        
         
             <div class="word">
                 <h2> Activity Registration Form </h2>

@@ -1,0 +1,42 @@
+
+<style type="text/css">
+
+	#activity-search-body
+	{
+		border-top: 5px solid lightgrey;
+	}
+	#search-actlist-div
+	{
+		width: 50%;
+		margin-left: auto;
+		margin-right: auto;
+		
+	}
+
+	#actlist-board
+	{
+		background-color: lightgrey;
+		width: 100%;
+		min-height: 300px;
+		border-radius: 5px;
+
+	}
+
+	#search-table
+	{
+		background-color: white;
+	}
+
+	#return-button
+	{
+		color: white;
+		font-weight: bold;
+		font-size: 25px;
+		background-color: green;
+		border-radius: 5px;
+		border:none;
+		width: 50%;
+		margin: 50px 25% 15px 25%;
+
+	}
+</style>

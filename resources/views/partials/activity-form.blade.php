@@ -27,6 +27,16 @@
 <div class="form-group">
     {{ Form::label('image', 'Activity Image:') }}
 
+    @if ($activity->image)
+        <div id="current-img-container" class="col-6 pb-4">
+            <img id="current-img" src="/storage/{{ $activity->image }}" class="w-100" alt="Current Image" />
+        </div>
+    @endif
+
+    <div id="selected-img-container" class="col-6 pb-4" style="display: none;">
+        <img id="selected-img" src="#" class="w-100" alt="Selected Image" />
+    </div>
+
     {{ Form::file('image', ['accept' => 'image/*',
         'class' => 'form-control-file col-sm-10' 
     ]) }}
@@ -142,3 +152,23 @@
 </div>
 
 @include('partials.cause-modal')
+
+<script type="text/javascript">
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+            $('#selected-img').attr('src', e.target.result);
+            $('#selected-img-container').css('display', 'block');
+        }
+    
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$('#image').change(function() {
+    $('#current-img-container').css('display', 'none');
+    readURL(this);
+});
+</script>

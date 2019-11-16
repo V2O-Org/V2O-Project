@@ -67,8 +67,7 @@ class ActivityController extends Controller
         // If image exists... 
         if (Arr::exists($request, 'image')) {
             $imagePath = $request['image']->store('uploads/images/activity', 'public');
-    
-            error_log("storage/{$imagePath}");
+            
             $image = Image::make(public_path("storage/{$imagePath}"));
             $image->save();
         }
@@ -104,7 +103,10 @@ class ActivityController extends Controller
      */
     public function show($id)
     {
-        //
+        $activity = Activity::findOrFail($id);
+
+        return view('activity.show')
+            ->with('activity', $activity);
     }
 
     /**
@@ -147,16 +149,13 @@ class ActivityController extends Controller
         // Handle activity image.
         $imagePath = $activity->image;
 
-        dd($imagePath);
-
-        //dd($request->all());
-
         // If image exists... 
         if (Arr::exists($request, 'image')) {
+            // Remove the old image of the activity.
+            Storage::delete("public/{$imagePath}");
+
             $imagePath = $request['image']->store('uploads/images/activity', 'public');
-            dd($imagePath);
-    
-            error_log("storage/{$imagePath}");
+
             $image = Image::make(public_path("storage/{$imagePath}"));
             $image->save();
         }
@@ -201,6 +200,6 @@ class ActivityController extends Controller
 
         $activity->delete();
 
-        return redirect(url('organisation.home'));
+        return redirect(route('org.dashboard'));
     }
 }

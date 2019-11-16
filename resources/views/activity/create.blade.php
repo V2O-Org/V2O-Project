@@ -35,18 +35,17 @@
                 </div>
                 
                 <div class="card-body p-4">
-                    <div class="col-6 login-sec " id="login.stf">
+                    <div class="col-6 login-sec" id="login.stf">
                         {{ Form::open(array('url' => '/activity', 'enctype' => 'multipart/form-data')) }}
 
                             @include('partials.activity-form')
 
-                            <div class="activity-div col-6 pt-4">
+                            <div id="submit-container" class="col-6 pt-4 pb-4">
                                 {{ Form::submit('Submit', array(
                                     'class' => 'btn btn-light btn-outline-success',
-                                    'type' => 'submit',
-                                    'onclick'=>'return confirm("Are you sure?")')) 
-                                }}
+                                )) }}
                             </div>
+
                         {{ Form::close() }}
                     </div>
                 </div>

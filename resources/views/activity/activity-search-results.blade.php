@@ -10,32 +10,18 @@
 <!--includes the header and pass variables from above-->
 @include('volunteer.vol-account-header',['data'=>$list,'links=>$links','extra'=>$extraStyle])
 
-{{Html::style('css/activity-list.css')}}
+{{Html::style('css/activity-search.css')}}
 
-<div id="activity-page-body">
+
+//double check for this id below
     <div id="activity-results-container">
-        <div id='activity-list-div'>
+        <div id='search-actlist-div'>
             
-        <h1>Activities</h1>
-        
-        <form class="activity-search-form" action="/search" method="POST" role="search">
-          {{ csrf_field() }}
-             <div class="input-group">
-                 <input type="text" class="form-control" name="name" placeholder="Search"> 
-                 <input type="date" class="form-control" name="startDate" >
-                      <span class="input-group-btn">
-                          <button type="submit" class="btn btn-default">
-                                 <span class="glyphicon glyphicon-search">Go</span>
-                           </button>
-                      </span>
-             </div>
-         </form>
-         
-         <br><br><br>
-
-        <div id="list-board">
-            <table id="activity-table">
-                @foreach($activities as $activity)
+<h1> Search Results of "<b>{{ $query }}</b>" </h1>
+        @if(isset($details))
+        <div id="actlist-board">
+            <table id="search-table">
+                @foreach($details as $activity)
                 <tr>
                     <div class="activity-item">
                         <h3>{{ $activity->name }}</h3>
@@ -55,6 +41,13 @@
                 @endforeach
             </table>
         </div>
+        @endif
+
+        <!-- if no matches found-->
+        @if(!isset($details))
+         <p>No matches found</p>
+         @endif
+
         <!-- BUTTON to return -->
         {{Form::button('Return to Profile',['id'=>'return-button'])}}
         </div>
