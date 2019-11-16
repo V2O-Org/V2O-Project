@@ -59,7 +59,7 @@ class VolunteerController extends Controller
     public function show($id)
     {
         //
-        $id = Auth::id();
+        //$id = Auth::id();
         $volunteerProfile = VolunteerProfile::findOrFail ($id);
         $volunteer= Volunteer::findOrFail ($id);
                 return view('volunteer/vol-profile')->with ('volunteer',$volunteer) ->with ('volunteerProfile',$volunteerProfile);
@@ -94,7 +94,7 @@ class VolunteerController extends Controller
         $volunteerProfile->state= $request->state;
         $volunteerProfile->country= $request->country;
         $volunteerProfile->save();
-        return redirect (url('vol/vol-profile/'));
+        return redirect (url('vol/profile/'));
     }
 
     /**

@@ -3,7 +3,7 @@
 	//this is the list of links to appear in header
 	$list  =[ 'Home','About Us','Search Organizations','Logout','Contact Us',];
 	//the urls for the links listed above be sure to keep ordering the same
-	$links =[ '/','#','#','/logout','#'];
+	$links =[ '/','#','#','/vol/logout','#'];
 	//extra styles sends css that the page should use for the header
 	$extraStyle = "a{color:reds !important;}";
 ?>
@@ -37,9 +37,12 @@
     <p> Email: {{$volunteer->email}}  </p> 	
 
 	
-
+@if (Auth::id() ==$volunteerProfile->id)
 	@include('partials.vol-profilemodal')	
-        
+
+@else
+
+@endif
 
 
 <div class="col-12 main"> 

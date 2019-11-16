@@ -38,13 +38,6 @@
                     </span>
                 @enderror
 
-            {{ Form::label('email', 'Email:') }}
-                {{ Form::email('email', $volunteer->email ?? '') }}
-                @error('email')
-                    <span class="invalid-feedback d-block" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
 
             {{ Form::label('date_of_birth',' Date of Birth:') }}
                 {{ Form::date("date_of_birth", $volunteerProfile->date_of_birth ?? '') }}
@@ -101,7 +94,7 @@
         </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="close" data-dismiss="modal">Close</button>
       </div>
     </div>
 
