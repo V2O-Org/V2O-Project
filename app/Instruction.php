@@ -8,10 +8,12 @@ class Instruction extends Model
 {
     //
     protected $fillable = [
-            'required_items',
+            'activity_name',
+            'required_item',
             'meeting_point',
             'date',
             'time',
+            'attire',
             'document',
     ];
     

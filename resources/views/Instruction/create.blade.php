@@ -339,21 +339,21 @@ border-color: black;
 
 </style>
 <body>
-@if($errors->any())
-    @foreach($errors->all() as $error)
-        {{ $error }}
-    @endforeach
-@endif
+
 
 <section class="container">
     <section class="signup">
-        {!! Form::open(array('url' => 'instruction/')) !!}
+        
         
             <div class="word">
                 <h2> Activity Registration Form </h2>
             </div>
-           
-            <form id="Registration">
+           @if($errors->any())
+               @foreach($errors->all() as $error)
+                   {{ $error }}
+               @endforeach
+           @endif
+            {!! Form::open(array('url' => 'instruction/')) !!}
                 
                     <div class="ActName">
                         <p> *Activity Name </p>
@@ -361,7 +361,7 @@ border-color: black;
                 
                 
                     <div class="ActText">
-                        <input type="email" name="email" pattern="^[a-zA-Z\s]+$" required><br>
+                        {!! Form::text('activity_name', $instruction->activity_name) !!}
                     </div>
                 </div>
 
@@ -374,7 +374,7 @@ border-color: black;
                
                     <div class="ReqText">
                        
-                        <input type="text" class="password" pattern="^[a-zA-Z\s]+$" id="passReg" name="password" required> <br>
+                        {!! Form::text('required_item', $instruction->required_item) !!}
                     </div>
 
                     <div class="Meet">
@@ -383,7 +383,7 @@ border-color: black;
                 
                 
                     <div class="MeetText">
-                        <input type="text" name="email" pattern="^[a-zA-Z\s]+$" required><br>
+                        {!! Form::text('meeting_point', $instruction->meeting_point) !!}
                     </div>
                 </div>
 
@@ -396,7 +396,7 @@ border-color: black;
                
                     <div class="DateText">
                        
-                        <input type="text"   name="text" pattern="^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$" required> <br>
+                        {!! Form::text('date', $instruction->date) !!}
                     </div>
                 
               
@@ -408,7 +408,7 @@ border-color: black;
                 
                 
                     <div class="TimeText">
-                        <input type="text" name="email" pattern="([0-9]{2}:[0-9]{2}:[0-9]{2})"    required><br>
+                        {!! Form::text('time', $instruction->time) !!}
                     </div>
                 </div>
 
@@ -421,7 +421,7 @@ border-color: black;
                
                     <div class="AttireText">
                        
-                        <input type="text" class="password" pattern="^[a-zA-Z\s]+$" id="passReg" name="password" required> <br>
+                        {!! Form::text('attire', $instruction->attire) !!}
                     </div>
 
                     <div class="checkbox">
@@ -439,16 +439,10 @@ border-color: black;
                
                     <div class="DocText">
                        
-                        <input type="text" class="password" id="passReg" name="password" pattern="^[a-zA-Z\s]+$" required> <br>
+                        {!! Form::text('document', $instruction->document) !!}
                     </div>
-             
-            </form>
-
-            
-            
-             <div class="button">
-                        <button class="sign" id="btn"><a href="#" type="submit" color: black;">Continue</a></button>
-                    </div>
+   
+                  <button class="sign" id="btn"> {!! Form::submit('Continue') !!} </button>
 
                     <div class="footer">
 						<p>&copy; 2019 | Volunteer-To-Organization | All Rights Reserved</p>

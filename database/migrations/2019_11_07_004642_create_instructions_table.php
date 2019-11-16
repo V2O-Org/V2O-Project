@@ -18,7 +18,7 @@ class CreateInstructionsTable extends Migration
             $table->string('activity_name');
             $table->text('required_item')->nullable;
             $table->string('meeting_point')->nullable;
-            $table->date('date');
+            $table->date('date')->nullable;
             $table->time('time')->nullable;
             $table->text('attire')->nullable;
             $table->string('document')->nullable;

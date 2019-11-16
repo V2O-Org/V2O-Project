@@ -49,7 +49,7 @@ class InstructionController extends Controller
             'attire' => $request->attire,
             'document' => $request->document
         ]);
-        return redirect(url('instruction'));
+        return redirect(url('instruction/create'));
     }
 
     /**
@@ -73,6 +73,8 @@ class InstructionController extends Controller
     public function edit($id)
     {
         //
+        $instruction = Instruction::findOrFail($id);
+        return view('Instruction/edit')->with('instruction', $instruction);
     }
 
     /**
@@ -82,9 +84,18 @@ class InstructionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(InstructionCreateRequest $request, $id)
     {
-        //
+        $instruction = Instruction::findOrFail($id);
+        $instruction->activity_name = $request->activity_name;
+        $instruction->required_item = $request->required_item;
+        $instruction->meeting_point = $request->meeting_point;
+        $instruction->date = $request->date;
+        $instruction->time = $request->time;
+        $instruction->attire = $request->attire;
+        $instruction->document = $request->document;
+        $instruction->save();
+        return redirect(url('instruction'));
     }
 
     /**
@@ -95,6 +106,8 @@ class InstructionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $instruction = Instruction::findOrFail($id);
+        $instruction->delete();
+        return redirect(url('instruction'));
     }
 }

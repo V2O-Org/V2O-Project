@@ -24,13 +24,13 @@ class InstructionCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'activity_name' => [],
-            'required_item' => [],
-            'meeting_point' => [],
-            'date' => [],
-            'time' => [],
-            'attire' => [],
-            'document' => [],
+            'activity_name' => 'required|regex:^[a-zA-Z\s]+$^',
+            'required_item' => 'required|regex:^[a-zA-Z\s]+$^',
+            'meeting_point' => 'required|regex:^[a-zA-Z\s]+$^',
+            'date' => '',
+            'time' => 'required|regex:^[0-9]{2}:[0-9]{2}^',
+            'attire' => 'required|regex:^[a-zA-Z\s]+$^',
+            'document' => 'required|regex:^[a-zA-Z\s]+$^',
         ];
     }
 }

@@ -88,7 +88,7 @@ Route::resources([
 ]);
 
 // Joining Instruction Route
-Route::Resource('instruction', 'InstructionController');
+Route::resource('instruction', 'InstructionController');
     
 // // Home Router
 // Route::get('/home', 'HomeController@index')->name('home');
