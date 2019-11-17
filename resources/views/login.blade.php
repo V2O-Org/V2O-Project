@@ -25,7 +25,7 @@
 		{
 			height: 100vh;
 			background: rgb(13,40,6);
-background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, rgba(36,93,36,1) 100%);
+			background: linear-gradient(45deg, rgba(13,40,6,1) 26%, rgba(32,121,24,1) 77%, rgba(36,93,36,1) 100%);
 		}
 
 		body div:first-child

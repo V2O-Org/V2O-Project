@@ -3,7 +3,8 @@
 	//this is the list of links to appear in header
 	$list  =[ 'Home','About Us','Contact Us'];
 	//the urls for the links listed above be sure to keep ordering the same
-	$links =[ '#','#','#'];
+    $links =[ '#','#','#'];
+    
 	//extra styles sends css that the page should use for the header
 	$extraStyle = "a{color:reds !important;}";
 ?>
