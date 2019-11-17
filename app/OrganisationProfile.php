@@ -62,4 +62,13 @@ class OrganisationProfile extends Model
     {
         return $this->belongsToMany(Cause::class, 'organisation_cause');
     }
+
+    /**
+     * Set up the relationship between organisations and activities.
+     * 1 organisation OWNS many activities.
+     */
+    public function activities()
+    {
+        return $this->belongsToMany(Activity::class, 'activity_organisation')->withTimestamps();
+    }
 }

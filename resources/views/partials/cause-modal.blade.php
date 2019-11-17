@@ -28,7 +28,17 @@
             <div class="modal-body">
                 @foreach($causes as $cause)
                     <div class="form-group">
-                        {{ Form::checkbox('causes[]', $cause) }} 
+                        @if(strpos(Route::current()->getName(), 'edit'))
+                            @if(in_array($loop->iteration, $associatedCauses))
+                                {{ Form::checkbox('causes[]', $loop->iteration, [
+                                    "checked"
+                                ]) }}
+                            @else
+                                {{ Form::checkbox('causes[]', $loop->iteration) }}
+                            @endif
+                        @else
+                            {{ Form::checkbox('causes[]', $loop->iteration) }}
+                        @endif
                         {{ Form::label('cause', $cause, [
                             'class' => 'pl-2', 
                         ]) }}

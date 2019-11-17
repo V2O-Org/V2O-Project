@@ -3,22 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Volunteer;
-use App\VolunteerProfile;
-
-class VolunteerController extends Controller
+use App\Http\Controllers\Controller;
+use App\Instruction;
+use App\Http\Requests\InstructionCreateRequest;
+    
+class InstructionController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:vol')->only(['edit', 'update', 'destroy']);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +16,7 @@ class VolunteerController extends Controller
      */
     public function index()
     {
-       //
+        //
     }
 
     /**
@@ -37,6 +27,8 @@ class VolunteerController extends Controller
     public function create()
     {
         //
+        $instruction = new Instruction;
+        return view('Instruction/create')->with('instruction', $instruction);
     }
 
     /**
@@ -45,9 +37,19 @@ class VolunteerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InstructionCreateRequest $request)
     {
         //
+        Instruction::create([
+            'activity_name' => $request->activity_name,
+            'required_item' => $request->required_item,
+            'meeting_point' => $request->meeting_point,
+            'date' => $request->date,
+            'time' => $request->time,
+            'attire' => $request->attire,
+            'document' => $request->document
+        ]);
+        return redirect(url('instruction'));
     }
 
     /**
@@ -58,9 +60,8 @@ class VolunteerController extends Controller
      */
     public function show($id)
     {
-        $volunteer = Volunteer::findOrFail ($id);
-        $volunteerProfile = $volunteer->volunteerProfile;
-        return view('volunteer/vol-profile')->with ('volunteer',$volunteer) ->with ('volunteerProfile',$volunteerProfile);
+        //
+        
     }
 
     /**
@@ -84,15 +85,6 @@ class VolunteerController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $volunteerProfile = VolunteerProfile::findOrFail($id);
-        $volunteerProfile->first_name = $request->first_name;
-        $volunteerProfile->last_name= $request->last_name;
-        $volunteerProfile->street_address= $request->street_address;
-        $volunteerProfile->city= $request->city;
-        $volunteerProfile->state= $request->state;
-        $volunteerProfile->country= $request->country;
-        $volunteerProfile->save();
-        return redirect (url('vol/profile/'));
     }
 
     /**
@@ -104,12 +96,5 @@ class VolunteerController extends Controller
     public function destroy($id)
     {
         //
-        $volunteerProfile = VolunteerProfile::findOrFail ($id);
-        $volunteer= Volunteer::findOrFail ($id);
-        $volunteer->delete();
-                return view('/');
     }
-
-
-
 }

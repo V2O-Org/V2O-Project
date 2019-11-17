@@ -52,9 +52,9 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (Auth::guard('vol')->check())
-                                        {{ Auth::user()->name() }}
+                                        {{ Auth::user()->volunteerProfile->name() }}
                                     @elseif (Auth::guard('org')->check())
-                                        {{ Auth::user()->name }}
+                                        {{ Auth::user()->organisationProfile->name }}
                                     @endif
                                     <span class="caret"></span>
                                 </a>

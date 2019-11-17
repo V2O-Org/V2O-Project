@@ -3,22 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Volunteer;
-use App\VolunteerProfile;
 
-class VolunteerController extends Controller
+class VolunteerEvaluationController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:vol')->only(['edit', 'update', 'destroy']);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +13,7 @@ class VolunteerController extends Controller
      */
     public function index()
     {
-       //
+        //
     }
 
     /**
@@ -58,9 +45,7 @@ class VolunteerController extends Controller
      */
     public function show($id)
     {
-        $volunteer = Volunteer::findOrFail ($id);
-        $volunteerProfile = $volunteer->volunteerProfile;
-        return view('volunteer/vol-profile')->with ('volunteer',$volunteer) ->with ('volunteerProfile',$volunteerProfile);
+        //
     }
 
     /**
@@ -84,15 +69,6 @@ class VolunteerController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $volunteerProfile = VolunteerProfile::findOrFail($id);
-        $volunteerProfile->first_name = $request->first_name;
-        $volunteerProfile->last_name= $request->last_name;
-        $volunteerProfile->street_address= $request->street_address;
-        $volunteerProfile->city= $request->city;
-        $volunteerProfile->state= $request->state;
-        $volunteerProfile->country= $request->country;
-        $volunteerProfile->save();
-        return redirect (url('vol/profile/'));
     }
 
     /**
@@ -104,12 +80,5 @@ class VolunteerController extends Controller
     public function destroy($id)
     {
         //
-        $volunteerProfile = VolunteerProfile::findOrFail ($id);
-        $volunteer= Volunteer::findOrFail ($id);
-        $volunteer->delete();
-                return view('/');
     }
-
-
-
 }

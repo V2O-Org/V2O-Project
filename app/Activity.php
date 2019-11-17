@@ -30,7 +30,7 @@ class Activity extends Model
      */
     public function volunteers()
     {
-        return $this->belongsToMany(Volunteer::class, 'activity_volunteer')->withTimestamps();
+        return $this->belongsToMany(VolunteerProfile::class, 'activity_volunteer')->withTimestamps();
     }
 
     /**
@@ -39,6 +39,15 @@ class Activity extends Model
      */
     public function organisations()
     {
-        return $this->belongsToMany(Organisation::class, 'activity_organisation')->withTimestamps();
+        return $this->belongsToMany(OrganisationProfile::class, 'activity_organisation')->withTimestamps();
+    }
+    
+    /**
+     * Set up the relationship between activities and instructions.
+     * 1 activity HAS one set instructions.
+     */
+    public function instruction()
+    {
+        return $this->hasOne(Instruction::class);
     }
 }

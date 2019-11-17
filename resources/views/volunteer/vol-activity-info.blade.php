@@ -1,11 +1,4 @@
-<?php 
-	$list  = ['Home','About Us','Contact Us'];
-	$links = ['#','#','#'];
-
-	$extraStyle = "a{color:red !important;}";
-
-?>
-@include('volunteer.vol-account-header',['data'=>$list,'links'=>$links,'extraStyle' => $extraStyle])
+@include('partials.vol-nav-links')
 
 
 <!-- div is the body of the page -->

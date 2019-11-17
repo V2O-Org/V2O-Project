@@ -51,15 +51,6 @@ class Volunteer extends Authenticatable
     }
 
     /**
-     * Set up the relationship between volunteers and activities.
-     * 1 volunteer REGISTERS FOR many activities.
-     */
-    public function activities()
-    {
-        return $this->belongsToMany(Activity::class, 'activity_volunteer')->withTimestamps();
-    }
-
-    /**
      * Return the full name of the volunteer
      */
     public function name() {

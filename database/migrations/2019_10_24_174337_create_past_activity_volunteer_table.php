@@ -15,12 +15,12 @@ class CreatePastActivityVolunteerTable extends Migration
     {
         Schema::create('activity_volunteer', function (Blueprint $table) {
             $table->unsignedBigInteger('activity_id');
-            $table->unsignedBigInteger('volunteer_id');
+            $table->unsignedBigInteger('volunteer_profile_id');
             $table->integer('volunteer_hours_earned')->default(0);
             $table->timestamps();
 
             $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
-            $table->foreign('volunteer_id')->references('id')->on('volunteers')->onDelete('cascade');
+            $table->foreign('volunteer_profile_id')->references('id')->on('volunteer_profiles')->onDelete('cascade');
         });
     }
 

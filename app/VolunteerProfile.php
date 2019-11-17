@@ -53,9 +53,26 @@ class VolunteerProfile extends Model
     }
 
     /**
+     * Set up the relationship between volunteers and activities.
+     * 1 volunteer REGISTERS FOR many activities.
+     */
+    public function activities()
+    {
+        return $this->belongsToMany(Activity::class, 'activity_volunteer')->withTimestamps();
+    }
+
+    /**
      * Return the full name of the volunteer
      */
     public function fullName() {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    /**
+     * Return full volunteer Address
+     */
+
+    public function fullAddress(){
+        return $this->street_address. ' '.$this->state.' '. $this->city . ' ' . $this->country;
     }
 }
