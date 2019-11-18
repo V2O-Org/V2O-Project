@@ -7,11 +7,9 @@
 
 
 <p> Previous comments </p>
-      @foreach ($ as $discussion)
-                <p> {{$discussion->title}}: {{$discussion->message}} 
-                {!! Form::open(['method' => 'DELETE', 'url' => 'discussion/' . $discussion->id]) !!}
-                    {!! Form::button('delete', ['type' => 'submit']) !!}
-                {!! Form::close() !!}
+      @foreach ($volunteerEvaluation as $evaluation)
+                <p> Comment: {{$evaluation->comment}}  Rating:{{$evaluation->rating}} Organisation Id:{{$evaluation->organisation_id}}
+              
                 
                 
                 </p>

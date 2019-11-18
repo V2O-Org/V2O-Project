@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Volunteer;
 use App\VolunteerProfile;
+use App\VolunteerEvaluation;
 
 class VolunteerController extends Controller
 {
@@ -62,7 +63,8 @@ class VolunteerController extends Controller
         $id = Auth::id();
         $volunteerProfile = VolunteerProfile::findOrFail ($id);
         $volunteer= Volunteer::findOrFail ($id);
-                return view('volunteer/vol-profile')->with ('volunteer',$volunteer) ->with ('volunteerProfile',$volunteerProfile);
+        $evaluations= VolunteerEvaluation::all();
+                return view('volunteer/vol-profile')->with ('volunteer',$volunteer) ->with ('volunteerProfile',$volunteerProfile) -> with ('volunteerEvaluation',$evaluations);
     }
 
     /**
