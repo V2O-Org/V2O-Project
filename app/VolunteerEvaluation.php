@@ -23,9 +23,9 @@ class VolunteerEvaluation extends Model
         'volunteer_id','organisation_id','rating','comment'
     ];
 
-    public function VolunteerProfile()
+    public function Volunteer()
     {
-        return $this ->belongsTo(VolunteerProfile::class);
+        return $this ->belongsTo(Volunteer::class);
     }
     
 

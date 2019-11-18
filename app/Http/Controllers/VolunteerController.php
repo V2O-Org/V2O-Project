@@ -61,8 +61,9 @@ class VolunteerController extends Controller
     {
         $volunteer = Volunteer::findOrFail ($id);
         $volunteerProfile = $volunteer->volunteerProfile;
-        $evaluations= VolunteerEvaluation::where('volunteer_id', $id)->get();
-        //dd($evaluations);
+        $evaluations = $volunteer->VolunteerEvaluation;
+        //$evaluations= VolunteerEvaluation::where('volunteer_id', $id)->get();
+        //dd($evaluations1);
                 return view('volunteer/vol-profile')->with ('volunteer',$volunteer) ->with ('volunteerProfile',$volunteerProfile) -> with ('volunteerEvaluations',$evaluations);
     }
 

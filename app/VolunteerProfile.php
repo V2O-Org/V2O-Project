@@ -77,12 +77,4 @@ class VolunteerProfile extends Model
     }
 
 
-    /**
-     * Set up the relationship between volunteers and comments.
-     * 1 volunteer HAS many comments.
-     */
-    public function VolunteerEvaluation()
-    {
-        return $this->hasMany(VolunteerEvaluation::class);
-    }
 }

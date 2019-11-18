@@ -51,6 +51,16 @@ class Volunteer extends Authenticatable
     }
 
     /**
+     * Set up the relationship between volunteers and evaluations.
+     * 1 volunteer HAS many evaluations.
+     */
+    public function VolunteerEvaluation()
+    {
+        return $this->hasMany(VolunteerEvaluation::class);
+    }
+
+
+    /**
      * Return the full name of the volunteer
      */
     public function name() {
