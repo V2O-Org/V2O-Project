@@ -38,7 +38,7 @@
 
 	
 
-	@include('partials.vol-profilemodal')	
+	@include('partials.vol-profilemodal')
         
 
 
@@ -50,7 +50,7 @@
 <div col-12> 
 	<h2> Already volunteered for: </h2>
 
-
+	@include('partials.tester')	
 
 </div>
 
