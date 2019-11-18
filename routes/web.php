@@ -90,6 +90,13 @@ Route::prefix('/singact')->group(function() {
 	Route::get('/acti', 'SingActivController@index')->name('singactivity.index');
 });
 
+// Comment Routes
+Route::prefix('/comment')->group(function() {
+    // Create Route
+    Route::post ('/create', 'VolunteerEvaluationController@store')->name('voleval.store');
+});
+
+
 // Resourceful Routes
 Route::resources([
     'activity' => 'ActivityController',

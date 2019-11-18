@@ -75,4 +75,14 @@ class VolunteerProfile extends Model
     public function fullAddress(){
         return $this->street_address. ' '.$this->state.' '. $this->city . ' ' . $this->country;
     }
+
+
+    /**
+     * Set up the relationship between volunteers and comments.
+     * 1 volunteer HAS many comments.
+     */
+    public function VolunteerEvaluation()
+    {
+        return $this->hasMany(VolunteerEvaluation::class);
+    }
 }
