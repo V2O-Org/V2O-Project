@@ -46,7 +46,7 @@ class VolunteerEvaluationController extends Controller
             'comment' =>$request ->comment,
         ]);
         
-        return redirect(url('comment'));    }
+        return back();    }
 
     /**
      * Display the specified resource.

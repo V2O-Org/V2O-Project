@@ -7,12 +7,10 @@
 
 
 <p> Previous comments </p>
-      @foreach ($volunteerEvaluation as $evaluation)
-                <p> Comment: {{$evaluation->comment}}  Rating:{{$evaluation->rating}} Organisation Id:{{$evaluation->organisation_id}}
-              
-                
-                
-                </p>
+      @foreach ($volunteerEvaluations as $evaluation)
+                <p> Comment: {{$evaluation->Comment}}  
+                Rating:{{$evaluation->rating}} 
+                Organisation Id:{{$evaluation->organisation_id}} </p>
         @endforeach
 
 <!-- Trigger the modal with a button -->

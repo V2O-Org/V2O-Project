@@ -60,11 +60,13 @@ class VolunteerController extends Controller
     public function show($id)
     {
         //
-        $id = Auth::id();
+        //$id = Auth::id();
         $volunteerProfile = VolunteerProfile::findOrFail ($id);
         $volunteer= Volunteer::findOrFail ($id);
-        $evaluations= VolunteerEvaluation::all();
-                return view('volunteer/vol-profile')->with ('volunteer',$volunteer) ->with ('volunteerProfile',$volunteerProfile) -> with ('volunteerEvaluation',$evaluations);
+        $evaluations= VolunteerEvaluation::where('volunteer_id', $id)->get();
+        
+        //dd($evaluations);
+                return view('volunteer/vol-profile')->with ('volunteer',$volunteer) ->with ('volunteerProfile',$volunteerProfile) -> with ('volunteerEvaluations',$evaluations);
     }
 
     /**
