@@ -30,7 +30,9 @@ class Activity extends Model
      */
     public function volunteers()
     {
-        return $this->belongsToMany(VolunteerProfile::class, 'activity_volunteer')->withTimestamps();
+        return $this->belongsToMany(VolunteerProfile::class, 'activity_volunteer')
+            ->withPivot('volunteer_hours_earned')
+            ->withTimestamps();
     }
 
     /**
@@ -39,7 +41,8 @@ class Activity extends Model
      */
     public function organisations()
     {
-        return $this->belongsToMany(OrganisationProfile::class, 'activity_organisation')->withTimestamps();
+        return $this->belongsToMany(OrganisationProfile::class, 'activity_organisation')
+            ->withTimestamps();
     }
     
     /**

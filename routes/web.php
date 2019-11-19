@@ -82,6 +82,9 @@ Route::prefix('/org')->group(function() {
 Route::prefix('/activity')->group(function() {
     // Index and Search Route
     Route::get('/search/index', 'ActivityController@index')->name('activity.index');
+
+    // Track hours (Organisation Perspective)
+    Route::get('/{activity}/t/hours', 'ActivityController@showTrackHoursTable')->name('activity.track-hours');
 });
 
 // Activity Sign Up Routes

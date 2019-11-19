@@ -20,7 +20,7 @@ class Volunteer extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password',
+        'email', 'password',
     ];
 
     /**
@@ -53,8 +53,8 @@ class Volunteer extends Authenticatable
     /**
      * Return the full name of the volunteer
      */
-    public function name() {
-        return $this->first_name . ' ' . $this->last_name;
+    public function getName() {
+        return $this->volunteerProfile->first_name . ' ' . $this->volunteerProfile->last_name;
     }
 
     /**

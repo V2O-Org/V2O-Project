@@ -26,8 +26,9 @@
 
 
 
-	<p> Name: {{$volunteerProfile->fullname()}}  </p>
-    <p> Address: {{$volunteerProfile->fulladdress()}} </p>
+    <p> Name: {{$volunteerProfile->getName() }}  </p>
+    <p> Age: {{ $volunteerProfile->getAge() }} </p>
+    <p> Address: {{$volunteerProfile->fullAddress()}} </p>
     <p> Email: {{$volunteer->email}}  </p> 	
 
     <!-- 

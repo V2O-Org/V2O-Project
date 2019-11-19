@@ -202,4 +202,20 @@ class ActivityController extends Controller
 
         return redirect(route('org.dashboard'));
     }
+
+    /**
+     * 
+     */
+    public function showTrackHoursTable($id)
+    {
+        // Find the activity.
+        $activity = Activity::findOrFail($id);
+
+        // Get all of the volunteers from that activity.
+        $volunteers = $activity->volunteers()->get();
+
+        return view('activity.activity-track-hours-tbl')
+            ->with('activity', $activity)
+            ->with('volunteerProfiles', $volunteers);
+    }
 }

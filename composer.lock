@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb47e1815871c8ffe3c8f240a0d178e9",
+    "content-hash": "fdfd0c875bef4e3a1f766c446b8ae474",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1110,16 +1110,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.25.1",
+            "version": "2.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1"
+                "reference": "e01ecc0b71168febb52ae1fdc1cfcc95428e604e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
-                "reference": "d59c6cea9c4a3547bb6c0dfec451319abdaa4fb1",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/e01ecc0b71168febb52ae1fdc1cfcc95428e604e",
+                "reference": "e01ecc0b71168febb52ae1fdc1cfcc95428e604e",
                 "shasum": ""
             },
             "require": {
@@ -1173,7 +1173,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-10-05T15:52:23+00:00"
+            "time": "2019-10-21T21:32:25+00:00"
         },
         {
             "name": "nikic/php-parser",
