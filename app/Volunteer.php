@@ -49,14 +49,7 @@ class Volunteer extends Authenticatable
     {
         return $this->hasOne(VolunteerProfile::class);
     }
-
-    /**
-     * Return the full name of the volunteer
-     */
-    public function getName() {
-        return $this->volunteerProfile->first_name . ' ' . $this->volunteerProfile->last_name;
-    }
-
+    
     /**
      * Send the password reset notification.
      * 

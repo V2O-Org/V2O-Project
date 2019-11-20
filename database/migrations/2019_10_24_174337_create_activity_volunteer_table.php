@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePastActivityVolunteerTable extends Migration
+class CreateActivityVolunteerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,6 +17,8 @@ class CreatePastActivityVolunteerTable extends Migration
             $table->unsignedBigInteger('activity_id');
             $table->unsignedBigInteger('volunteer_profile_id');
             $table->integer('volunteer_hours_earned')->default(0);
+            $table->boolean('hours_confirmed')->default(false);
+            $table->boolean('is_complete')->default(false);
             $table->timestamps();
 
             $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
@@ -31,6 +33,6 @@ class CreatePastActivityVolunteerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('past_activity_volunteer');
+        Schema::dropIfExists('activity_volunteer');
     }
 }

@@ -206,7 +206,7 @@ class ActivityController extends Controller
     /**
      * 
      */
-    public function showTrackHoursTable($id)
+    public function showVolunteerList($id)
     {
         // Find the activity.
         $activity = Activity::findOrFail($id);

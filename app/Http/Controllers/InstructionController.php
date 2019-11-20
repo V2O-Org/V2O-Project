@@ -41,7 +41,7 @@ class InstructionController extends Controller
     {
         //
         Instruction::create([
-            'activity_name' => $request->activity_name,
+            //'activity_name' => $request->activity_name,
             'required_item' => $request->required_item,
             'meeting_point' => $request->meeting_point,
             'date' => $request->date,

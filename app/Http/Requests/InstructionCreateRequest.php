@@ -24,7 +24,7 @@ class InstructionCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'activity_name' => [],
+            //'activity_name' => [],
             'required_item' => [],
             'meeting_point' => [],
             'date' => [],

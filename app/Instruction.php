@@ -20,8 +20,8 @@ class Instruction extends Model
         return $this->activity_name;
     }
     
-    public function activityInstruction()
+    public function activity()
     {
-        return $this->hasOne(ActivityInstruction::class);
+        return $this->belongsTo(Activity::class);
     }
 }
