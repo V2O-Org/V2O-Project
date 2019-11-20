@@ -62,5 +62,27 @@ class CreateOrganisationsSeeder extends Seeder
         foreach ($organisationProfile as $key => $value) {
             OrganisationProfile::create($value);
         }
+
+        factory(App\Organisation::class, 10)->create()->each(function($o) {
+            $o->organisationProfile()->save(
+                factory(App\OrganisationProfile::class)->make(['organisation_id' => NULL])
+            );
+        });
+
+        $orgs = OrganisationProfile::all();
+
+        App\Activity::all()->each(function ($activity) use ($orgs) {
+            $activity->organisations()->sync(
+                $orgs->random(rand(1, 2))->pluck('id')->toArray()
+            );
+        });
+
+        $causes = App\Cause::all();
+        
+        $orgs->each(function ($org) use ($causes) {
+            $org->causes()->sync(
+                $causes->random(rand(1, 8))->pluck('id')->toArray()
+            );
+        });
     }
 }
