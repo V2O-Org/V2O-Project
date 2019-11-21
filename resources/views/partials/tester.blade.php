@@ -1,3 +1,7 @@
+{{Html::style('css/rating.css')}} 
+ 
+ 
+ 
  <!-- Scripts -->
  <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -5,14 +9,29 @@
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+ 
 
 <p> Previous comments </p>
       @foreach ($volunteerEvaluations as $evaluation)
                 <p> Comment: {{$evaluation->Comment}}  
                 Rating:{{$evaluation->rating}} 
+                  <span class=@if($evaluation->rating >= 1) "fa fa-star checked" @else "fa fa-star" @endif></span>
+                  <span class=@if($evaluation->rating >= 2) "fa fa-star checked" @else "fa fa-star" @endif></span>
+                  <span class=@if($evaluation->rating >= 3) "fa fa-star checked" @else "fa fa-star" @endif></span>
+                  <span class=@if($evaluation->rating >= 4) "fa fa-star checked" @else "fa fa-star" @endif></span>
+                  <span class=@if($evaluation->rating >= 5) "fa fa-star checked" @else "fa fa-star" @endif></span>
+    
+    
+</fieldset>
                 Organisation Id:{{$evaluation->organisation_id}} </p>
         @endforeach
 
+
+
+
+
+@if (Auth::guard('org')->check())
+	         
 <!-- Trigger the modal with a button -->
 <button type="button" class="modal_button" data-toggle="modal" data-target="#comment">Add Comment</button>
 
@@ -29,9 +48,6 @@
   <div class="modal-body">
     
 
- 
-
-
 
 
   {!! Form::open(array ('route' => 'voleval.store')) !!}
@@ -41,7 +57,7 @@
 
 
         {{ Form::label('org_id', 'Organisation Id:') }}
-            {{ Form::text('organisation_id', $volEval->organisation_id ?? '') }}
+            {{ Form::text('organisation_id', Auth::id() ?? '') }}
 
         {{ Form::label('rating', 'Rating:') }}
             {{ Form::text('rating', $volEval->rating ?? '') }}
@@ -67,5 +83,8 @@
   </div>
 </div>
 
+
 </div>
 </div>
+
+@endif
