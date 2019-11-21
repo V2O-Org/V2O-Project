@@ -41,6 +41,11 @@ class Activity extends Model
     {
         return $this->belongsToMany(OrganisationProfile::class, 'activity_organisation')->withTimestamps();
     }
+	
+	public function ActivityEvaluation()
+    {
+        return $this->hasMany(ActivityEvaluation::class);
+    }
     
     /**
      * Set up the relationship between activities and instructions.
