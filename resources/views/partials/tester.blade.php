@@ -27,7 +27,7 @@
         @endforeach
 
 
-
+       
 
 
 @if (Auth::guard('org')->check())
@@ -51,16 +51,14 @@
 
 
   {!! Form::open(array ('route' => 'voleval.store')) !!}
-    
-  {{ Form::label('vol_id', 'Volunteer Id:') }}
-            {{ Form::text('volunteer_id', $volunteer->id ?? '') }}
-
-
-        {{ Form::label('org_id', 'Organisation Id:') }}
-            {{ Form::text('organisation_id', Auth::id() ?? '') }}
+  
+  
+        {{ Form::hidden('organisation_id', Auth::guard('org')->id() ?? '') }}
+  
+            {{ Form::hidden('volunteer_id', $volunteer->id ?? '') }}
 
         {{ Form::label('rating', 'Rating:') }}
-            {{ Form::text('rating', $volEval->rating ?? '') }}
+            {{ Form::number('rating', $volEval->rating ?? '',['min'=>1,'max'=>5]) }}
             
          {{ Form::label('comment', 'Comment:') }}
             {{ Form::textarea ('comment', $volEval->comment ?? '') }}
