@@ -15,6 +15,7 @@ class CreateInstructionsTable extends Migration
     {
         Schema::create('instructions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('activity_id');
             $table->string('activity_name');
             $table->text('required_item')->nullable;
             $table->string('meeting_point')->nullable;
@@ -23,6 +24,8 @@ class CreateInstructionsTable extends Migration
             $table->text('attire')->nullable;
             $table->string('document')->nullable;
             $table->timestamps();
+
+            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
         });
     }
 

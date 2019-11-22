@@ -58,5 +58,34 @@ class CreateVolunteersSeeder extends Seeder
         foreach ($volunteerProfile as $key => $value) {
             VolunteerProfile::create($value);
         }
+
+        factory(App\Volunteer::class, 600)->create()->each(function($v) {
+            $v->volunteerProfile()->save(
+                factory(App\VolunteerProfile::class)->make(['volunteer_id' => NULL])
+            );
+        });
+
+        $vols = VolunteerProfile::all();
+
+        $activities = App\Activity::all();
+
+        $vols->each(function ($vol) use ($activities) {
+            $arr = $activities->random(rand(0, 2))->pluck('id')->toArray();
+            $result = array_fill_keys($arr, [
+                'volunteer_hours_earned' => 0,
+                'hours_confirmed' => false,
+                'is_complete' => false,
+            ]);
+
+            $vol->activities()->sync($result);
+        });
+
+        $causes = App\Cause::all();
+        
+        $vols->each(function ($vol) use ($causes) {
+            $vol->causes()->sync(
+                $causes->random(rand(1, 8))->pluck('id')->toArray()
+            );
+        });
     }
 }
