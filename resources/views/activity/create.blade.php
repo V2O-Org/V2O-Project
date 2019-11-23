@@ -43,4 +43,4 @@
         </div>
     </div>
 </div>
-@include('volunteer.footer')
+@include('partials.footer')

@@ -77,7 +77,7 @@ class OrganisationProfile extends Model
      */
     public function getCurrentActivities()
     {
-        return $this->activities()->get()->where('is_active', true)->all();
+        return $this->activities()->get()->where('is_active', true);
     }
 
     /**
@@ -85,6 +85,6 @@ class OrganisationProfile extends Model
      */
     public function getPastActivities()
     {
-        return $this->activities()->get()->where('is_active', false)->all();
+        return $this->activities()->get()->where('is_active', false);
     }
 }

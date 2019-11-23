@@ -8,7 +8,9 @@
  <div class = 'page'> 
 
 <div class = "single-activity-header">
-	<img src="/storage/{{ $activity->image }}" alt="Activity Image" style>
+    @if($activity->image)
+        <img src="/storage/{{ $activity->image }}" alt="Activity Image" style>
+    @endif
 	<div id = "center-text">
 	
 		<h1>
@@ -95,6 +97,6 @@
 </div>
 
 <footer>
-@include('volunteer.footer')
+@include('partials.footer')
 </footer>
 </div>

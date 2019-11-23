@@ -111,4 +111,4 @@
 </div>
 
 
-@include('volunteer.footer')
+@include('partials.footer')

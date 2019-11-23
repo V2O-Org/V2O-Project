@@ -15,4 +15,4 @@
 	{{Form::button('Return to Profile',['id'=>'return-button'])}}
 	</div>
 </div>
-@include('volunteer.footer')
+@include('partials.footer')

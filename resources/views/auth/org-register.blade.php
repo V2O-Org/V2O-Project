@@ -234,7 +234,7 @@
             </div>
         </div>
 
-        @include('volunteer.footer');
+        @include('partials.footer');
     </body>
 </html>
 
