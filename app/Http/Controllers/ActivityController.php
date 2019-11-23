@@ -214,7 +214,7 @@ class ActivityController extends Controller
         // Get all of the volunteers from that activity.
         $volunteers = $activity->volunteers()->get();
 
-        return view('activity.activity-track-hours-tbl')
+        return view('activity.activity-volunteers')
             ->with('activity', $activity)
             ->with('volunteerProfiles', $volunteers);
     }

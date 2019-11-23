@@ -71,4 +71,20 @@ class OrganisationProfile extends Model
     {
         return $this->belongsToMany(Activity::class, 'activity_organisation')->withTimestamps();
     }
+
+    /**
+     * Return all of the current activities for the organisation.
+     */
+    public function getCurrentActivities()
+    {
+        return $this->activities()->get()->where('is_active', true)->all();
+    }
+
+    /**
+     * Return all of the activities owned by the organisation that are completed.
+     */
+    public function getPastActivities()
+    {
+        return $this->activities()->get()->where('is_active', false)->all();
+    }
 }

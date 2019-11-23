@@ -60,10 +60,26 @@ class VolunteerProfile extends Model
     public function activities()
     {
         return $this->belongsToMany(Activity::class, 'activity_volunteer')
-            ->withPivot('volunteer_hours_earned') // Include this attribute in the pivot table.
+            ->withPivot(['volunteer_hours_earned', 'hours_confirmed'])
             ->withTimestamps();
     }
 
+    /**
+     * Return all of the current activities for the volunteer.
+     */
+    public function getCurrentActivities()
+    {
+        return $this->activities()->get()->where('is_active', true)->all();
+    }
+
+    /**
+     * Return all of the activities completed by the volunteer.
+     */
+    public function getPastActivities()
+    {
+        return $this->activities()->get()->where('is_active', false)->all();
+    }
+    
     /**
      * Return the full name of the volunteer
      */
@@ -90,7 +106,7 @@ class VolunteerProfile extends Model
     /**
      * Return total volunteer hours earned.
      */
-    public function getHoursEarned()
+    public function getAllHoursEarned()
     {
         // Result of the sum of all hours earned.
         $result = 0;
