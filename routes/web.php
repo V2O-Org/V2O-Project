@@ -74,9 +74,6 @@ Route::prefix('/org')->group(function() {
     Route::get('/password/reset/{token}', 'Auth\Org\OrganisationResetPasswordController@showResetForm')->name('org.password.reset');
     Route::post('/password/reset', 'Auth\Org\OrganisationResetPasswordController@reset')->name('org.password.update');
     
-	// Single Activity View
-    Route::get('/acti', 'SingActivController@index')->name('singactivity.org_sing_act');
-    
     // Past Actvities for this Organisation
     Route::get('/activities/past', 'OrganisationController@showPastActivities')->name('org.activities.past');
     Route::get('/activities/past/search', 'OrganisationController@searchPastActivities')->name('org.activites.past.search');
@@ -91,18 +88,11 @@ Route::prefix('/activity')->group(function() {
     Route::get('/{activity}/volunteers', 'ActivityController@showVolunteerList')->name('activity.volunteers');
 });
 
-// Activity Sign Up Routes
-Route::prefix('/singact')->group(function() {
-	//Single Activity View
-	Route::get('/acti', 'SingActivController@index')->name('singactivity.index');
-});
-
 // Resourceful Routes
 Route::resources([
     'activity' => 'ActivityController',
     'org' => 'OrganisationController',
     'vol' => 'VolunteerController',
-	'singact' => 'SingActivController',
 ]);
 
 //search activities by making query to database

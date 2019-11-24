@@ -11,39 +11,43 @@
         font-family: 'verdana';
 	    font-size: 75;
         font-weight: bold;
+        margin-top: 20px
     }
 
     .card-header {
         background-color: white !important;
     }
-
-    .modal-header {
-        background-color: white !important;
-    }
-
 </style>
 
 <script src="{{ asset('js/app.js') }}"></script>
 
 <div class="container">
-    <div class="d-inline">
-        <h1 class="page-title text-center pt-2">My Past Activities</h1>
-        {{ Form::open([
-            'method' => 'GET', 'url' => '/org/activities/past/search/',
-            'role' => 'search',
-        ]) }}
+    <div class="page-header row">
+        <div class="col-md-6 col-sm-8 col-xs-12">
+            <h1 class="page-title">My Past Activities</h1>
+        </div>
 
-            <div class="input-group">
-                {{ Form::search('query', '', [
-                    'placeholder' => 'Search activities',
-                    'class' => 'form-control'
-                ]) }}
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+        <div class="col-md-6 col-sm-4 col-xs-12 pt-4 align-items-end">
+            {{ Form::open([
+                'method' => 'GET', 'url' => '/org/activities/past/search/',
+                'role' => 'search',
+            ]) }}
+
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="input-group">
+                        {{ Form::search('query', '', [
+                            'placeholder' => 'Search activities',
+                            'class' => 'form-control'
+                        ]) }}
+
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-        {{ Form::close() }}
+            {{ Form::close() }}
+        </div>
     </div>
 
     <div class="row">

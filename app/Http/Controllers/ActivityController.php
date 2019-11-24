@@ -92,7 +92,7 @@ class ActivityController extends Controller
         // Connect activity to causes
         $activity->causes()->sync($causes);
 
-        return redirect(route('org.dashboard'));
+        return redirect(url("/activity/$activity->id"));
     }
 
     /**
@@ -105,7 +105,7 @@ class ActivityController extends Controller
     {
         $activity = Activity::findOrFail($id);
 
-        return view('singactivity.index')
+        return view('activity.activity-show')
             ->with('activity', $activity);
     }
 
@@ -179,7 +179,7 @@ class ActivityController extends Controller
         // Update activity causes.
         $activity->causes()->sync($causes);
 
-        return redirect(route('org.dashboard'));
+        return redirect(url("/activity/$activity->id"));
     }
 
     /**
@@ -204,7 +204,7 @@ class ActivityController extends Controller
     }
 
     /**
-     * 
+     * Show the list of volunteers for a specified activity.
      */
     public function showVolunteerList($id)
     {
@@ -212,10 +212,10 @@ class ActivityController extends Controller
         $activity = Activity::findOrFail($id);
 
         // Get all of the volunteers from that activity.
-        $volunteers = $activity->volunteers()->get();
+        $volunteers = $activity->volunteers()->paginate(10);
 
         return view('activity.activity-volunteers')
             ->with('activity', $activity)
-            ->with('volunteerProfiles', $volunteers);
+            ->with('volunteers', $volunteers);
     }
 }

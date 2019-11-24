@@ -71,6 +71,13 @@ class OrganisationProfile extends Model
     {
         return $this->belongsToMany(Activity::class, 'activity_organisation')->withTimestamps();
     }
+    
+    /**
+     * Return the email of the organisation from the organisation user model.
+     */
+    public function getEmail() {
+        return $this->organisation->email;
+    }
 
     /**
      * Return all of the current activities for the organisation.

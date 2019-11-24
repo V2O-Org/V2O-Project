@@ -81,14 +81,21 @@ class VolunteerProfile extends Model
     }
     
     /**
-     * Return the full name of the volunteer
+     * Return the full name of the volunteer.
      */
     public function getName() {
         return $this->first_name . ' ' . $this->last_name;
     }
 
     /**
-     * Return the age of the volunteer
+     * Return the email of the volunteer from the volunteer user model.
+     */
+    public function getEmail() {
+        return $this->volunteer->email;
+    }
+
+    /**
+     * Return the age of the volunteer.
      */
     public function getAge()
     {
@@ -96,7 +103,7 @@ class VolunteerProfile extends Model
     }
 
     /**
-     * Return full volunteer Address
+     * Return full address of the volunteer.
      */
     public function fullAddress()
     {
@@ -119,5 +126,16 @@ class VolunteerProfile extends Model
         }
 
         return $result;
+    }
+
+    /**
+     * Return hours earned for specified activity.
+     */
+    public function getHoursEarned($activityId) 
+    {
+        // Find the activity
+        $activity = $this->activities()->where('id', $activityId)->first();
+
+        return $activity->pivot->volunteer_hours_earned;
     }
 }
