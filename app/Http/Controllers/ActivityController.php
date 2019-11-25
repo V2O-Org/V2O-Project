@@ -10,6 +10,9 @@ use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\Activity;
 use App\Cause;
+use App\Volunteer;
+use App\VolunteerProfile;
+
 
 class ActivityController extends Controller
 {
@@ -218,4 +221,70 @@ class ActivityController extends Controller
             ->with('activity', $activity)
             ->with('volunteerProfiles', $volunteers);
     }
+
+         public function logVolunteersHours($id)
+    {
+        // Find the volunteer.
+        $volunteer = volunteerProfile::findOrFail($id);
+
+        // Get all of the volunteers from that activity.
+        $activities = $volunteer->activities()->get();
+
+         return view('activity.activity-hours')
+         ->with('volunteerProfiles', $volunteer)
+         ->with('activities', $activities);
+      
+    }
+    /*
+    public function logVolunteersHours($id1)
+    {
+         //Find the volunteer_
+          // $volunteers = Volunteer::findOrFail($id1);
+           $activities = DB:table()
+        //Get all the activities for the volunteer
+       // $activity = $volunteers->activity()->get();
+        return view('activity.activity-hours')
+         //->with('volunteerProfiles', $volunteers)
+         //->with('activity', $activity);
+       ->with('activities', $activities);
+
+        //Find the volunteer_
+          // $volunteers = Volunteer::findOrFail($id1);
+           $activities = Activity::all();
+        //Get all the activities for the volunteer
+       // $activity = $volunteers->activity()->get();
+        return view('activity.activity-hours')
+         //->with('volunteerProfiles', $volunteers)
+         //->with('activity', $activity);
+       ->with('activities', $activities);
+
+
+
+          //Find the volunteer_
+        $volunteer = Volunteer::findOrFail($id);
+     
+        //Get all the activities for the volunteer
+      // $activity = $volunteer->activity()->get();
+         $activity = $volunteer->activity()->get();
+        return view('activity.activity-hours')
+         //->with('volunteerProfiles', $volunteers)
+         //->with('activity', $activity);
+       ->with('activities', $activities);
+
+
+       $volunteer = Volunteer::findOrFail ($id);
+        $volunteerProfile = $volunteer->volunteerProfile;
+        return view('volunteer/vol-profile')->with ('volunteer',$volunteer) ->with ('volunteerProfile',$volunteerProfile);
+//-*******************************************************************
+           //Find the volunteer_
+        $volunteer = Volunteer::findOrFail($id);
+     
+        //Get all the activities for the volunteer
+      // $activities = $volunteer->activity()->get();
+         $activity = $volunteer->activity()->get();
+        return view('activity.activity-hours')
+         //->with('volunteerProfiles', $volunteers)
+         //->with('activity', $activity);
+       ->with('activities', $activities);
+        }*/
 }

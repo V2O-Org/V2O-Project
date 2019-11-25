@@ -12,6 +12,10 @@
         <!--The css for the header -->
 		{{ Html::style('css/profile.css') }}
 
+         <!--notification links-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         
     </head>
     
@@ -19,7 +23,9 @@
     	<header>
 
             <div id="Logo">
-                <img src="{{ asset('image/V2O.jpeg') }}" alt="Logo"></div>
+                <img src="{{ asset('image/V2O.jpeg') }}" alt="Logo">
+            </div>
+
 			<div id="nav">
 				<ul>
 					<?php
@@ -38,7 +44,25 @@
 
 				</ul>
 			</div>
-			<div id="userProfilePhoto"><img src="{{ asset('image/userdummyimage.png')}}" alt="profile photo"></div>
+
+           
+            <!--notification of any unlogged volunteer hours-->
+                <div class="mail">
+                    <a href="#" title="header" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Activities ">
+                        <img src="{{ asset('image/mail.jpg') }}" alt="notif">
+                    </a>
+                </div>
+
+                    <script>
+                        $(document).ready(function(){
+                            $('[data-toggle="popover"]').popover();
+                        });
+
+                    </script>
+
+
+			    <div id="userProfilePhoto"><img src="{{ asset('image/userdummyimage.png')}}" alt="profile photo"></div>
+        
 		</header>
 		<!--extra css to be passed here-->
 		<?php echo "<style> $extraStyle </style>"; ?>

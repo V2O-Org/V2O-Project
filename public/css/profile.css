@@ -27,7 +27,7 @@ header div
 	position: absolute;
 	top: 20px;
 	width: 50%;
-	margin-left: 150px;
+	margin-left: 120px;
 }
 #nav ul li
 {
@@ -49,6 +49,7 @@ header div
 {
 	float:right;
 	width: 20%;
+    padding-top:3px;
 	
 
 }
@@ -60,4 +61,10 @@ header div
 	
 	border:2px solid black;
 	border-radius: 100%;
+}
+
+.mail {
+   
+  
+    margin-left: 55%;
 }
