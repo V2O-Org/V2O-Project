@@ -3,7 +3,7 @@ header
 	border-bottom: 5px solid green;
 	margin-bottom: 2px;
 	width: 100%;
-	max-height: 150px;
+	max-height: 100px;
 }
 header div 
 {
@@ -12,12 +12,12 @@ header div
 /*the styling for the logo */
 #Logo 
 {
-	margin:0px 100px;
+	margin: 0px 50px;
 	max-width: 8%;
 }
 #Logo img 
 {
-	width:100%;
+	width: 80%;
 	height: 40%
 }
 
@@ -25,9 +25,9 @@ header div
 #nav
 {
 	position: absolute;
-	top: 20px;
+	top: 15px;
 	width: 50%;
-	margin-left: 120px;
+	margin-left: 150px;
 }
 #nav ul li
 {
@@ -48,16 +48,20 @@ header div
 #userProfilePhoto
 {
 	float:right;
+
 	width: 20%;
     padding-top:3px;
 	
+
+
+    width: 20%;
+    padding-top: 3px;
 
 }
 
 #userProfilePhoto img
 {	
-	width: 30%;
-	
+	width: 18%;
 	
 	border:2px solid black;
 	border-radius: 100%;
@@ -66,5 +70,5 @@ header div
 .mail {
    
   
-    margin-left: 55%;
+    margin-left: 60%;
 }

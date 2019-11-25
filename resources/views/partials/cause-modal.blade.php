@@ -53,7 +53,7 @@
 
 <script type="text/javascript">
     // Get the modal.
-    let causes = document.getElementById('causesModal');
+    let causes = document.getElementById('causeModal');
     
     // Get the button that opens the modal.
     let btn = document.getElementById('modalBtn');

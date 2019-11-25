@@ -31,7 +31,7 @@ class Activity extends Model
     public function volunteers()
     {
         return $this->belongsToMany(VolunteerProfile::class, 'activity_volunteer')
-            ->withPivot(['volunteer_hours_earned', 'hours_confirmed', 'is_complete'])
+            ->withPivot(['volunteer_hours_earned', 'hours_confirmed'])
             ->withTimestamps();
     }
 

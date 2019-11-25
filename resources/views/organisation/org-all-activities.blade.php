@@ -149,6 +149,6 @@
 </div>
 
 <footer>
-@include('volunteer.footer')
+@include('partials.footer')
 </footer>
 </div>

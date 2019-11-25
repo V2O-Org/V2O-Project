@@ -18,7 +18,6 @@ class CreateActivityVolunteerTable extends Migration
             $table->unsignedBigInteger('volunteer_profile_id');
             $table->integer('volunteer_hours_earned')->default(0);
             $table->boolean('hours_confirmed')->default(false);
-            $table->boolean('is_complete')->default(false);
             $table->timestamps();
 
             $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');

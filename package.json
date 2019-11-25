@@ -11,6 +11,7 @@
         "postinstall": "npm run prod"
     },
     "devDependencies": {
+        "@fortawesome/fontawesome-free": "^5.11.2",
         "axios": "^0.19",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",

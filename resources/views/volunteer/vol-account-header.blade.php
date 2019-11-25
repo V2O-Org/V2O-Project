@@ -23,7 +23,9 @@
     	<header>
 
             <div id="Logo">
-                <img src="{{ asset('image/V2O.jpeg') }}" alt="Logo">
+                <a href="/">
+                    <img src="{{ asset('image/V2O.jpeg') }}" alt="Logo">
+                </a>
             </div>
 
 			<div id="nav">

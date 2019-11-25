@@ -74,7 +74,6 @@ class CreateVolunteersSeeder extends Seeder
             $result = array_fill_keys($arr, [
                 'volunteer_hours_earned' => 0,
                 'hours_confirmed' => false,
-                'is_complete' => false,
             ]);
 
             $vol->activities()->sync($result);

@@ -97,4 +97,4 @@
 
 
 
-@include('volunteer.footer')
+@include('partials.footer')
