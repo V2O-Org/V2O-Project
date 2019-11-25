@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ActivityCreateRequest;
+use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
@@ -215,7 +216,7 @@ class ActivityController extends Controller
         $activity = Activity::findOrFail($id);
 
         // Get all of the volunteers from that activity.
-        $volunteers = $activity->volunteers()->paginate(10);
+        $volunteers = $activity->volunteers()->orderBy('last_name')->paginate(10);
 
         return view('activity.activity-volunteers')
             ->with('activity', $activity)
@@ -227,7 +228,25 @@ class ActivityController extends Controller
      */
     public function confirmHours($id, Request $request)
     {
-        // Put logic here
+        // Find the activity.
+        $activity = Activity::findOrFail($id);
+
+        // Find the volunteer profile.
+        $vol = VolunteerProfile::findOrFail($request['vol']);
+
+        // dd($request->all()); // Debugging
+
+        // Validate the request
+        $request->validate([
+            'confirm-hours' => ['required', 'integer', "max:$activity->volunteer_hours"]
+        ]);
+
+        // Log the volunteer hour earned for the volunteer.
+        $activity->volunteers()->syncWithoutDetaching([
+            $vol->id => ['volunteer_hours_earned' => $request['confirm-hours']]
+        ]);
+
+        return redirect(route('activity.volunteers', ['activity' => $activity->id]));
     }
 
     public function logVolunteersHours($id)
