@@ -86,6 +86,8 @@ Route::prefix('/activity')->group(function() {
 
     // Volunteer List for Activity (Organisation Perspective)
     Route::get('/{activity}/volunteers', 'ActivityController@showVolunteerList')->name('activity.volunteers');
+
+    Route::get('/{activity}/volunteers/hours', 'ActivityController@confirmHours')->name('activity.hours.confirm');
 });
 
 // Resourceful Routes

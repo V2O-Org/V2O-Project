@@ -218,4 +218,12 @@ class ActivityController extends Controller
             ->with('activity', $activity)
             ->with('volunteers', $volunteers);
     }
+
+    /**
+     * Confirm the volunteer hours for one volunteer in the specified activity.
+     */
+    public function confirmHours($id, Request $request)
+    {
+        // Put logic here
+    }
 }

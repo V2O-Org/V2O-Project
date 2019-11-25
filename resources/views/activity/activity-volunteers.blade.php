@@ -52,7 +52,7 @@
                                     <td>{{ $vol->getHoursEarned($activity->id) }}</td>
                                     <td>
                                         {{ $vol->pivot->hours_confirmed ? "Yes" : "No" }} 
-                                        <a href="#" class="pl-2"><i class="fas fa-edit"></i></a>
+                                        <a href="#" class="modal-btn" onclick="showModal()"><i class="pl-2 fas fa-edit"></i><a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -72,6 +72,59 @@
             </div>
         </div>
     </div>
+
+    <!-- Confirm Hours Modal -->
+    <div class="modal fade" id="confirm-hours-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-hours-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirm-hours-modal-label">
+                        Please confirm {{ $vol->getName() }}'s hours
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+    
+                <div class="modal-body">
+                    {{ Form::open([
+                        'method' => 'PUT', 'url' => "/activity/$activity->id/volunteer/hours",
+                    ]) }}
+                        {{ Form::selectRange('confirm-hours', 0, $activity->volunteer_hours, 
+                            isset($activity->volunteer_hours)? $activity->volunteer_hours : '', [
+                            'class' => 'form-group'
+                        ]) }}
+                        {{ Form::submit('Confirm', [
+                            'class' => 'btn btn-success'
+                        ]) }}
+                    {{ Form::close() }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Causes Modal -->
+    
+    
+    <script type="text/javascript">
+        // Get the modal.
+        let causes = document.getElementById('confirm-hours-modal');
+        
+        // Get the button that opens the modal.
+        let btn = document.getElementByClassName('modal-btn');
+    
+        // Get the <span> element that closes modal.
+        let span = document.getElementsByClassName('close')[0];
+    
+        function showModal() {
+            // When the user clicks the button, open the modal.
+            $('#confirm-hours-modal').modal('show');
+        }
+        
+        // // When the user clicks the button, open the modal.
+        // btn.onclick = function() {
+        //     $('#confirm-hours-modal').modal('show');
+        // }
+    </script>
 </div>
 
 @include('partials.footer')
