@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\database\\seeds",
+    "\\resources",
+    "\\resources\\views",
+    "\\resources\\views\\activity",
+    "\\routes"
+  ],
+  "SelectedNode": "\\resources\\views\\activity\\activity-track-hours-tbl.blade.php",
+  "PreviewInSolutionExplorer": false
+}

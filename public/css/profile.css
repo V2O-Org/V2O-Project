@@ -48,8 +48,15 @@ header div
 #userProfilePhoto
 {
 	float:right;
+
+	width: 20%;
+    padding-top:3px;
+	
+
+
     width: 20%;
     padding-top: 3px;
+
 }
 
 #userProfilePhoto img
@@ -58,4 +65,10 @@ header div
 	
 	border:2px solid black;
 	border-radius: 100%;
+}
+
+.mail {
+   
+  
+    margin-left: 60%;
 }

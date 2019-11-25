@@ -49,10 +49,12 @@ class OrganisationLoginController extends Controller
         if (Auth::guard('org')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             // If successful, then redirect to their inteded location.
             return redirect()->intended(route('org.dashboard'));
+           // return redirect()->route('org.dashboard');
         }
-
+       
         // If unsuccessful, then redirect back to the login with the form data
         return redirect()->back()->withInput($request->only('email', 'remember'));
+        
     }
 
     /**

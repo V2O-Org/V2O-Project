@@ -49,7 +49,11 @@ Route::prefix('/vol')->group(function() {
     Route::post('/password/email', 'Auth\Vol\VolunteerForgotPasswordController@sendResetLinkEmail')->name('vol.password.email');
     Route::get('/password/reset/{token}', 'Auth\Vol\VolunteerResetPasswordController@showResetForm')->name('vol.password.reset');
     Route::post('/password/reset', 'Auth\Vol\VolunteerResetPasswordController@reset')->name('vol.password.update');
+
+   
 });
+
+
 
 // Organisation Routes
 Route::prefix('/org')->group(function() {
@@ -87,7 +91,11 @@ Route::prefix('/activity')->group(function() {
     // Volunteer List for Activity (Organisation Perspective)
     Route::get('/{activity}/volunteers', 'ActivityController@showVolunteerList')->name('activity.volunteers');
 
+    // Organisation confirmation of hours
     Route::get('/{activity}/volunteers/hours', 'ActivityController@confirmHours')->name('activity.hours.confirm');
+    
+    // Volunteer log in of hours
+    Route::get('/volunteer/{volunteer}','ActivityController@logVolunteersHours');//->name('');
 });
 
 // Resourceful Routes

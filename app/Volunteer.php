@@ -60,4 +60,7 @@ class Volunteer extends Authenticatable
     {
         $this->notify(new VolunteerResetPasswordNotification($token));
     }
+
+ 
+
 }
