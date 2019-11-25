@@ -96,7 +96,7 @@ class VolunteerController extends Controller
         $volunteerProfile->state= $request->state;
         $volunteerProfile->country= $request->country;
         $volunteerProfile->save();
-        return redirect (url('vol/profile/'));
+        return back();
     }
 
     /**

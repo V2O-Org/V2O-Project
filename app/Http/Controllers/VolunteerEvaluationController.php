@@ -92,5 +92,8 @@ class VolunteerEvaluationController extends Controller
     public function destroy($id)
     {
         //
+        $volEval = VolunteerEvaluation::findOrFail ($id);
+        $volEval->delete();
+                return back();
     }
 }

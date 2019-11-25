@@ -28,7 +28,7 @@
 
 	<p> Name: {{$volunteerProfile->fullname()}}  </p>
     <p> Address: {{$volunteerProfile->fulladdress()}} </p>
-    <p> Email: {{$volunteer->email}}  </p> 	
+    <p> Email: <a href = "mailto: {{$volunteer->email}}" > {{$volunteer->email}} </a> </p> 	
 
     <!-- 
         Check if the current user is the volunteer that the profile belongs to.
