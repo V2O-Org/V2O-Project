@@ -14,7 +14,7 @@ class VolunteerProfile extends Model
      */
     protected $fillable = [
         'volunteer_id', 'first_name', 'last_name', 'date_of_birth', 'profile_img',
-        'street_address', 'state', 'city', 'country',
+        'street_address', 'state', 'city', 'country','volunteer_hours_earned',
     ];
 
     /**

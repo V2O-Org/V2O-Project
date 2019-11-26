@@ -10,7 +10,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Activity;
 use App\Cause;
 use App\Volunteer;
@@ -255,19 +254,7 @@ class ActivityController extends Controller
         return redirect(route('activity.volunteers', ['activity' => $activity->id]));
     }
 
-    public function logVolunteersHours($id)
-    {
 
-        // Find the volunteer.
-        $volunteer = volunteerProfile::findOrFail($id);
-
-        // Get all of the activities for that volunteer.
-        $activities = $volunteer->activities()->get();
-   
-         return view('activity.activity-hours')
-         ->with('volunteerProfiles', $volunteer)
-         ->with('activities', $activities);
-         */
          public function logVolunteersHours($id){
         // Find the volunteer.
         $volunteer = volunteerProfile::findOrFail($id);
@@ -284,16 +271,20 @@ class ActivityController extends Controller
 
      
     }
+    
+    public function updateVolunteerHours(Request $request,$vol_id,$id){
+     // Find the volunteer
+     $volunteer = volunteerProfile::findOrFail($vol_id);
 
-    public function updateVolunteerHours(Request $request,$volunteer,$id){
-    /*
-     $volunteer = volunteerProfile::findOrFail($id);
- 
+     //Find the activity for that volunteer 
      $activity = $volunteer->activities()
                 ->where ('activity_id','=',$id)
                 ->where ('volunteer_profile_id','=',$volunteer)->first();
-        // Find the activity.
-      //  
+
+
+       $activity->volunteers()->volunteer_hours_earned = $request->volunteer_hours_earned;
+       $activity->save();
+      /*
 
        // $activity = Activity::where ('activity_id','=',$id)
         //                    ->where ('volunteer_profile_id','=',$volunteer)->first();
@@ -302,12 +293,13 @@ class ActivityController extends Controller
         $activity->volunteer_hours_earned = $request->volunteer_hours_earned;
       
         $activity = Activity::where('activity_id','=',$id)
-                ->where ('volunteer_profile_id','=',$volunteer)->first(); */
+                ->where ('volunteer_profile_id','=',$volunteer)->first(); 
         $activity = Activity::findOrFail($id)->where ('volunteer_profile_id',$volunteer)->first();
         $activity->volunteer_hours_earned = $request->volunteer_hours_earned;
-        $activity->save();
+        $activity->save();*/
 
-        return redirect('/');
+         return redirect(route('activity.volunteer.logHours', ['volunteerProfiles'=> $volunteer->id]));
+        
     }
   
 

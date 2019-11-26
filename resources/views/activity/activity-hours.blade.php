@@ -82,6 +82,7 @@
                           
                 @foreach($activities as $activity)
                 <form action="/activity/update/{{$volunteerProfiles->id}}/{{$activity->id}}" method="POST">
+               
               
                  @csrf
            

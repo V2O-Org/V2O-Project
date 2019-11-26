@@ -100,7 +100,7 @@ Route::prefix('/activity')->group(function() {
     Route::put('/{activity}/volunteer/hours', 'ActivityController@confirmHours')->name('activity.hours.confirm');
     
     // Volunteer log in of hours
-    Route::get('/volunteer/{volunteer}','ActivityController@logVolunteersHours');//->name('');
+   // Route::get('/volunteer/{volunteer}','ActivityController@logVolunteersHours');//->name('');
 
 });
 
