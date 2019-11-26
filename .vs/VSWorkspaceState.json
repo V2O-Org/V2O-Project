@@ -1,12 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\database\\seeds",
-    "\\resources",
-    "\\resources\\views",
-    "\\resources\\views\\activity",
-    "\\routes"
+    "\\app",
+    "\\app\\Http",
+    "\\resources\\js\\components",
+    "\\storage\\framework\\cache\\data",
+    "\\storage\\framework\\sessions",
+    "\\storage\\framework\\testing",
+    "\\storage\\framework\\views",
+    "\\tests\\Feature",
+    "\\tests\\Unit"
   ],
-  "SelectedNode": "\\resources\\views\\activity\\activity-track-hours-tbl.blade.php",
+  "SelectedNode": "\\app\\VolunteerProfile.php",
   "PreviewInSolutionExplorer": false
 }

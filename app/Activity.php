@@ -15,6 +15,8 @@ class Activity extends Model
         'id', 'status',
     ];
 
+    protected $fillable=['volunteer_hours_earned'];
+
     /**
      * Set up the relationship between activities and causes.
      * 1 activity HAS many causes.
@@ -31,7 +33,7 @@ class Activity extends Model
     public function volunteers()
     {
         return $this->belongsToMany(VolunteerProfile::class, 'activity_volunteer')
-            ->withPivot(['volunteer_hours_earned', 'hours_confirmed'])
+            ->withPivot(['volunteer_profile_id','volunteer_hours_earned', 'hours_confirmed'])
             ->withTimestamps();
     }
 

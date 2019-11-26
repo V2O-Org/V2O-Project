@@ -92,7 +92,8 @@ Route::prefix('/activity')->group(function() {
     Route::get('/{activity}/volunteers', 'ActivityController@showVolunteerList')->name('activity.volunteers');
 
     //Volunteer log in of hours
-     Route::get('/volunteer/{volunteer}','ActivityController@logVolunteersHours');//->name('');
+     Route::get('/volunteer/{volunteer}','ActivityController@logVolunteersHours')->name('activity.volunteer.logHours');
+     Route::post('/update/{volunteer}/{activity}','ActivityController@updateVolunteerHours')->name('activity.update.loghours');
 });
 
 // Resourceful Routes

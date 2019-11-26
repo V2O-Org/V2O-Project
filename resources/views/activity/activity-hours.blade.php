@@ -2,9 +2,15 @@
 
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <style type="text/css">
-    body { 
+    body {
+        
         background: white !important; 
     } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+
+    .container{
+                font-size:14px;
+                font-weight: bolder;
+                }
 
     .card-header {
         background-color: white !important;
@@ -38,6 +44,27 @@
         }
 
         .center{text-align:center;}
+        .card-title{font-size:25px;}
+
+        button[type=submit] {
+            padding :1% 2%;
+            text-align:center;
+            margin: auto;
+            display:block;
+            border-radius: 8px;
+            background-color: #007ACC;       
+            color:white;
+            font-size: 20px;
+            width: 120px;
+            }
+     
+     button[type=button] {
+        padding: 4px 2px;
+        font-size: 15px;
+        background-color:  #007ACC;
+        width: 100px;
+
+     }
 </style>
 
 
@@ -52,27 +79,34 @@
                             <h2 class="card-title pl-4 center"><strong>Log hours</strong></h2>
                           </div>
 
-
+                          
                 @foreach($activities as $activity)
-
+                <form action="/activity/update/{{$volunteerProfiles->id}}/{{$activity->id}}" method="POST">
+              
+                 @csrf
+           
                 <div class = "row cardBorder">
                     <div class= "col-8">
 
-                   <p> Activity Name: {{  $activity->name }}</p>
-                   <p> {{  $activity->start_date }} &nbsp;
-                    {{  $activity->end_date }} &nbsp;&nbsp;
-                    {{  $activity->start_time }} to {{  $activity->end_time }}</p>
+                           <p> Activity Name: {{  $activity->name }}</p>
+                           <p> {{  $activity->start_date }} &nbsp;
+                            {{  $activity->end_date }} &nbsp;&nbsp;
+                            {{  $activity->start_time }} to {{  $activity->end_time }}</p>
 
-                    <p>
-                    Description<br>
-                    {{  $activity->description }}
-                    </p>
+                            <p>
+                            Description<br>
+                            {{  $activity->description }}
+                            </p>
                     </div>
 
+                   
+                   
                     <div class= "col-4 dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Hours
-                        <span class="caret"></span></button>
-                                <select class="dropdown-menu" multiple="yes" style="height: 150px; width: 100px;">
+                       <!-- <span class="caret"></span>-->
+                        </button>
+                                <select name="volunteer_hours_earned" class="dropdown-menu" multiple="yes" style="height: 150px; width: 100px; font-size: 14px;">
+                                    <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -86,15 +120,24 @@
 	                                <option>11</option>
 	                                <option>12</option>
                                 </select>
-                    </div>
-                </div>
-
-                <br><br>
-                  @endforeach
+                    </div> <!--end of class dropdown-->
+                    
                
+                    <br><br>
+                    <div class=" row col-12"><button type="submit">Submit</button></div>
+                    
+                    </form>
+                </div>
+                
+                <br><br>
+                
+
+                  @endforeach
+                
             </div>
         </div>
         </div>
     </div>
 </div>
-
+<br><br>
+@include('partials.footer')
