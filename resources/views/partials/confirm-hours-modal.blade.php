@@ -46,7 +46,7 @@
 
                     <div class="text-center">
                         {{ Form::submit('Confirm', [
-                            'class' => 'btn btn-success'
+                            'class' => 'btn btn-primary'
                         ]) }}
                     </div>
                 {{ Form::close() }}

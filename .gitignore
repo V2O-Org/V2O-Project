@@ -14,5 +14,6 @@ yarn-error.log
 
 # Ignore IDE and code editor specific directories
 /.vscode
+/.vs
 
 # Ignore for now

@@ -103,10 +103,14 @@
                    
                    
                     <div class= "col-4 dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Hours
-                       <!-- <span class="caret"></span>-->
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                            {{ $volunteerProfiles->getHoursEarned($activity->id) > 0 ? $volunteerProfiles->getHoursEarned($activity->id) : "Hours" }}
                         </button>
-                                <select name="volunteer_hours_earned" class="dropdown-menu" multiple="yes" style="height: 150px; width: 100px; font-size: 14px;">
+                                {{ Form::selectRange('volunteer_hours_earned', 0, $activity->volunteer_hours, 
+                                    0, [
+                                        'class' => 'dropdown-menu', 'style' => 'height: 150px; width: 100px; font-size: 14px;', 'multiple' => 'yes'
+                                ]) }}
+                                {{-- <select name="volunteer_hours_earned" class="dropdown-menu" multiple="yes" style="height: 150px; width: 100px; font-size: 14px;">
                                     <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -120,7 +124,7 @@
 	                                <option>10</option>
 	                                <option>11</option>
 	                                <option>12</option>
-                                </select>
+                                </select> --}}
                     </div> <!--end of class dropdown-->
                     
                
@@ -140,5 +144,14 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+$(function(){
+    $(".dropdown-menu").on('click', 'option', function(){
+    $(".btn:first-child").text($(this).text() + '  ');
+    $(".btn:first-child").val($(this).text());
+    });
+});
+</script>
 <br><br>
 @include('partials.footer')

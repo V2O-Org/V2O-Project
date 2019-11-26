@@ -93,8 +93,8 @@ Route::prefix('/activity')->group(function() {
 
 
     //Volunteer log in of hours
-     Route::get('/volunteer/{volunteer}','ActivityController@logVolunteersHours')->name('activity.volunteer.logHours');
-     Route::post('/update/{volunteer}/{activity}','ActivityController@updateVolunteerHours')->name('activity.update.loghours');
+     Route::get('/volunteer/{volunteer}','ActivityController@showLogVolunteerHoursForm')->name('activity.volunteer.log.form');
+     Route::post('/update/{volunteer}/{activity}','ActivityController@updateVolunteerHours')->name('activity.volunteer.log.submit');
 
     // Organisation confirmation of hours
     Route::put('/{activity}/volunteer/hours', 'ActivityController@confirmHours')->name('activity.hours.confirm');
