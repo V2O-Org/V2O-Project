@@ -59,7 +59,7 @@ class CreateVolunteersSeeder extends Seeder
             VolunteerProfile::create($value);
         }
 
-        factory(App\Volunteer::class, 70)->create()->each(function($v) {
+        factory(App\Volunteer::class, 600)->create()->each(function($v) {
             $v->volunteerProfile()->save(
                 factory(App\VolunteerProfile::class)->make(['volunteer_id' => NULL])
             );

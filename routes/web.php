@@ -91,9 +91,17 @@ Route::prefix('/activity')->group(function() {
     // Volunteer List for Activity (Organisation Perspective)
     Route::get('/{activity}/volunteers', 'ActivityController@showVolunteerList')->name('activity.volunteers');
 
+
     //Volunteer log in of hours
      Route::get('/volunteer/{volunteer}','ActivityController@logVolunteersHours')->name('activity.volunteer.logHours');
      Route::post('/update/{volunteer}/{activity}','ActivityController@updateVolunteerHours')->name('activity.update.loghours');
+
+    // Organisation confirmation of hours
+    Route::put('/{activity}/volunteer/hours', 'ActivityController@confirmHours')->name('activity.hours.confirm');
+    
+    // Volunteer log in of hours
+    Route::get('/volunteer/{volunteer}','ActivityController@logVolunteersHours');//->name('');
+
 });
 
 // Resourceful Routes

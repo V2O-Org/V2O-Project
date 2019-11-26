@@ -47,16 +47,10 @@ header div
 
 #userProfilePhoto
 {
-	float:right;
-
-	width: 20%;
-    padding-top:3px;
-	
-
-
+    float:right;
+    
     width: 20%;
     padding-top: 3px;
-
 }
 
 #userProfilePhoto img

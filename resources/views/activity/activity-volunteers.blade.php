@@ -45,14 +45,14 @@
                         <tbody>
                             @foreach($volunteers->all() as $vol)
                                 <tr>
-                                    <td>{{ $vol->getName() }}</td>
+                                    <td id="vol-name">{{ $vol->getName() }}</td>
                                     <td>{{ $vol->getAge() }}</td>
                                     <td>{{ $vol->getEmail() }}</td>
                                     <td>{{ $vol->getAllHoursEarned() }}</td>
                                     <td>{{ $vol->getHoursEarned($activity->id) }}</td>
                                     <td>
                                         {{ $vol->pivot->hours_confirmed ? "Yes" : "No" }} 
-                                        <a href="#" class="pl-2"><i class="fas fa-edit"></i></a>
+                                        @include('partials.confirm-hours-modal', [$vol, $activity])
                                     </td>
                                 </tr>
                             @endforeach
