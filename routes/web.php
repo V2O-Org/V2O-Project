@@ -98,9 +98,6 @@ Route::prefix('/activity')->group(function() {
 
     // Organisation confirmation of hours
     Route::put('/{activity}/volunteer/hours', 'ActivityController@confirmHours')->name('activity.hours.confirm');
-    
-    // Volunteer log in of hours
-   // Route::get('/volunteer/{volunteer}','ActivityController@logVolunteersHours');//->name('');
 
 });
 
@@ -134,6 +131,16 @@ Route::any('/search', function(Request $request){
         return view('activity/activity-search-results')->withMessage('No activities matching your search')->withQuery($name);
     }
 });
+/*
+Route::prefix('/actrating')->group(function() {
+    // Create Route
+    Route::get('/list', 'ActivityEvaluationController@index')->name('activityevaluation.index');
+	
+	Route::get('/create', 'ActivityEvaluationController@create')->name('activityevalution.create');
+	
+});
+*/
+Route::resource('actrate','ActivityEvaluationController');
 
 Route::get('/search/results', function(){
     return view('activity/activity-search-results');
@@ -141,6 +148,5 @@ Route::get('/search/results', function(){
 
 // Joining Instruction Route
 Route::Resource('instruction', 'InstructionController');
-    
-// // Home Router
-// Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/home', 'HomeController@index')->name('home');

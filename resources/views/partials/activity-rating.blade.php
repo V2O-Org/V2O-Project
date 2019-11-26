@@ -1,8 +1,26 @@
-<div class='pt-4'>
-        <!-- Button to trigger activity rating modal -->
+
+
+<style type="text/css">
+#modal-btn{
+  
+    padding:5px;
+    padding-left: 30px;
+    padding-right: 30px;
+   margin-left: 82.5%;   
+   border-color:  black;
+   background-color: white;
+   font-weight: bold;
+   border-width: medium;
+   box-shadow: 1px 3px;
+}
+</style>
+
+<div class='pt-4 submitbutton'>
+        <!-- Button to trigger causes modal -->
+
         {{ Form::button("Submit", [
             'id' => 'modal-btn', 'data-toggle' => 'modal', 'data-target' => '#activity-rating-modal',
-            'class' => 'btn btn-light btn-outline-dark'
+            //'class' => 'btn btn-light btn-outline-dark'
         ]) }}
     
         @error('rating')
@@ -26,8 +44,9 @@
                 </div>
     
                 <div class="modal-body">
-                    <p>Select a rating for Save the Sea Turtles: Beach Cleanup</p>
+                    <p>Rate the Activity</p>
                     <!-- Put your buttons here Dyonté -->
+					<input id="input-1" name="rate" class="rating " data-min="0" data-max="5" data-step="1" data-show-caption="false" data-show-clear="false" >
                 </div>
             </div>
         </div>
