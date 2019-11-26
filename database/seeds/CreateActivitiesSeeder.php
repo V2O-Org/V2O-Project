@@ -69,7 +69,7 @@ class CreateActivitiesSeeder extends Seeder
         //     $activities[$i]->organisations()->sync($organisation[$i]);
         // }
 
-        factory(App\Activity::class, 75)->create();
+        factory(App\Activity::class, 60)->create();
 
         $activities = Activity::all();
         
