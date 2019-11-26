@@ -60,7 +60,10 @@ class VolunteerController extends Controller
     {
         $volunteer = Volunteer::findOrFail ($id);
         $volunteerProfile = $volunteer->volunteerProfile;
-        return view('volunteer/vol-profile')->with ('volunteer',$volunteer) ->with ('volunteerProfile',$volunteerProfile);
+		$volunteerActivities = $volunteerProfile->activity;
+		//$volunteerOrg= $volunteer->activities->organisation;
+        return view('volunteer/vol-profile')->with ('volunteer',$volunteer) ->with ('volunteerProfile',$volunteerProfile)->with('activities',$volunteerActivities ) ;
+		
     }
 
     /**

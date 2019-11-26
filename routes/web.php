@@ -114,15 +114,16 @@ Route::any('/search', function(Request $request){
         return view('activity/activity-search-results')->withMessage('No activities matching your search')->withQuery($name);
     }
 });
+/*
 Route::prefix('/actrating')->group(function() {
     // Create Route
-    Route::get('/index', 'ActivityEvaluationController@index')->name('activityevaluation.index');
+    Route::get('/list', 'ActivityEvaluationController@index')->name('activityevaluation.index');
 	
 	Route::get('/create', 'ActivityEvaluationController@create')->name('activityevalution.create');
 	
 });
-
-
+*/
+Route::resource('actrate','ActivityEvaluationController');
 
 Route::get('/search/results', function(){
     return view('activity/activity-search-results');

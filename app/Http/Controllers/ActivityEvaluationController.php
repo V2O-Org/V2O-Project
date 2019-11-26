@@ -9,7 +9,8 @@ use App\ActivityEvaluation;
 
 class ActivityEvaluationController extends Controller
 {
-	
+
+/*
 	 public function __construct()
     {
         $this->middleware('auth:vol')->except(['index', 'show']);
@@ -22,10 +23,9 @@ class ActivityEvaluationController extends Controller
      */
     public function index()
     {
-        //
+        
 		$activityevaluations = ActivityEvaluation::all();
-		
-		return view('activityevaluation/index')->with('activityevaluations',$activityevaluations);
+		return view('activityevaluation/index')->with('activityevaluations', $activityevaluations);
     }
 
     /**
@@ -37,7 +37,6 @@ class ActivityEvaluationController extends Controller
     {
         //
 		$activityevaluation = new ActivityEvaluation;
-		
 		return view('activityevaluation/create')->with('activityevaluation',$activityevaluation);
     }
 
@@ -51,16 +50,19 @@ class ActivityEvaluationController extends Controller
     {
         //
 		ActivityEvaluation::create([
+		
+		
 		'activity_id' => $request ->activity_id,
             'volunteer_id' =>$request ->volunteer_id,
-            'rating' =>$request ->rating,
-            'comment' =>$request ->comment,
+		  
+            'rating' =>$request->input('rate'),
+            'comment' =>$request->comment,
 		]);
 		
 		 
 		
 		
-		return redirect(url('activityevaluation'));
+		return redirect(url('actrate'));
     }
 
     /**
@@ -100,7 +102,7 @@ class ActivityEvaluationController extends Controller
     {
         //
 		$activityevaluation = ActivityEvaluation::findOrFail($id);
-		$activityevaluation->rating = $request->rating;
+		$activityevaluation->rating = $request->input(rate);
 		$activityevaluation->comment = $request->comment;
 		$activityevaluation->save();
 		
