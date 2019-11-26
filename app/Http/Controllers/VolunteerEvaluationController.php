@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\VolunteerEvaluation;
+use Auth;
 class VolunteerEvaluationController extends Controller
 {
     /**
@@ -24,6 +25,9 @@ class VolunteerEvaluationController extends Controller
     public function create()
     {
         //
+        $volEval = new VolunteerEvaluation;
+        
+
     }
 
     /**
@@ -35,7 +39,15 @@ class VolunteerEvaluationController extends Controller
     public function store(Request $request)
     {
         //
-    }
+
+        VolunteerEvaluation :: create([
+            'organisation_id' =>$request ->organisation_id,
+            'volunteer_id' =>$request ->volunteer_id,
+            'rating' =>$request ->rating,
+            'comment' =>$request ->comment,
+        ]);
+        
+        return back();    }
 
     /**
      * Display the specified resource.
@@ -80,5 +92,8 @@ class VolunteerEvaluationController extends Controller
     public function destroy($id)
     {
         //
+        $volEval = VolunteerEvaluation::findOrFail ($id);
+        $volEval->delete();
+                return back();
     }
 }

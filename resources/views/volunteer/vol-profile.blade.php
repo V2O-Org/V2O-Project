@@ -29,7 +29,7 @@
     <p> Name: {{$volunteerProfile->getName() }}  </p>
     <p> Age: {{ $volunteerProfile->getAge() }} </p>
     <p> Address: {{$volunteerProfile->fullAddress()}} </p>
-    <p> Email: {{$volunteer->email}}  </p> 	
+    <p> Email: <a href = "mailto: {{$volunteer->email}}" > {{$volunteer->email}} </a> </p> 	
 
     <!-- 
         Check if the current user is the volunteer that the profile belongs to.
@@ -48,7 +48,8 @@
 <div col-12> 
 	<h2> Already volunteered for: </h2>
 
-
+	
+	@include('partials.tester')	
 
 </div>
 

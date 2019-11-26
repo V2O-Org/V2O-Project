@@ -6,10 +6,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 <!-- Trigger the modal with a button -->
-<button type="button" class="modal_button" data-toggle="modal" data-target="#myModal">Edit</button>
+<button type="button" class="modal_button" data-toggle="modal" data-target="#edit">Edit</button>
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="edit" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->

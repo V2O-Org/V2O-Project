@@ -49,7 +49,24 @@ class Volunteer extends Authenticatable
     {
         return $this->hasOne(VolunteerProfile::class);
     }
-    
+
+    /**
+     * Set up the relationship between volunteers and evaluations.
+     * 1 volunteer HAS many evaluations.
+     */
+    public function VolunteerEvaluation()
+    {
+        return $this->hasMany(VolunteerEvaluation::class);
+    }
+
+
+    /**
+     * Return the full name of the volunteer
+     */
+    public function name() {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
     /**
      * Send the password reset notification.
      * 
